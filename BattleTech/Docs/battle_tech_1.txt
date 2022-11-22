@@ -1,0 +1,127 @@
+BATTLE TECH FROM INFOCOM:  The Crescent Hawk's Inception
+
+Planets' names (note: you NEED this info to complete the game!)
+
+Ryerson, Summer, Benjamin, Skye, Kathil, Achernar, Pesht
+
+This disk is not copy protected!  But they do ask you to identify parts of the
+battle tech.  Look at the drawing below.
+
+Communicating with the Game
+
+All Battletech commands are ectered through simple key presses:  When you
+encounter a menu, move the higlighted bar up or down the menu using the up and
+down arrowes (the 8 and 2 keys on the numeric keypad;  or use W for up and X
+for down).  Choose the highlighted selection by pressing the space bar or the
+return key.
+
+Standard Numeric Keypad:
+
+The 2, 4, 6, 8 keys move you South, West, East, North respectively.
+The 1, 3, 7, 9 keys will move you diagonally.
+
+
+
+                            -------
+                            |     |<------ Torso Mainframe
+                     -------       -------
+    Intercooler -------------->           \
+                  /   / |             |\   \
+                 |   |  |             | \   \ <------ Elbo Actuator
+  Gryo Housing ---------------------->|  \   \
+ Jump Jet Intake ------>/   -------   \   |<------ Balance Strut
+               /   /   /   /       \   \<------ Leg Mainshaft
+               ----   /   /         \   \   \   \
+                     |   |           |   |   ----
+                     |   |           |   |
+                     |   |           |   |
+                     |   |           |   |<------ Foot Actuator
+                    /    /           \    \
+                    -----             ----- <------ Foot Casting
+
+Battle Mechs:
+
+WSP-1A WASP
+
+Too Lightly armed and armored for combat, this 'meach's speed and
+maneuverability make it a good machine for scouting and recon duty.
+
+Characteristics
+
+Mass:  20 Tons
+Cruising speed:  66.5 kph
+Maximum speed:  95.1 kph
+Walking Factor:  6
+Running Factor:  9
+Jump Jets:  capacity 180 meters
+Heat Sinks:  10
+Armor Factor:  48
+Armorment:  1 medium laser, right arm
+            1 short range missle, left leg
+
+LCT-1V LOCUST
+
+This Mech is light and fast, making it good for recon and quick stricks.
+Beware a direct hit from almost any weapon.
+
+Characteristics
+
+Mass:  20 Tons
+Cruising Speed:  86.4 kph
+Maximum Speed:  129.6 kph
+Walking Factor:  8
+Running Factor:  12
+Jumping Factor:  none
+Heat Sinks:  10
+Armor Factor:  64
+Armorment:  1 medium laser, center torso
+            2 machine guns, one each in right and left arms
+
+STG-3R STINGER
+
+Although lightly armored, and with limited weapons, this mech has speed and 
+mobility making it one tough machine to pin down.
+
+Characteristics
+
+Mass:  20 Tons
+Cruising Speed:  63.4 kph
+Maximum Speed:  91.6 kph
+Walking Factor:  6
+running Factor:  9
+Jumping Factor:  capacity 180 meters
+Heat Sinks:  10
+Armor Factor:  48
+Armorment:  1 medium laser, right larm
+            2 machine guns, one each in right and left arms
+
+COM-2D COMMANDO
+
+Despite it's light armor, this Mech's dual missile system make it a good recon 
+and emergeny barrage vehicle.
+
+Characteristics
+
+Mass:  25 Tons
+Cruising Speed:  64.8 kph
+Maximum Speed:  97.2 kph
+Walking Factor:  6
+Running Factor:  9
+Jumping Factor:  none
+Heat Sinks:  10
+Armor Factor:  64
+Armorment:  2 short range missiles 1 each in right arm and center torso
+            1 medium laser, left arm
+
+MECH WEAPONS
+
+Laser:  Powered off your mech's power plant, these never run out of ammo.
+Small Lasers:
+      Power output:  .8 to 1.5 megajoules
+      Effective range:  90 meters
+Medium Lasers:
+      Power output:  1.5 to 3 megajoules
+      Effective range:  300 meters
+Large Lasers:
+      Power output:  3 to 5 megajoules
+      Effective range:  500 meters
