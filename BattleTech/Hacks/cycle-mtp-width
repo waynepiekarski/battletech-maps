@@ -1,0 +1,8 @@
+#!/bin/bash
+
+WIDTH=16
+while true; do
+  WIDTH=$[WIDTH+1]
+  ./rawdump ../MAP1.MTP $WIDTH | less
+  if [[ "$WIDTH" == "1024" ]]; then exit 0; fi
+done
