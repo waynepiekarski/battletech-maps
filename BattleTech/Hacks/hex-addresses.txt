@@ -1,0 +1,22 @@
+0x0B86 d2950 - change to 0xFF reveals more of the map in the Citadel
+0x0A4E d2638 also revealed more map walking around
+
+
+
+C-bill: 15  0x0F
+DefHes: 10  0x0A
+NasDiv: 25  0x19
+BakPhar: 37 0x25 0xd69,0xd6a,0xd6b,0xd6c
+
+00000d50  00 00 00 00 00 00 00 00  00 00 00 00 00 0f 00 00  |................|
+00000d60  00 0a 00 00 00 19 00 00  00 25 00 00 00 00 00 00  |.........%......|
+
+4 bytes per account
+edit 0xd5a to 0xd6c with 0xFF
+
+
+
+
+
+MAP1.MTP is the map for the Citadel training area
+MAP11.MTP is the same map but after the Citadel is destroyed
