@@ -2,12 +2,15 @@
 #include <cstdlib>
 #include <cassert>
 #include <ctype.h>
+#include <math.h>
+
+#include "lodepng/lodepng.cpp"
 
 bool DEBUG = false;
 
 // Handle 4637 byte MTP files which are actually 64*64=4096 byte images arranged as 8x8 tiles
 int main (int argc, char* argv[]) {
-  if (argc != 2) { fprintf(stderr, "No file provided"); exit(1); }
+  if (argc != 3) { fprintf(stderr, "Need arguments <input_mtp> <output_png>\n"); exit(1); }
   FILE *fp = fopen(argv[1], "r");
   if (fp == nullptr) { fprintf(stderr, "File not found"); exit(1); }
 
@@ -45,14 +48,32 @@ int main (int argc, char* argv[]) {
       assert(x < 64);
       assert(y < 64);
       if(DEBUG) fprintf(stderr, "ofs=%d buf=0x%.2x --> tn=%d,tc=%d,tr=%d,to=%d,tx=%d,ty=%d,x=%d,y=%d\n", count, buf, tilenum, tilecol, tilerow, tileofs, tilex, tiley, x, y);
-      image[y][x] = buf;
+      image[x][y] = buf;
     }
     count++;
   }
 
-  for (int x = 0; x < 64; x++) {
-    for (int y = 0; y < 64; y++) {
-      fputc(image[y][x], stdout);
-    }
+  lodepng::State state;
+  srandom(1000); // See the random number to be consistent each time, generates a nice color scheme with this value
+  for(int i = 0; i < 256; i++) {
+    unsigned char r = random() % 256;
+    unsigned char g = random() % 256;
+    unsigned char b = random() % 256;
+    unsigned char a = 255;
+    lodepng_palette_add(&state.info_png.color, r, g, b, a);
+    lodepng_palette_add(&state.info_raw, r, g, b, a);
   }
+  state.info_png.color.colortype = LCT_PALETTE;
+  state.info_png.color.bitdepth = 8;
+  state.info_raw.colortype = LCT_PALETTE;
+  state.info_raw.bitdepth = 8;
+  state.encoder.auto_convert = 0;
+
+  std::vector<unsigned char> buffer;
+  unsigned error = lodepng::encode(buffer, &image[0][0], 64, 64, state);
+  if(error) {
+    fprintf(stderr, "PNG encoder error %d: %s\n", error, lodepng_error_text(error));
+    exit(1);
+  }
+  lodepng::save_file(buffer, argv[2]);
 }
