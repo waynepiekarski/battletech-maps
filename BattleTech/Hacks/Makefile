@@ -1,8 +1,10 @@
-all: rawdump mtp2png images
+all: rawdump mtp2png images addmoney
 
 rawdump: rawdump.cpp
 
 mtp2png: mtp2png.cpp
+
+addmoney: addmoney.cpp
 
 images: mtp2png
 	./mtp2png ../MAP1.MTP out-map1.png
