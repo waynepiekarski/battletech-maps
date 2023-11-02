@@ -4,6 +4,7 @@
 /*.png
 /*.bin
 /memdumpbin2png
+/framebuffer2png
 /memdumpbinsim
 /*_palette.h
 /svg_palette.svg
