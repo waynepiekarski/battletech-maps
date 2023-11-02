@@ -1,4 +1,7 @@
 /addmoney
 /mtp2png
 /rawdump
-/out-*.png
+/*.png
+/*.bin
+/memdumpbin2png
+/memdumpbinsim
