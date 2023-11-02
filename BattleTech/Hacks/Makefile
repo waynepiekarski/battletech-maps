@@ -1,15 +1,22 @@
 TARGETS = rawdump mtp2png addmoney memdumpbin2png memdumpbinsim
 TARGETS += $(shell ls -1 ../*.MTP | sed "s/\.MTP/\.png/g" | sed "s~../~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15)
-TARGETS += $(shell ls -1 memdumpbin-*.bin | sed "s/\.bin/\.png/g")
-TARGETS += memdumpbin-sim.png
+TARGETS += memdumpbin-sim16.png memdumpbin-sim256.png memdumpbin-sim0.png
+TARGETS += svg_palette.svg
+TARGETS += $(shell if [ -f MEMDUMP.BIN ]; then echo "MEMDUMP.BIN.png"; fi)
 
 all: $(TARGETS)
 
 rawdump: rawdump.cpp
 
-mtp2png: mtp2png.cpp
+mtp2png: mtp2png.cpp vga_palette.h
 
-memdumpbin2png: memdumpbin2png.cpp
+vga_palette.h: vgapalette.sh
+	./vgapalette.sh > vga_palette.h
+
+svg_palette.svg: svgpalette.sh
+	./svgpalette.sh > svg_palette.svg
+
+memdumpbin2png: memdumpbin2png.cpp vga_palette.h
 
 addmoney: addmoney.cpp
 
@@ -19,10 +26,16 @@ addmoney: addmoney.cpp
 memdumpbin-%.png: memdumpbin-%.bin memdumpbin2png
 	./memdumpbin2png $< $@
 
+MEMDUMP.BIN.png: memdumpbin2png
+	./memdumpbin2png MEMDUMP.BIN MEMDUMP.BIN.png
+
 memdumpbinsim: memdumpbinsim.cpp
 
-memdumpbin-sim.bin: memdumpbinsim
-	./memdumpbinsim > memdumpbin-sim.bin
+memdumpbin-sim%.bin: memdumpbinsim
+	./memdumpbinsim $(subst memdumpbin-sim,,$(subst .bin,,$*)) > $@ $*
+
+memdumpbin-sim%.png: memdumpbin-sim%.bin memdumpbin2png
+	./memdumpbin2png $< $@
 
 clean:
 	rm -rf $(TARGETS)

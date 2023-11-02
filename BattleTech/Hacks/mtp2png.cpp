@@ -78,13 +78,25 @@ int main (int argc, char* argv[]) {
     count++;
   }
 
+// The VGA palette doesn't work well here, use the random palette for now
+#undef VGA_PALETTE
+#ifdef VGA_PALETTE
+  #include "vga_palette.h"
+#endif // VGA_PALETTE
   lodepng::State state;
   srandom(1000); // See the random number to be consistent each time, generates a nice color scheme with this value
   for(int i = 0; i < 256; i++) {
+#ifdef VGA_PALETTE
+    unsigned char r = vga_palette[i*4+0];
+    unsigned char g = vga_palette[i*4+1];
+    unsigned char b = vga_palette[i*4+2];
+    unsigned char a = vga_palette[i*4+3];
+#else
     unsigned char r = random() % 256;
     unsigned char g = random() % 256;
     unsigned char b = random() % 256;
     unsigned char a = 255;
+#endif // VGA_PALETTE
     lodepng_palette_add(&state.info_png.color, r, g, b, a);
     lodepng_palette_add(&state.info_raw, r, g, b, a);
   }
