@@ -1,0 +1,34 @@
+Use dosbox-debug
+
+Keys:
+ALT + FN + P (Alt+Pause on Framework laptop keyboard) - break debugger at current location
+F10 - step over
+F11 - step into
+F5 - run
+Control + F5 - capture screenshot to ~/.dosbox
+Alt + Enter - fullscreen mode
+
+BPM A000:013F - breakpoint at memory location for pixel (319,0) top right pixel of screen
+
+CTRL+F11 - slow down CPU
+Slow down the CPU and then move the character left, you will see the refresh happen
+ALT+FN+P to break during the refresh
+
+CPU will be at 1A21:2559 which is a "repe movsb" instruction. Each of these
+instructions refreshes one scanline.
+
+EAX=0000000D  ESI=00001255  DS=AC00   ES=A000   FS=0000   GS=0000   SS=387D Real
+EBX=0000001B  EDI=00001255  CS=1A21   EIP=00002559  C0 Z0 S0 O0 A0 P1 D0 I1 T0
+ECX=0000001B  EBP=00005F64                                          IOPL3  CPL0
+EDX=00000053  ESP=00005F58                                  55751845
+
+"movs copies data from ds:esi to es:edi and increments or decrements the pointers"
+F3 A4	REP MOVS m8, m8	ZO	Valid	Valid	Move (E)CX bytes from DS:[(E)SI] to ES:[(E)DI].
+CX is the counter, which in this case is 0x1B or 27d, not sure why 27?
+
+MEMDUMPBIN 0:0 FFFFFF - save out 1M of memory
+
+Gimp can load *.data files with a raw image loader that you can specify width x height
+
+BattleTech needs to be run in MCGA mode to use a proper linear framebuffer. If you use
+EGA/VGA mode then it uses a weird planar mode where the framebuffer is not easy to decode.
