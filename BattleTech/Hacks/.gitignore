@@ -5,5 +5,5 @@
 /*.bin
 /memdumpbin2png
 /memdumpbinsim
-/vga_palette.h
+/*_palette.h
 /svg_palette.svg

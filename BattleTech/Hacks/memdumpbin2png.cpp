@@ -72,10 +72,15 @@ int main (int argc, char* argv[]) {
     image[y][x] = memory[count];
   }
 
-#define VGA_PALETTE
+#define BTECH_PALETTE
+#undef VGA_PALETTE
+
 #ifdef VGA_PALETTE
   #include "vga_palette.h"
 #endif // VGA_PALETTE
+#ifdef BTECH_PALETTE
+  #include "btech_palette.h"
+#endif // BTECH_PALETTE
   lodepng::State state;
   srandom(1000); // See the random number to be consistent each time, generates a nice color scheme with this value
   for(int i = 0; i < 256; i++) {
@@ -85,10 +90,17 @@ int main (int argc, char* argv[]) {
     unsigned char b = vga_palette[i*4+2];
     unsigned char a = vga_palette[i*4+3];
 #else
+#ifdef BTECH_PALETTE
+    unsigned char r = btech_palette[i*4+0];
+    unsigned char g = btech_palette[i*4+1];
+    unsigned char b = btech_palette[i*4+2];
+    unsigned char a = btech_palette[i*4+3];
+#else
     unsigned char r = random() % 256;
     unsigned char g = random() % 256;
     unsigned char b = random() % 256;
     unsigned char a = 255;
+#endif // BTECH_PALETTE
 #endif // VGA_PALETTE
     lodepng_palette_add(&state.info_png.color, r, g, b, a);
     lodepng_palette_add(&state.info_raw, r, g, b, a);
