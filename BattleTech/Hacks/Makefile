@@ -13,7 +13,7 @@ memdumpbin2png: memdumpbin2png.cpp
 
 addmoney: addmoney.cpp
 
-%.png: ../%.MTP
+%.png: ../%.MTP mtp2png
 	./mtp2png $< $@
 
 memdumpbin-%.png: memdumpbin-%.bin memdumpbin2png
