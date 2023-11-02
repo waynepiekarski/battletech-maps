@@ -33,10 +33,10 @@ addmoney: addmoney.cpp
 memdumpbin-%.png: memdumpbin-%.bin memdumpbin2png
 	./memdumpbin2png $< $@
 
-MEMDUMP.BIN.full.png: memdumpbin2png
+MEMDUMP.BIN.full.png: memdumpbin2png MEMDUMP.BIN
 	./memdumpbin2png MEMDUMP.BIN MEMDUMP.BIN.full.png
 
-MEMDUMP.BIN.fb.png: framebuffer2png
+MEMDUMP.BIN.fb.png: framebuffer2png MEMDUMP.BIN
 	./framebuffer2png MEMDUMP.BIN MEMDUMP.BIN.fb.png
 
 memdumpbinsim: memdumpbinsim.cpp
