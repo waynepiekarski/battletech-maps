@@ -1,6 +1,6 @@
 
 TARGETS += rawdump mtp2png addmoney memdumpbin2png memdumpbinsim framebuffer2png
-TARGETS += vga_palette.h btech_palette.h svg_palette.svg
+TARGETS += vga_palette.h svg_palette.svg
 TARGETS += $(shell ls -1 ../*.MTP | sed "s/\.MTP/\.png/g" | sed "s~../~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15)
 TARGETS += memdumpbin-sim16.png memdumpbin-sim256.png memdumpbin-sim0.png
 TARGETS += svg_palette.svg
@@ -15,15 +15,12 @@ mtp2png: mtp2png.cpp vga_palette.h
 vga_palette.h: vgapalette.sh
 	./vgapalette.sh > vga_palette.h
 
-btech_palette.h: btechpalette.sh
-	./btechpalette.sh > btech_palette.h
-
 svg_palette.svg: svgpalette.sh
 	./svgpalette.sh > svg_palette.svg
 
-memdumpbin2png: memdumpbin2png.cpp vga_palette.h btech_palette.h
+memdumpbin2png: memdumpbin2png.cpp vga_palette.h
 
-framebuffer2png: framebuffer2png.cpp vga_palette.h btech_palette.h
+framebuffer2png: framebuffer2png.cpp vga_palette.h
 
 addmoney: addmoney.cpp
 

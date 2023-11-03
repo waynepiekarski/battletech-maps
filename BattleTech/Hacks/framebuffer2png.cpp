@@ -50,34 +50,32 @@ int main (int argc, char* argv[]) {
   }
 
 #define BTECH_PALETTE
-#undef VGA_PALETTE
+#define VGA_PALETTE
 
 #ifdef VGA_PALETTE
   #include "vga_palette.h"
 #endif // VGA_PALETTE
-#ifdef BTECH_PALETTE
-  #include "btech_palette.h"
-#endif // BTECH_PALETTE
   lodepng::State state;
   srandom(1000); // See the random number to be consistent each time, generates a nice color scheme with this value
-  for(int i = 0; i < 256; i++) {
+  for(unsigned int i = 0; i < 256; i++) {
 #ifdef VGA_PALETTE
-    unsigned char r = vga_palette[i*4+0];
-    unsigned char g = vga_palette[i*4+1];
-    unsigned char b = vga_palette[i*4+2];
-    unsigned char a = vga_palette[i*4+3];
-#else
+    int j = i*4;
 #ifdef BTECH_PALETTE
-    unsigned char r = btech_palette[i*4+0];
-    unsigned char g = btech_palette[i*4+1];
-    unsigned char b = btech_palette[i*4+2];
-    unsigned char a = btech_palette[i*4+3];
+    // BattleTech has a weird palette scheme where they use either the lower or higher 4-bits for the same 16 colors,
+    // this is probably a relic from how it also supports planar output in EGA/VGA.
+    if (((i & 0xF0) != 0) && ((i & 0x0F) == 0)) {
+      j = ((i & 0xF0) >> 4) * 4;
+    }
+#endif // BTECH_PALETTE
+    unsigned char r = vga_palette[j+0];
+    unsigned char g = vga_palette[j+1];
+    unsigned char b = vga_palette[j+2];
+    unsigned char a = vga_palette[j+3];
 #else
     unsigned char r = random() % 256;
     unsigned char g = random() % 256;
     unsigned char b = random() % 256;
     unsigned char a = 255;
-#endif // BTECH_PALETTE
 #endif // VGA_PALETTE
     lodepng_palette_add(&state.info_png.color, r, g, b, a);
     lodepng_palette_add(&state.info_raw, r, g, b, a);
