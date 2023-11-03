@@ -71,6 +71,13 @@ int main (int argc, char* argv[]) {
     unsigned char g = vga_palette[j+1];
     unsigned char b = vga_palette[j+2];
     unsigned char a = vga_palette[j+3];
+#ifdef BTECH_PALETTE
+    if ((r == 0xAA) && (g == 0x00) && (b == 0xAA)) {
+      r = 0x41;
+      g = 0x79;
+      b = 0xFF;
+    }
+#endif // BTECH_PALETTE
 #else
     unsigned char r = random() % 256;
     unsigned char g = random() % 256;
