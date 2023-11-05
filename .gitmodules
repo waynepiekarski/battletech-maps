@@ -1,0 +1,3 @@
+[submodule "fs4-dosbox"]
+	path = fs4-dosbox
+	url = ../fs4-dosbox.git
