@@ -1,5 +1,5 @@
 
-TARGETS += rawdump mtp2png addmoney memdumpbin2png memdumpbinsim framebuffer2png
+TARGETS += rawdump mtp2png addmoney movexy memdumpbin2png memdumpbinsim framebuffer2png
 TARGETS += vga_palette.h svg_palette.svg
 TARGETS += $(shell ls -1 ../*.MTP | sed "s/\.MTP/\.png/g" | sed "s~../~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15)
 TARGETS += memdumpbin-sim16.png memdumpbin-sim256.png memdumpbin-sim0.png
