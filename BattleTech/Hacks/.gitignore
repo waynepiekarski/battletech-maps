@@ -2,6 +2,7 @@
 /movexy
 /mtp2png
 /rawdump
+/hexdiff
 /*.png
 /*.bin
 /memdumpbin2png
