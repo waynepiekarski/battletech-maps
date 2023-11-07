@@ -47,7 +47,8 @@ int main (int argc, char* _argv[]) {
       continue;
     }
 
-    printf("ofs=%.5zX src=%.2X dst=%.2X diff=%+d\n", ofs, a, b, (signed char)(a-b));
+    printf("ofs=0x%.5zX src=0x%.2X dst=0x%.2X diffdec=%+d\n", ofs, a, b, (int)b-(int)a);
+    fflush(stdout);
     ofs++;
     if ((flag_no_graphics) && (ofs >= 0xA0000)) {
       fprintf(stderr, "Stopping before A000:0000 framebuffer\n");
