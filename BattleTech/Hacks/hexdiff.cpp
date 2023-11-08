@@ -17,7 +17,7 @@ int main (int argc, char* _argv[]) {
       argv.push_back(_argv[i]);
     }
   }
-  if (argc != 3) { fprintf(stderr, "Two files required"); exit(1); }
+  if (argv.size() != 3) { fprintf(stderr, "Two files required"); exit(1); }
   FILE *fpa = fopen(argv[1], "r");
   if (fpa == nullptr) { fprintf(stderr, "File %s not found", argv[1]); exit(1); }
   FILE *fpb = fopen(argv[2], "r");
