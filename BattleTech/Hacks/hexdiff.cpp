@@ -27,6 +27,10 @@ int main (int argc, char* _argv[]) {
   size_t ofs = 0;
   size_t last = 0;
   while(1) {
+    if ((flag_no_graphics) && (ofs >= 0xA0000)) {
+      fprintf(stderr, "Stopping before A000:0000 framebuffer\n");
+      exit(0);
+    }
     unsigned char a;
     int aa = fread(&a, 1, 1, fpa);
     unsigned char b;
@@ -53,9 +57,5 @@ int main (int argc, char* _argv[]) {
     fflush(stdout);
     last = ofs;
     ofs++;
-    if ((flag_no_graphics) && (ofs >= 0xA0000)) {
-      fprintf(stderr, "Stopping before A000:0000 framebuffer\n");
-      exit(0);
-    }
   }
 }
