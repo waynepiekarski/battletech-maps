@@ -25,6 +25,7 @@ int main (int argc, char* _argv[]) {
   printf("%s %s %s\n", argv[0], argv[1], argv[2]);
 
   size_t ofs = 0;
+  size_t last = 0;
   while(1) {
     unsigned char a;
     int aa = fread(&a, 1, 1, fpa);
@@ -44,11 +45,13 @@ int main (int argc, char* _argv[]) {
     }
 
     if (a == b) {
+      ofs++;
       continue;
     }
 
-    printf("ofs=0x%.5zX src=0x%.2X dst=0x%.2X diffdec=%+d\n", ofs, a, b, (int)b-(int)a);
+    printf("ofs=0x%.5zX lastofs=0x%-5zX src=0x%.2X dst=0x%.2X diffdec=%+d\n", ofs, ofs-last, a, b, (int)b-(int)a);
     fflush(stdout);
+    last = ofs;
     ofs++;
     if ((flag_no_graphics) && (ofs >= 0xA0000)) {
       fprintf(stderr, "Stopping before A000:0000 framebuffer\n");
