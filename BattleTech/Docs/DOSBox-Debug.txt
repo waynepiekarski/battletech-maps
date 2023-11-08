@@ -32,3 +32,80 @@ Gimp can load *.data files with a raw image loader that you can specify width x 
 
 BattleTech needs to be run in MCGA mode to use a proper linear framebuffer. If you use
 EGA/VGA mode then it uses a weird planar mode where the framebuffer is not easy to decode.
+
+
+Previous offsets: 0x1E3B0 and 0x1E3B2
+
+MEMDUMPBIN 0:0 100000 twice after moving the character 3 to the right and 3 down.
+./hexdiff top-left-3.bin bottom-right-3.bin --no-graphics | grep "diffdec=[+-]3$" | less
+Character position seems to change +1 to the east and +1 to the south, -1,-1 to the north-west
+ofs=0x1E3AF lastofs=0x91    src=0x56 dst=0x59 diffdec=+3
+ofs=0x1E3B1 lastofs=0x2     src=0x12 dst=0x15 diffdec=+3
+
+Write to fs4-dosbox stdin with:
+W <hexOFS> <hexVAL>
+R <hexOFS>
+
+However, adjusting these values has no impact. The character stays in the same position. If you
+do a read the value has gone back to the original. So the value is being copied over from somewhere
+else after the movement has been processed.
+
+Also found these in the diff output: (we know the grep should only look for +3 to reduce the search)
+./hexdiff top-left-3.bin bottom-right-3.bin --no-graphics | grep "diffdec=+3$" | less
+ofs=0x2852B lastofs=0x302   src=0x56 dst=0x59 diffdec=+3 (Works)
+ofs=0x2852D lastofs=0x2     src=0x12 dst=0x15 diffdec=+3 (Works)
+ofs=0x2E34C lastofs=0x68C   src=0x56 dst=0x59 diffdec=+3 (Does nothing)
+ofs=0x2E37E lastofs=0x11    src=0x12 dst=0x15 diffdec=+3 (Does nothing)
+
+These offsets work to move the character around!
+W 2852A 0 no effect
+W 2852B 0 <-- moves in X
+W 2852C 0 no effect
+W 2852D 0 <-- moves in Y
+W 2852E 0 adds a mech?
+Seems to corrupt the movements and after looking at the map they are no longer in the Citadel.
+Also, it seems like the XY coordinates are only 8-bit values and not 16-bit like I thought.
+Perhaps these are XY coordinates within a larger grid and values stored elsewhere. When you
+move into a new grid square then some different map might be loaded, so might not be straightforward
+to push the character around with just these memory locations.
+
+
+
+
+ofs=0x1E3AF lastofs=0x91    src=0x56 dst=0x59 diffdec=+3   no movement when changed
+ofs=0x1E3B1 lastofs=0x2     src=0x12 dst=0x15 diffdec=+3   no movement when changed
+ofs=0x20605 lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x2061D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x206F4 lastofs=0x1     src=0x05 dst=0x08 diffdec=+3
+ofs=0x20885 lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x2089D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x20BD8 lastofs=0x1     src=0x05 dst=0x08 diffdec=+3
+ofs=0x20E78 lastofs=0x1     src=0x55 dst=0x58 diffdec=+3
+ofs=0x21005 lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x2101D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x21285 lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x2129D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x21421 lastofs=0x1     src=0x05 dst=0x08 diffdec=+3
+ofs=0x21A1D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x21C9D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x222F7 lastofs=0x1     src=0x87 dst=0x8A diffdec=+3
+ofs=0x2241D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x2269D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x22E1D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x2309D lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x2358F lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x23591 lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x2380F lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x23811 lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x23A93 lastofs=0x1     src=0xB8 dst=0xBB diffdec=+3
+ofs=0x23B80 lastofs=0x1     src=0x00 dst=0x03 diffdec=+3
+ofs=0x23B86 lastofs=0x1     src=0x00 dst=0x03 diffdec=+3
+ofs=0x27B8D lastofs=0x1     src=0x95 dst=0x98 diffdec=+3
+ofs=0x2852B lastofs=0x302   src=0x56 dst=0x59 diffdec=+3   moves
+ofs=0x2852D lastofs=0x2     src=0x12 dst=0x15 diffdec=+3   moves
+ofs=0x2E34C lastofs=0x68C   src=0x56 dst=0x59 diffdec=+3   does not work
+ofs=0x2E37E lastofs=0x11    src=0x12 dst=0x15 diffdec=+3   does not work
+ofs=0x31569 lastofs=0x1     src=0xFC dst=0xFF diffdec=+3
+ofs=0x3163E lastofs=0x1     src=0xCC dst=0xCF diffdec=+3
+ofs=0x3E716 lastofs=0x11    src=0x03 dst=0x06 diffdec=+3
+ofs=0x3E730 lastofs=0x10    src=0x57 dst=0x5A diffdec=+3
