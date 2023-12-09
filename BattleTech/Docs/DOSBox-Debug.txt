@@ -59,10 +59,10 @@ ofs=0x2E37E lastofs=0x11    src=0x12 dst=0x15 diffdec=+3 (Does nothing)
 
 These offsets work to move the character around!
 W 2852A 0 no effect
-W 2852B 0 <-- moves in X
-W 2852C 0 no effect
-W 2852D 0 <-- moves in Y
-W 2852E 0 adds a mech?
+W 2852B 0 <-- moves in X (0x00 to 0x7F only, never 0x80-0xFF)
+W 2852C 0 <-- read-only X tile coordinate, only high 4-bits set, writing has no effect
+W 2852D 0 <-- moves in Y (0x00 to 0x7F only, never 0x80-0xFF)
+W 2852E 0 <-- read-only Y tile coordinate, only high 4-bits set, writing has no effect
 Seems to corrupt the movements and after looking at the map they are no longer in the Citadel.
 Also, it seems like the XY coordinates are only 8-bit values and not 16-bit like I thought.
 Perhaps these are XY coordinates within a larger grid and values stored elsewhere. When you
