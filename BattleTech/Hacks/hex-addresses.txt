@@ -1,7 +1,13 @@
-0x0B86 d2950 - change to 0xFF reveals more of the map in the Citadel
-0x0A4E d2638 also revealed more map walking around
 
+* Map:
 
+0x0010 to 0x0CFC - set to 0xFF reveals a lot of map, mostly to the south?
+0x0CFD - forces game load to immediately go into combat
+0x0CFE,0x0CFF - does nothing
+0x0E40-0x0F44 - set to 0xFF reveals more of map, some in the north?
+The map seems to wrap around in some odd way but can't see the whole thing.
+
+* Money:
 
 C-bill: 15  0x0F
 DefHes: 10  0x0A
@@ -14,9 +20,19 @@ BakPhar: 37 0x25 0xd69,0xd6a,0xd6b,0xd6c
 4 bytes per account
 edit 0xd5a to 0xd6c with 0xFF
 
-
-
-
+* Maps:
 
 MAP1.MTP is the map for the Citadel training area
 MAP11.MTP is the same map but after the Citadel is destroyed
+
+* Location:
+
+The last 4 bytes of the file are the character XY coordinates:
+0x0F45,0x0F46,0x0F47,0x0F48
+Xlow,  Xhigh, Ylow,  Yhigh
+
+7F 0C 00 D0 - bottom right corner outside Citadel
+7E 0B 7F B0 - top left corner outside Citadel
+33 0E 40 00 - top right most part of the map
+
+Yhigh = 0 is the north-most part of the map
