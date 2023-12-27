@@ -119,3 +119,28 @@ values which are probably up, down, left, right. This is probably where the dire
 17F8:00000E71  mov  ax,[bp+06]                 ss:[5F7C]=FFB3
 17F8:00000E74  pop  bp                                       
 17F8:00000E75  retf                                          
+
+
+
+Set breakpoint where the value FFB3 is being checked:
+BP 17F8:0D27
+There are a bunch of CMP statements with various 0xFF?? and 0x00?? codes.
+The 0x00?? are ASCII chars. Example 0x57 is W, and the game supports WASD controls.
+The game supports diagonal movements too so 0xFFB9,B1,0C,AF,B0,B3,B5,B7,BB, etc are arrows.
+
+01A2:000021D0  cmp  word [bp+06],FFB3          ss:[5F7C]=FFB3
+sets [bp-02] to 0001h due to FFB3.
+Other code paths nearby set [bp-02] to FFFF which is clearly -1:
+01A2:21F9  C746FEFFFF          mov  word [bp-02],FFFF
+
+01A2:00001C1F looks interesting. It has a bunch of tests with cmp word to various values and constants.
+01A2:00001C99  cmp  byte es:[bx+07A4],0F       es:[07A9]=1E0F
+Testing a specific byte offset relative to BX=0005 against 0x0F.
+
+This breakpoint seems to only trigger when we touch the water:
+call 1675:17C6
+BP 1675:17C6
+
+The decision was made here against 0x0F, so lets edit this out:
+01A2:00001C99  cmp  byte es:[bx+07A4],0F       es:[07A9]=1E0F          26 80 BF A4 07 0F
+Replace 0x0F with 0x99 in VSCode hex editor, and now the water test is disabled!!!
