@@ -1,0 +1,121 @@
+
+Trying to disable the check that occurs when the character tries to walk in water that is too deep:
+
+This string is printed when you try to walk to deep, linear address 0x38BE0
+00038be0  54 68 65 20 77 61 74 65  72 20 69 73 20 74 6f 6f  |The water is too|
+
+Reko disassembled:
+3EDB:0410 54 68 65 20 77 61 74 65 72 20 69 73 20 74 6F 6F The water is too
+
+
+1A21:0B5C seems to be waiting for VGA VSYNC with IN and AL=1E09, DX=03DA
+
+Doing BPINT 16 breaks on INT 16 which can be used to read the keyboard AH=01
+
+1A21:0B90  B80E1E              mov  ax,1E0E
+1A21:0B93  8ED8                mov  ds,ax
+1A21:0B95  32E4                xor  ah,ah
+1A21:0B97  CD16                int  16
+1A21:0B99  3C00                cmp  al,00
+1A21:0B9B  7504                jne  00000BA1 ($+4)         (no jmp)
+1A21:0B9D  8AC4                mov  al,ah          (AL=AH)
+1A21:0B9F  F6D8                neg  al
+1A21:0BA1  98                  cbw                 (if AL!=00)
+1A21:0BA2  1F                  pop  ds
+
+Compile dosbox with -g so we can catch memory access here:
+awatch *(wayne_memory+0x38BE0)     <-- location of "The water is too"
+print Segs.val[1]    <-- CS register (decimal)
+print cpu_regs.ip    <-- IP register (decimal)
+Convert to hex and get 17F8:075B which seems to read this string
+
+BP 17F8:075B       <-- will put a breakpoint at this address
+
+
+-- Trace from keyboard interrupt to reading the text "The water is too"
+BPINT 16           <-- Keyboard interrupt
+BP 17F8:075B       <-- "The water is too"
+F5                 <-- resume execution
+<trigger right arrow to activate the interrupt>
+<When at the breakpoint for the keyboard>
+LOGL 10000         <-- Save LOGCPU.TXT from this point onwards
+F5 to continue to the "The water is too" string read.
+Copy the LOGCPU.TXT file since it has all the instructions and analyze it.
+
+https://stanislavs.org/helppc/int_21-b.html
+Check Standard Input Status
+AH=0B, on return AL=00 no char or AH=FF if char available
+1A21:00003BE5  mov  ah,0B
+1A21:00003BE7  int  21
+The interrupt sets CX=0140h and spins in a loop until CX is 0.
+
+CALL instruction is like a subroutine, pushes return address onto the stack until RET returns.
+
+
+F000:0000E98D  int  15                                                 CD 15                 EAX:00004FE0
+F000:000011E0  callback 000F  (Int 15 Bios)                            FE 38 0F 00           EAX:00004FE0
+F000:000011E4  iret                                                    CF                    EAX:00004FE0 CF:1
+F000:0000E98F  jnc  0000E995 ($+4)             (no jmp)                73 04
+https://stanislavs.org/helppc/int_15-4f.html
+CF is set, so new scan code available.
+
+F000:0000E991  callback 0011  (IRQ 1 Keyboard
+F000:0000E995  cli
+F000:0000E996  mov  al,20
+F000:0000E998  out  20,al
+F000:0000E99A  pop  ax
+F000:0000E99B  iret
+https://wiki.osdev.org/PIC
+I/O port 0x20 is the programmable interrupt controller.
+
+
+I pressed the right arrow here which is scancode 4Dh. Can see the 4D in register AL.
+https://en.wikipedia.org/wiki/INT_16H
+AL=10h "Read expanded keyboard character"
+https://www.plantation-productions.com/Webster/www.artofasm.com/DOS/ch20/CH20-3.html
+AL=scan code returned back
+1A21:00000B97  int  16                                                 CD 16                 EAX:0000000E
+F000:00001200  sti                                                     FB                    EAX:0000000E
+F000:00001201  callback 0010  (Keyboard)                               FE 38 10 00           EAX:0000000E
+F000:00001205  iret                                                    CF                    EAX:00004D00
+1A21:00000B99  cmp  al,00                                              3C 00                 EAX:00004D00
+1A21:00000B9B  jne  00000BA1 ($+4)             (no jmp)                75 04                 EAX:00004D00
+1A21:00000B9D  mov  al,ah                                              8A C4                 EAX:00004D00
+1A21:00000B9F  neg  al                                                 F6 D8                 EAX:00004D4D
+1A21:00000BA1  cbw                                                     98                    EAX:00004DB3
+1A21:00000BA2  pop  ds                                                 1F                    EAX:0000FFB3
+1A21:00000BA3  pop  si                                                 5E                    EAX:0000FFB3
+1A21:00000BA4  pop  di                                                 5F                    EAX:0000FFB3
+1A21:00000BA5  pop  bp                                                 5D                    EAX:0000FFB3
+1A21:00000BA6  retf                                                    CB                    EAX:0000FFB3
+
+NEG does twos complement negation of AL.
+CBW converts byte into a word.
+Transformation of scancode 4Dh into AX=FFB3, which then returns back to 18DF:00000275 for processing.
+18DF:00000275  mov  [bp-04],ax                 ss:[5F74]=0264
+The value FFB3 read in is stored onto the stack address for use later on.
+Then returned again back to:
+01A2:00000048  mov  [bp-1C],ax                 ss:[5F92]=FFB3          89 46 E4
+Stored the value at 387D:5F92 as well.
+
+xor ax,ax is just a quick way of setting ax=0.
+
+You can see where the value FFB3 is now read from the stack, and there are CMP that compares it against various
+values which are probably up, down, left, right. This is probably where the directions are handled!
+17F8:00000D27  mov  ax,[bp+06]                 ss:[5F7C]=FFB3
+17F8:00000D2A  cmp  ax,0041                                  
+17F8:00000D2D  je   00000D69 ($+3a)            (no jmp)      
+17F8:00000D2F  jle  00000D34 ($+3)             (down)        
+17F8:00000D34  cmp  ax,FFB9                                  
+17F8:00000D37  je   00000D79 ($+40)            (no jmp)      
+17F8:00000D39  jg   00000DA8 ($+6d)            (no jmp)      
+17F8:00000D3B  cmp  ax,FFB1                                  
+17F8:00000D3E  je   00000D51 ($+11)            (no jmp)      
+17F8:00000D40  jg   00000D91 ($+4f)            (down)        
+17F8:00000D91  cmp  ax,FFB3                                  
+17F8:00000D94  je   00000D71 ($-25)            (up)          
+17F8:00000D71  mov  word [bp+06],FFB3          ss:[5F7C]=FFB3
+17F8:00000D76  jmp  00000E71 ($+f8)            (down)        
+17F8:00000E71  mov  ax,[bp+06]                 ss:[5F7C]=FFB3
+17F8:00000E74  pop  bp                                       
+17F8:00000E75  retf                                          

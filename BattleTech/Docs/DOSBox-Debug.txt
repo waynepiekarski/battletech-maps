@@ -109,37 +109,3 @@ ofs=0x31569 lastofs=0x1     src=0xFC dst=0xFF diffdec=+3
 ofs=0x3163E lastofs=0x1     src=0xCC dst=0xCF diffdec=+3
 ofs=0x3E716 lastofs=0x11    src=0x03 dst=0x06 diffdec=+3
 ofs=0x3E730 lastofs=0x10    src=0x57 dst=0x5A diffdec=+3
-
----
-
-Trying to disable the check that occurs when the character tries to walk in water that is too deep:
-
-This string is printed when you try to walk to deep, linear address 0x38BE0
-00038be0  54 68 65 20 77 61 74 65  72 20 69 73 20 74 6f 6f  |The water is too|
-
-Reko disassembled:
-3EDB:0410 54 68 65 20 77 61 74 65 72 20 69 73 20 74 6F 6F The water is too
-
-
-1A21:0B5C seems to be waiting for VGA VSYNC with IN and AL=1E09, DX=03DA
-
-Doing BPINT 16 breaks on INT 16 which can be used to read the keyboard AH=01
-
-1A21:0B90  B80E1E              mov  ax,1E0E
-1A21:0B93  8ED8                mov  ds,ax
-1A21:0B95  32E4                xor  ah,ah
-1A21:0B97  CD16                int  16
-1A21:0B99  3C00                cmp  al,00
-1A21:0B9B  7504                jne  00000BA1 ($+4)         (no jmp)
-1A21:0B9D  8AC4                mov  al,ah          (AL=AH)
-1A21:0B9F  F6D8                neg  al
-1A21:0BA1  98                  cbw                 (if AL!=00)
-1A21:0BA2  1F                  pop  ds
-
-Compile dosbox with -g so we can catch memory access here:
-awatch *(wayne_memory+0x38BE0)     <-- location of "The water is too"
-print Segs.val[1]    <-- CS register (decimal)
-print cpu_regs.ip    <-- IP register (decimal)
-Convert to hex and get 17F8:075B which seems to read this string
-
-BP 17F8:075B       <-- will put a breakpoint at this address
