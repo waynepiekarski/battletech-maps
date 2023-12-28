@@ -1,5 +1,5 @@
 
-TARGETS += rawdump mtp2png addmoney movexy memdumpbin2png memdumpbinsim framebuffer2png hexdiff
+TARGETS += rawdump mtp2png mtp256 addmoney movexy memdumpbin2png memdumpbinsim framebuffer2png hexdiff
 TARGETS += vga_palette.h svg_palette.svg
 TARGETS += $(shell ls -1 ../*.MTP | sed "s/\.MTP/\.png/g" | sed "s~../~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15)
 TARGETS += memdumpbin-sim16.png memdumpbin-sim256.png memdumpbin-sim0.png
@@ -11,6 +11,8 @@ all: $(TARGETS)
 rawdump: rawdump.cpp
 
 mtp2png: mtp2png.cpp vga_palette.h
+
+mtp256: mtp256.cpp
 
 vga_palette.h: vgapalette.sh
 	./vgapalette.sh > vga_palette.h
