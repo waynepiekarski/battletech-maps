@@ -144,3 +144,43 @@ BP 1675:17C6
 The decision was made here against 0x0F, so lets edit this out:
 01A2:00001C99  cmp  byte es:[bx+07A4],0F       es:[07A9]=1E0F          26 80 BF A4 07 0F
 Replace 0x0F with 0x99 in VSCode hex editor, and now the water test is disabled!!!
+
+This is a good place to do a breakpoint for looking for others now like wall blocking:
+BP 01A2:00001C1F
+
+01A2:1D63  F646F801            test byte [bp-08],01        ss:[5F5C]=001A
+01A2:1D6D  26F6064BA401        test byte es:[A44B],01      es:[A44B]=5B88
+01A2:1D78  F646F601            test byte [bp-0A],01        ss:[5F5A]=000B
+01A2:1D82  26F6064DA401        test byte es:[A44D],01      es:[A44D]=9000
+
+Doing a search and replace for 26F6064DA401 with either 00 or FF at the end seems to cause
+issues with the collision map being moved to the right one square.
+Also replacing F646F801 with F646F8AA also caused similar problems.
+Both of these changes cause the too deep message when hitting a blue building, must have
+a similar bit pattern.
+
+The breakpoint 01A2:00001C1F seems to only fire on a second movement, not sure
+what is going on here.
+
+Produced a diff of the instructions after 01A2:00001C1F with trying to move up into the building,
+and then trying to move up into a grassy area. The one on the right shows a successful movement up,
+with the INC WORD [BP-0C] being executed and this could be where the movement offset is applied?
+
+01A2:00001D73  je   00001D78 ($+3)             (down)         | 01A2:00001D73  je   00001D78 ($+3)             (no jmp)      
+01A2:00001D78  test byte [bp-0A],01            ss:[5F58]=000B | 01A2:00001D75  inc  word [bp-0C]               ss:[5F56]=007E
+                                                              > 01A2:00001D78  test byte [bp-0A],01            ss:[5F58]=000B
+01A2:00001D7C  je   00001D8E ($+10)            (no jmp)         01A2:00001D7C  je   00001D8E ($+10)            (no jmp)
+
+01A2:1D6D  26F6064BA401        test byte es:[A44B],01      es:[A44B]=097C
+01A2:1D73  7403                je   00001D78 ($+3)         (down)
+
+Can replace the 7403h with NOP instructions 9090h.
+Replace 26F6064BA4017403 with 26F6064BA4019090 makes 9 changes to the BTECH.EXE file.
+This didn't seem to change anything. And after testing again, I found that the INC is not relevant
+here and seems to do a collision test every second run through the breakpoint. So this is not what
+we are looking for.
+
+Replace some of these tests which causes the character to be able to walk up into a building, but
+other directions are not working either.
+SM 01A2:1D73 90 90
+SM 01A2:1D88 90 90
