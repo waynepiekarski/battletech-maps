@@ -109,3 +109,10 @@ ofs=0x31569 lastofs=0x1     src=0xFC dst=0xFF diffdec=+3
 ofs=0x3163E lastofs=0x1     src=0xCC dst=0xCF diffdec=+3
 ofs=0x3E716 lastofs=0x11    src=0x03 dst=0x06 diffdec=+3
 ofs=0x3E730 lastofs=0x10    src=0x57 dst=0x5A diffdec=+3
+
+---
+
+After upgrading Kubuntu to use Wayland compositor, I had problems with dosbox ignoring arrow keys.
+Need to edit all ~/.dosbox/ config files to use:
+usescancodes=false
+And not =true like the default. For some reason this fixes everything with Wayland.
