@@ -184,3 +184,12 @@ Replace some of these tests which causes the character to be able to walk up int
 other directions are not working either.
 SM 01A2:1D73 90 90
 SM 01A2:1D88 90 90
+
+
+I have finally worked it out. I calculated a diff LOGCPU-UpBlocked-UpMoved.diff
+and observed the following before a large change in the code path:
+01A2:00001E72  cmp  [bp-10],ax                       39 46 F0
+01A2:00001E75  jge  00001E7A ($+3)                   7D 03
+
+Replacing the JGE with NOP allows me to walk through all buildings and walls!
+Two instances of replacing 3946F07D03 with 3946F09090
