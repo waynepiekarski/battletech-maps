@@ -1,0 +1,2112 @@
+      2 01A2:000028CC  push bp                               55                    
+      2 01A2:000028CD  mov  bp,sp                            8B EC                 
+      2 01A2:000028CF  xor  ax,ax                            33 C0                 
+      2 01A2:000028D1  call 1A21:2FDC                        9A DC 2F 21 1A        
+      2 01A2:000028D6  mov  ax,[bp+06]                       8B 46 06              
+      2 01A2:000028D9  mov  [014E],ax                        A3 4E 01              
+      2 01A2:000028DC  mov  es,[53DE]                        8E 06 DE 53           
+      2 01A2:000028E0  cmp  word es:[D580],0000              26 83 3E 80 D5 00     
+      2 01A2:000028E6  jne  00002911 ($+29)                  75 29                 
+      2 01A2:00002911  pop  bp                               5D                    
+      2 01A2:00002912  retf                                  CB                    
+      1 01A2:00002A2B  xor  ax,ax                            33 C0                 
+      1 01A2:00002A2D  call 1A21:2FDC                        9A DC 2F 21 1A        
+      1 01A2:00002A32  mov  es,[5384]                        8E 06 84 53           
+      1 01A2:00002A36  cmp  word es:[3938],0000              26 83 3E 38 39 00     
+      1 01A2:00002A3C  jne  00002A4E ($+10)                  75 10                 
+      1 01A2:00002A3E  jmp  short 00002A45 ($+5)             EB 05                 
+      1 01A2:00002A45  call 18DF:002F                        9A 2F 00 DF 18        
+      1 01A2:00002A4A  or   ax,ax                            0B C0                 
+      1 01A2:00002A4C  jne  00002A40 ($-e)                   75 F2                 
+      1 01A2:00002A4E  retf                                  CB                    
+      1 01A2:00003D84  mov  es,[538A]                        8E 06 8A 53           
+      1 01A2:00003D88  cmp  byte es:[D346],00                26 80 3E 46 D3 00     
+      1 01A2:00003D8E  jne  00003D98 ($+8)                   75 08                 
+      1 01A2:00003D90  cmp  byte es:[D310],00                26 80 3E 10 D3 00     
+      1 01A2:00003D96  jne  00003DAB ($+13)                  75 13                 
+      1 01A2:00003DAB  push word [bp-0E]                     FF 76 F2              
+      1 01A2:00003DAE  push word [bp-0A]                     FF 76 F6              
+      1 01A2:00003DB1  push cs                               0E                    
+      1 01A2:00003DB2  call 00003FAE ($+1f9)                 E8 F9 01              
+      1 01A2:00003DB5  add  sp,0004                          83 C4 04              
+      1 01A2:00003DB8  push ax                               50                    
+      1 01A2:00003DB9  call 17F8:0D1D                        9A 1D 0D F8 17        
+      1 01A2:00003DBE  add  sp,0002                          83 C4 02              
+      1 01A2:00003DC1  mov  [bp-12],ax                       89 46 EE              
+      1 01A2:00003DC4  cmp  ax,0020                          3D 20 00              
+      1 01A2:00003DC7  jne  00003DD1 ($+8)                   75 08                 
+      1 01A2:00003DD1  mov  es,[538C]                        8E 06 8C 53           
+      1 01A2:00003DD5  mov  ax,[bp-04]                       8B 46 FC              
+      1 01A2:00003DD8  mov  es:[A44B],ax                     26 A3 4B A4           
+      1 01A2:00003DDC  mov  es,[538E]                        8E 06 8E 53           
+      1 01A2:00003DE0  mov  ax,[bp-06]                       8B 46 FA              
+      1 01A2:00003DE3  mov  es:[A44D],ax                     26 A3 4D A4           
+      1 01A2:00003DE7  cmp  word [bp-12],FFB8                83 7E EE B8           
+      1 01A2:00003DEB  je   00003DF9 ($+c)                   74 0C                 
+      1 01A2:00003DED  cmp  word [bp-12],FFB7                83 7E EE B7           
+      1 01A2:00003DF1  je   00003DF9 ($+6)                   74 06                 
+      1 01A2:00003DF3  cmp  word [bp-12],FFB9                83 7E EE B9           
+      1 01A2:00003DF7  jne  00003E09 ($+10)                  75 10                 
+      1 01A2:00003E09  cmp  word [bp-12],FFB0                83 7E EE B0           
+      1 01A2:00003E0D  je   00003E1B ($+c)                   74 0C                 
+      1 01A2:00003E0F  cmp  word [bp-12],FFAF                83 7E EE AF           
+      1 01A2:00003E13  je   00003E1B ($+6)                   74 06                 
+      1 01A2:00003E15  cmp  word [bp-12],FFB1                83 7E EE B1           
+      1 01A2:00003E19  jne  00003E2E ($+13)                  75 13                 
+      1 01A2:00003E2E  cmp  word [bp-12],FFB5                83 7E EE B5           
+      1 01A2:00003E32  je   00003E40 ($+c)                   74 0C                 
+      1 01A2:00003E34  cmp  word [bp-12],FFB9                83 7E EE B9           
+      1 01A2:00003E38  je   00003E40 ($+6)                   74 06                 
+      1 01A2:00003E3A  cmp  word [bp-12],FFB1                83 7E EE B1           
+      1 01A2:00003E3E  jne  00003E54 ($+14)                  75 14                 
+      1 01A2:00003E54  cmp  word [bp-12],FFB3                83 7E EE B3           
+      1 01A2:00003E58  je   00003E66 ($+c)                   74 0C                 
+      1 01A2:00003E66  mov  es,[538C]                        8E 06 8C 53           
+      1 01A2:00003E6A  cmp  word es:[A44B],0D00              26 81 3E 4B A4 00 0D  
+      1 01A2:00003E71  jnc  00003E79 ($+6)                   73 06                 
+      1 01A2:00003E73  add  byte es:[A44C],02                26 80 06 4C A4 02     
+      1 01A2:00003E79  mov  es,[538C]                        8E 06 8C 53           
+      1 01A2:00003E7D  mov  ax,es:[A44B]                     26 A1 4B A4           
+      1 01A2:00003E81  mov  [bp-04],ax                       89 46 FC              
+      1 01A2:00003E84  mov  es,[538E]                        8E 06 8E 53           
+      1 01A2:00003E88  mov  ax,es:[A44D]                     26 A1 4D A4           
+      1 01A2:00003E8C  mov  [bp-06],ax                       89 46 FA              
+      1 01A2:00003E8F  cmp  word [bp-08],0000                83 7E F8 00           
+      1 01A2:00003E93  jne  00003E98 ($+3)                   75 03                 
+      1 01A2:00003E95  jmp  00003D84 ($-114)                 E9 EC FE              
+      1 01A2:00003FAE  push bp                               55                    
+      1 01A2:00003FAF  mov  bp,sp                            8B EC                 
+      1 01A2:00003FB1  mov  ax,003C                          B8 3C 00              
+      1 01A2:00003FB4  call 1A21:2FDC                        9A DC 2F 21 1A        
+      1 01A2:00003FB9  push si                               56                    
+      1 01A2:00003FBA  call 1A21:1FBE                        9A BE 1F 21 1A        
+      1 01A2:00003FBF  mov  word [bp-18],0090                C7 46 E8 90 00        
+      1 01A2:00003FC4  mov  word [bp-1E],4000                C7 46 E2 00 40        
+      1 01A2:00003FC9  mov  es,[538C]                        8E 06 8C 53           
+      1 01A2:00003FCD  mov  ax,es:[A44B]                     26 A1 4B A4           
+      1 01A2:00003FD1  mov  [bp-02],ax                       89 46 FE              
+      1 01A2:00003FD4  mov  es,[538E]                        8E 06 8E 53           
+      1 01A2:00003FD8  mov  ax,es:[A44D]                     26 A1 4D A4           
+      1 01A2:00003FDC  mov  [bp-06],ax                       89 46 FA              
+      1 01A2:00003FDF  mov  es,[538C]                        8E 06 8C 53           
+      1 01A2:00003FE3  mov  ax,es:[A44B]                     26 A1 4B A4           
+      1 01A2:00003FE7  and  ax,0F00                          25 00 0F              
+      1 01A2:00003FEA  mov  cl,08                            B1 08                 
+      1 01A2:00003FEC  shr  ax,cl                            D3 E8                 
+      1 01A2:00003FEE  mov  [bp-20],ax                       89 46 E0              
+      1 01A2:00003FF1  mov  es,[538E]                        8E 06 8E 53           
+      1 01A2:00003FF5  mov  ax,es:[A44D]                     26 A1 4D A4           
+      1 01A2:00003FF9  and  ax,F000                          25 00 F0              
+      1 01A2:00003FFC  shr  ax,cl                            D3 E8                 
+      1 01A2:00003FFE  mov  [bp-24],ax                       89 46 DC              
+      1 01A2:00004001  sub  word [bp-20],0002                83 6E E0 02           
+      1 01A2:00004005  jns  0000400C ($+5)                   79 05                 
+      1 01A2:0000400C  cmp  word [bp-20],000B                83 7E E0 0B           
+      1 01A2:00004010  jle  00004017 ($+5)                   7E 05                 
+      1 01A2:00004017  sub  word [bp-24],0010                83 6E DC 10           
+      1 01A2:0000401B  jns  00004022 ($+5)                   79 05                 
+      1 01A2:00004022  cmp  word [bp-24],00D0                81 7E DC D0 00        
+      1 01A2:00004027  jle  0000402E ($+5)                   7E 05                 
+      1 01A2:0000402E  mov  ax,[bp-24]                       8B 46 DC              
+      1 01A2:00004031  mov  cl,03                            B1 03                 
+      1 01A2:00004033  shl  ax,cl                            D3 E0                 
+      1 01A2:00004035  add  ax,[bp-20]                       03 46 E0              
+      1 01A2:00004038  mov  [bp-32],ax                       89 46 CE              
+      1 01A2:0000403B  mov  es,[538A]                        8E 06 8A 53           
+      1 01A2:0000403F  cmp  byte es:[D346],00                26 80 3E 46 D3 00     
+      1 01A2:00004045  je   0000404A ($+3)                   74 03                 
+      1 01A2:0000404A  mov  word [bp-2E],0000                C7 46 D2 00 00        
+      1 01A2:0000404F  jmp  00004298 ($+246)                 E9 46 02              
+    400 01A2:00004052  les  bx,[bp-10]                       C4 5E F0              
+    400 01A2:00004055  cmp  byte es:[bx],90                  26 80 3F 90           
+    400 01A2:00004059  jnc  00004061 ($+6)                   73 06                 
+    160 01A2:0000405B  mov  al,[bp-18]                       8A 46 E8              
+    240 01A2:0000405E  mov  es:[bx],al                       26 88 07              
+    480 01A2:00004061  inc  word [bp-12]                     FF 46 EE              
+    552 01A2:00004064  mov  ax,[bp-0C]                       8B 46 F4              
+    552 01A2:00004067  cmp  [bp-12],ax                       39 46 EE              
+    552 01A2:0000406A  jge  00004099 ($+2d)                  7D 2D                 
+    480 01A2:0000406C  mov  ax,[bp-1C]                       8B 46 E4              
+    480 01A2:0000406F  mov  cl,03                            B1 03                 
+    480 01A2:00004071  shl  ax,cl                            D3 E0                 
+    480 01A2:00004073  add  ax,[bp-12]                       03 46 EE              
+    480 01A2:00004076  add  ax,[bp-36]                       03 46 CA              
+    480 01A2:00004079  mov  dx,[bp-34]                       8B 56 CC              
+    480 01A2:0000407C  mov  [bp-10],ax                       89 46 F0              
+    480 01A2:0000407F  mov  [bp-0E],dx                       89 56 F2              
+    480 01A2:00004082  cmp  word [bp-04],0001                83 7E FC 01           
+    480 01A2:00004086  jne  00004052 ($-36)                  75 CA                 
+    176 01A2:00004088  cmp  word [bp-3A],0001                83 7E C6 01           
+    176 01A2:0000408C  jne  00004052 ($-3c)                  75 C4                 
+     80 01A2:0000408E  les  bx,[bp-10]                       C4 5E F0              
+     80 01A2:00004091  mov  ax,[bp-18]                       8B 46 E8              
+     80 01A2:00004094  inc  word [bp-18]                     FF 46 E8              
+     80 01A2:00004097  jmp  short 0000405E ($-3b)            EB C5                 
+     72 01A2:00004099  inc  word [bp-1C]                     FF 46 E4              
+     84 01A2:0000409C  mov  ax,[bp-14]                       8B 46 EC              
+     84 01A2:0000409F  cmp  [bp-1C],ax                       39 46 E4              
+     84 01A2:000040A2  jge  000040AB ($+7)                   7D 07                 
+     72 01A2:000040A4  mov  word [bp-12],0000                C7 46 EE 00 00        
+     72 01A2:000040A9  jmp  short 00004064 ($-47)            EB B9                 
+     12 01A2:000040AB  cmp  word [bp-04],0001                83 7E FC 01           
+     12 01A2:000040AF  je   000040B4 ($+3)                   74 03                 
+      7 01A2:000040B1  jmp  0000419E ($+ea)                  E9 EA 00              
+      5 01A2:000040B4  cmp  word [bp-3A],0001                83 7E C6 01           
+      5 01A2:000040B8  je   000040BD ($+3)                   74 03                 
+      3 01A2:000040BA  jmp  0000419E ($+e1)                  E9 E1 00              
+      2 01A2:000040BD  mov  ax,09EE                          B8 EE 09              
+      2 01A2:000040C0  push ds                               1E                    
+      2 01A2:000040C1  push ax                               50                    
+      2 01A2:000040C2  mov  ax,0012                          B8 12 00              
+      2 01A2:000040C5  mov  dx,2A34                          BA 34 2A              
+      2 01A2:000040C8  push dx                               52                    
+      2 01A2:000040C9  push ax                               50                    
+      2 01A2:000040CA  call 1A21:3B68                        9A 68 3B 21 1A        
+      2 01A2:000040CF  add  sp,0008                          83 C4 08              
+      2 01A2:000040D2  mov  ax,000A                          B8 0A 00              
+      2 01A2:000040D5  push ax                               50                    
+      2 01A2:000040D6  mov  ax,0015                          B8 15 00              
+      2 01A2:000040D9  mov  dx,2A34                          BA 34 2A              
+      2 01A2:000040DC  push dx                               52                    
+      2 01A2:000040DD  push ax                               50                    
+      2 01A2:000040DE  mov  ax,[bp-38]                       8B 46 C8              
+      2 01A2:000040E1  inc  ax                               40                    
+      2 01A2:000040E2  push ax                               50                    
+      2 01A2:000040E3  call 1A21:3BB6                        9A B6 3B 21 1A        
+      2 01A2:000040E8  add  sp,0008                          83 C4 08              
+      2 01A2:000040EB  mov  ax,09F2                          B8 F2 09              
+      2 01A2:000040EE  push ds                               1E                    
+      2 01A2:000040EF  push ax                               50                    
+      2 01A2:000040F0  mov  ax,0012                          B8 12 00              
+      2 01A2:000040F3  mov  dx,2A34                          BA 34 2A              
+      2 01A2:000040F6  push dx                               52                    
+      2 01A2:000040F7  push ax                               50                    
+      2 01A2:000040F8  call 1A21:3B22                        9A 22 3B 21 1A        
+      2 01A2:000040FD  add  sp,0008                          83 C4 08              
+      2 01A2:00004100  mov  ax,0001                          B8 01 00              
+      2 01A2:00004103  push ax                               50                    
+      2 01A2:00004104  push cs                               0E                    
+      2 01A2:00004105  call 000028CC ($-183c)                E8 C4 E7              
+      2 01A2:00004108  add  sp,0002                          83 C4 02              
+      2 01A2:0000410B  cmp  word [bp-38],0000                83 7E C8 00           
+      2 01A2:0000410F  je   0000411D ($+c)                   74 0C                 
+      2 01A2:00004111  cmp  word [bp-38],000A                83 7E C8 0A           
+      2 01A2:00004115  je   0000411D ($+6)                   74 06                 
+      2 01A2:00004117  cmp  word [bp-38],000D                83 7E C8 0D           
+      2 01A2:0000411B  jl   00004132 ($+15)                  7C 15                 
+      2 01A2:00004132  mov  ax,8000                          B8 00 80              
+      2 01A2:00004135  push ax                               50                    
+      2 01A2:00004136  mov  ax,0012                          B8 12 00              
+      2 01A2:00004139  mov  dx,2A34                          BA 34 2A              
+      2 01A2:0000413C  push dx                               52                    
+      2 01A2:0000413D  push ax                               50                    
+      2 01A2:0000413E  call 1A21:33D0                        9A D0 33 21 1A        
+      2 01A2:00004143  add  sp,0006                          83 C4 06              
+      2 01A2:00004146  mov  [bp-26],ax                       89 46 DA              
+      2 01A2:00004149  inc  ax                               40                    
+      2 01A2:0000414A  je   00004127 ($-25)                  74 DB                 
+      2 01A2:0000414C  mov  ax,021D                          B8 1D 02              
+      2 01A2:0000414F  push ax                               50                    
+      2 01A2:00004150  mov  bx,[bp-1E]                       8B 5E E2              
+      2 01A2:00004153  lea  ax,[bx+244B]                     8D 87 4B 24           
+      2 01A2:00004157  mov  dx,1E0E                          BA 0E 1E              
+      2 01A2:0000415A  push dx                               52                    
+      2 01A2:0000415B  push ax                               50                    
+      2 01A2:0000415C  push word [bp-26]                     FF 76 DA              
+      2 01A2:0000415F  call 1A21:3580                        9A 80 35 21 1A        
+      2 01A2:00004164  add  sp,0008                          83 C4 08              
+      2 01A2:00004167  mov  bx,[bp-38]                       8B 5E C8              
+      2 01A2:0000416A  shl  bx,1                             D1 E3                 
+      2 01A2:0000416C  push word [bx+0A70]                   FF B7 70 0A           
+      2 01A2:00004170  mov  bx,[bp-1E]                       8B 5E E2              
+      2 01A2:00004173  lea  ax,[bx+244B]                     8D 87 4B 24           
+      2 01A2:00004177  mov  dx,1E0E                          BA 0E 1E              
+      2 01A2:0000417A  push dx                               52                    
+      2 01A2:0000417B  push ax                               50                    
+      2 01A2:0000417C  push word [bp-26]                     FF 76 DA              
+      2 01A2:0000417F  call 1A21:3580                        9A 80 35 21 1A        
+      2 01A2:00004184  add  sp,0008                          83 C4 08              
+      2 01A2:00004187  push word [bp-26]                     FF 76 DA              
+      2 01A2:0000418A  call 1A21:3336                        9A 36 33 21 1A        
+      2 01A2:0000418F  add  sp,0002                          83 C4 02              
+      2 01A2:00004192  mov  bx,[bp-38]                       8B 5E C8              
+      2 01A2:00004195  shl  bx,1                             D1 E3                 
+      2 01A2:00004197  mov  ax,[bx+0A70]                     8B 87 70 0A           
+      2 01A2:0000419B  add  [bp-1E],ax                       01 46 E2              
+    135 01A2:0000419E  inc  word [bp-3A]                     FF 46 C6              
+    180 01A2:000041A1  cmp  word [bp-3A],0003                83 7E C6 03           
+    180 01A2:000041A5  jge  00004224 ($+7d)                  7D 7D                 
+    135 01A2:000041A7  mov  si,[bp-0A]                       8B 76 F6              
+    135 01A2:000041AA  add  si,[bp-3A]                       03 76 C6              
+    135 01A2:000041AD  js   0000419E ($-11)                  78 EF                 
+    135 01A2:000041AF  cmp  si,0100                          81 FE 00 01           
+    135 01A2:000041B3  jge  0000419E ($-17)                  7D E9                 
+    135 01A2:000041B5  mov  es,[53D0]                        8E 06 D0 53           
+    135 01A2:000041B9  cmp  byte es:[si+0030],00             26 80 BC 30 00 00     
+    135 01A2:000041BF  je   0000419E ($-23)                  74 DD                 
+     12 01A2:000041C1  mov  word [bp-28],0001                C7 46 D8 01 00        
+     12 01A2:000041C6  mov  ax,0003                          B8 03 00              
+     12 01A2:000041C9  imul word [bp-04]                     F7 6E FC              
+     12 01A2:000041CC  mov  bx,ax                            8B D8                 
+     12 01A2:000041CE  add  bx,[bp-3A]                       03 5E C6              
+     12 01A2:000041D1  shl  bx,1                             D1 E3                 
+     12 01A2:000041D3  shl  bx,1                             D1 E3                 
+     12 01A2:000041D5  mov  ax,[bx+0170]                     8B 87 70 01           
+     12 01A2:000041D9  mov  dx,[bx+0172]                     8B 97 72 01           
+     12 01A2:000041DD  mov  [bp-36],ax                       89 46 CA              
+     12 01A2:000041E0  mov  [bp-34],dx                       89 56 CC              
+     12 01A2:000041E3  mov  al,es:[si+0030]                  26 8A 84 30 00        
+     12 01A2:000041E8  cbw                                   98                    
+     12 01A2:000041E9  dec  ax                               48                    
+     12 01A2:000041EA  mov  [bp-38],ax                       89 46 C8              
+     12 01A2:000041ED  mov  bx,ax                            8B D8                 
+     12 01A2:000041EF  mov  al,[bx+0A38]                     8A 87 38 0A           
+     12 01A2:000041F3  cbw                                   98                    
+     12 01A2:000041F4  mov  [bp-12],ax                       89 46 EE              
+     12 01A2:000041F7  mov  al,[bx+0A46]                     8A 87 46 0A           
+     12 01A2:000041FB  cbw                                   98                    
+     12 01A2:000041FC  mov  [bp-1C],ax                       89 46 E4              
+     12 01A2:000041FF  mov  al,[bx+0A54]                     8A 87 54 0A           
+     12 01A2:00004203  cbw                                   98                    
+     12 01A2:00004204  mov  [bp-0C],ax                       89 46 F4              
+     12 01A2:00004207  mov  al,[bx+0A62]                     8A 87 62 0A           
+     12 01A2:0000420B  cbw                                   98                    
+     12 01A2:0000420C  mov  [bp-14],ax                       89 46 EC              
+     12 01A2:0000420F  mov  ax,[bp-1C]                       8B 46 E4              
+     12 01A2:00004212  mov  cl,03                            B1 03                 
+     12 01A2:00004214  shl  ax,cl                            D3 E0                 
+     12 01A2:00004216  add  ax,[bp-12]                       03 46 EE              
+     12 01A2:00004219  add  [bp-36],ax                       01 46 CA              
+     12 01A2:0000421C  mov  word [bp-1C],0000                C7 46 E4 00 00        
+     12 01A2:00004221  jmp  0000409C ($-188)                 E9 78 FE              
+     45 01A2:00004224  add  word [bp-0A],0010                83 46 F6 10           
+     45 01A2:00004228  inc  word [bp-04]                     FF 46 FC              
+     60 01A2:0000422B  cmp  word [bp-04],0003                83 7E FC 03           
+     60 01A2:0000422F  jge  00004239 ($+8)                   7D 08                 
+     45 01A2:00004231  mov  word [bp-3A],0000                C7 46 C6 00 00        
+     45 01A2:00004236  jmp  000041A1 ($-98)                  E9 68 FF              
+     15 01A2:00004239  cmp  word [bp-28],0000                83 7E D8 00           
+     15 01A2:0000423D  je   00004244 ($+5)                   74 05                 
+     12 01A2:0000423F  call 1A21:1DA8                        9A A8 1D 21 1A        
+     15 01A2:00004244  mov  ax,0014                          B8 14 00              
+     15 01A2:00004247  imul word [bp-2E]                     F7 6E D2              
+     15 01A2:0000424A  mov  dx,[bp-2A]                       8B 56 D6              
+     15 01A2:0000424D  mov  cl,03                            B1 03                 
+     15 01A2:0000424F  shl  dx,cl                            D3 E2                 
+     15 01A2:00004251  add  ax,dx                            03 C2                 
+     15 01A2:00004253  push ax                               50                    
+     15 01A2:00004254  call 1A21:1F04                        9A 04 1F 21 1A        
+     15 01A2:00004259  add  sp,0002                          83 C4 02              
+     15 01A2:0000425C  mov  es,[538C]                        8E 06 8C 53           
+     15 01A2:00004260  or   byte es:[A44B],7F                26 80 0E 4B A4 7F     
+     15 01A2:00004266  call 1A21:17C5                        9A C5 17 21 1A        
+     15 01A2:0000426B  inc  word [bp-2A]                     FF 46 D6              
+     18 01A2:0000426E  cmp  word [bp-2A],0005                83 7E D6 05           
+     18 01A2:00004272  jge  00004294 ($+20)                  7D 20                 
+     15 01A2:00004274  mov  word [bp-28],0000                C7 46 D8 00 00        
+     15 01A2:00004279  mov  ax,[bp-20]                       8B 46 E0              
+     15 01A2:0000427C  add  ax,[bp-2A]                       03 46 D6              
+     15 01A2:0000427F  mov  cx,[bp-24]                       8B 4E DC              
+     15 01A2:00004282  add  cx,[bp-2E]                       03 4E D2              
+     15 01A2:00004285  or   ax,cx                            0B C1                 
+     15 01A2:00004287  sub  ax,0011                          2D 11 00              
+     15 01A2:0000428A  mov  [bp-0A],ax                       89 46 F6              
+     15 01A2:0000428D  mov  word [bp-04],0000                C7 46 FC 00 00        
+     15 01A2:00004292  jmp  short 0000422B ($-69)            EB 97                 
+      3 01A2:00004294  add  word [bp-2E],0010                83 46 D2 10           
+      4 01A2:00004298  cmp  word [bp-2E],0030                83 7E D2 30           
+      4 01A2:0000429C  jl   000042A1 ($+3)                   7C 03                 
+      1 01A2:0000429E  jmp  0000432C ($+8b)                  E9 8B 00              
+      3 01A2:000042A1  mov  es,[538C]                        8E 06 8C 53           
+      3 01A2:000042A5  mov  ah,[bp-20]                       8A 66 E0              
+      3 01A2:000042A8  sub  al,al                            2A C0                 
+      3 01A2:000042AA  mov  es:[A44B],ax                     26 A3 4B A4           
+      3 01A2:000042AE  mov  si,[bp-24]                       8B 76 DC              
+      3 01A2:000042B1  add  si,[bp-2E]                       03 76 D2              
+      3 01A2:000042B4  mov  es,[538E]                        8E 06 8E 53           
+      3 01A2:000042B8  mov  ax,si                            8B C6                 
+      3 01A2:000042BA  mov  cl,08                            B1 08                 
+      3 01A2:000042BC  shl  ax,cl                            D3 E0                 
+      3 01A2:000042BE  mov  es:[A44D],ax                     26 A3 4D A4           
+      3 01A2:000042C2  mov  ax,[bp-20]                       8B 46 E0              
+      3 01A2:000042C5  or   ax,si                            0B C6                 
+      3 01A2:000042C7  push ax                               50                    
+      3 01A2:000042C8  call 1A21:104E                        9A 4E 10 21 1A        
+      3 01A2:000042CD  add  sp,0002                          83 C4 02              
+      3 01A2:000042D0  mov  word [bp-2A],0000                C7 46 D6 00 00        
+      3 01A2:000042D5  jmp  short 0000426E ($-69)            EB 97                 
+      1 01A2:0000432C  mov  word [bp-04],0000                C7 46 FC 00 00        
+      1 01A2:00004331  jmp  000043C4 ($+90)                  E9 90 00              
+     80 01A2:00004334  push word [bp-30]                     FF 76 D0              
+     80 01A2:00004337  push cs                               0E                    
+     80 01A2:00004338  call 000045C2 ($+287)                 E8 87 02              
+     80 01A2:0000433B  add  sp,0002                          83 C4 02              
+     80 01A2:0000433E  push word [bp-04]                     FF 76 FC              
+     80 01A2:00004341  push word [bp-3A]                     FF 76 C6              
+     80 01A2:00004344  mov  ax,642B                          B8 2B 64              
+     80 01A2:00004347  mov  dx,1E0E                          BA 0E 1E              
+    960 01A2:0000434A  push dx                               52                    
+    960 01A2:0000434B  push ax                               50                    
+    960 01A2:0000434C  call 1A21:275C                        9A 5C 27 21 1A        
+    960 01A2:00004351  add  sp,0008                          83 C4 08              
+    960 01A2:00004354  sar  word [bp-1A],1                   D1 7E E6              
+    960 01A2:00004357  cmp  word [bp-1A],0000                83 7E E6 00           
+    960 01A2:0000435B  jne  00004365 ($+8)                   75 08                 
+    120 01A2:0000435D  mov  word [bp-1A],0080                C7 46 E6 80 00        
+    120 01A2:00004362  inc  word [bp-32]                     FF 46 CE              
+    960 01A2:00004365  inc  word [bp-3A]                     FF 46 C6              
+    984 01A2:00004368  cmp  word [bp-3A],0028                83 7E C6 28           
+    984 01A2:0000436C  jge  000043BD ($+4f)                  7D 4F                 
+    960 01A2:0000436E  mov  ax,0028                          B8 28 00              
+    960 01A2:00004371  imul word [bp-04]                     F7 6E FC              
+    960 01A2:00004374  mov  bx,ax                            8B D8                 
+    960 01A2:00004376  add  bx,[bp-3A]                       03 5E C6              
+    960 01A2:00004379  mov  es,[53C6]                        8E 06 C6 53           
+    960 01A2:0000437D  mov  al,es:[bx+244B]                  26 8A 87 4B 24        
+    960 01A2:00004382  sub  ah,ah                            2A E4                 
+    960 01A2:00004384  mov  [bp-30],ax                       89 46 D0              
+    960 01A2:00004387  mov  bx,[bp-32]                       8B 5E CE              
+    960 01A2:0000438A  mov  es,[538A]                        8E 06 8A 53           
+    960 01A2:0000438E  mov  al,es:[bx-34F4]                  26 8A 87 0C CB        
+    960 01A2:00004393  cbw                                   98                    
+    960 01A2:00004394  test [bp-1A],ax                       85 46 E6              
+    960 01A2:00004397  je   00004354 ($-45)                  74 BB                 
+    960 01A2:00004399  cmp  word [bp-30],0090                81 7E D0 90 00        
+    960 01A2:0000439E  jnc  00004334 ($-6c)                  73 94                 
+    880 01A2:000043A0  push word [bp-04]                     FF 76 FC              
+    880 01A2:000043A3  push word [bp-3A]                     FF 76 C6              
+    880 01A2:000043A6  mov  ax,[bp-30]                       8B 46 D0              
+    880 01A2:000043A9  mov  cl,05                            B1 05                 
+    880 01A2:000043AB  shl  ax,cl                            D3 E0                 
+    880 01A2:000043AD  mov  es,[53FC]                        8E 06 FC 53           
+    880 01A2:000043B1  add  ax,es:[4588]                     26 03 06 88 45        
+    880 01A2:000043B6  mov  dx,es:[458A]                     26 8B 16 8A 45        
+    880 01A2:000043BB  jmp  short 0000434A ($-73)            EB 8D                 
+     24 01A2:000043BD  add  word [bp-32],000B                83 46 CE 0B           
+     24 01A2:000043C1  inc  word [bp-04]                     FF 46 FC              
+     25 01A2:000043C4  cmp  word [bp-04],0018                83 7E FC 18           
+     25 01A2:000043C8  jge  000043D6 ($+c)                   7D 0C                 
+     24 01A2:000043CA  mov  word [bp-1A],0080                C7 46 E6 80 00        
+     24 01A2:000043CF  mov  word [bp-3A],0000                C7 46 C6 00 00        
+     24 01A2:000043D4  jmp  short 00004368 ($-6e)            EB 92                 
+      1 01A2:000043D6  mov  es,[538A]                        8E 06 8A 53           
+      1 01A2:000043DA  cmp  byte es:[D346],00                26 80 3E 46 D3 00     
+      1 01A2:000043E0  jne  00004449 ($+67)                  75 67                 
+      1 01A2:000043E2  cmp  byte es:[D33B],00                26 80 3E 3B D3 00     
+      1 01A2:000043E8  je   00004449 ($+5f)                  74 5F                 
+      1 01A2:00004449  mov  word [bp-08],0258                C7 46 F8 58 02        
+      1 01A2:0000444E  sub  ax,ax                            2B C0                 
+      1 01A2:00004450  push ax                               50                    
+      1 01A2:00004451  mov  ax,00C7                          B8 C7 00              
+      1 01A2:00004454  push ax                               50                    
+      1 01A2:00004455  mov  ax,013F                          B8 3F 01              
+      1 01A2:00004458  push ax                               50                    
+      1 01A2:00004459  mov  ax,00C0                          B8 C0 00              
+      1 01A2:0000445C  push ax                               50                    
+      1 01A2:0000445D  sub  ax,ax                            2B C0                 
+      1 01A2:0000445F  push ax                               50                    
+      1 01A2:00004460  call 18DF:01FB                        9A FB 01 DF 18        
+      1 01A2:00004465  add  sp,000A                          83 C4 0A              
+      1 01A2:00004468  mov  es,[538A]                        8E 06 8A 53           
+      1 01A2:0000446C  cmp  byte es:[D346],00                26 80 3E 46 D3 00     
+      1 01A2:00004472  jne  0000448F ($+1b)                  75 1B                 
+      1 01A2:00004474  cmp  byte es:[D310],00                26 80 3E 10 D3 00     
+      1 01A2:0000447A  je   0000448F ($+13)                  74 13                 
+      1 01A2:0000447C  sub  ax,ax                            2B C0                 
+      1 01A2:0000447E  push ax                               50                    
+      1 01A2:0000447F  mov  ax,000F                          B8 0F 00              
+      1 01A2:00004482  push ax                               50                    
+      1 01A2:00004483  mov  ax,0018                          B8 18 00              
+      1 01A2:00004486  push ax                               50                    
+      1 01A2:00004487  sub  ax,ax                            2B C0                 
+      1 01A2:00004489  push ax                               50                    
+      1 01A2:0000448A  mov  ax,09F7                          B8 F7 09              
+      1 01A2:0000448D  jmp  short 000044A0 ($+11)            EB 11                 
+      1 01A2:000044A0  push ds                               1E                    
+      1 01A2:000044A1  push ax                               50                    
+      1 01A2:000044A2  call 18DF:00D5                        9A D5 00 DF 18        
+      1 01A2:000044A7  add  sp,000C                          83 C4 0C              
+      1 01A2:000044AA  mov  es,[538C]                        8E 06 8C 53           
+      1 01A2:000044AE  mov  ax,[bp+06]                       8B 46 06              
+      1 01A2:000044B1  mov  es:[A44B],ax                     26 A3 4B A4           
+      1 01A2:000044B5  mov  es,[538E]                        8E 06 8E 53           
+      1 01A2:000044B9  mov  ax,[bp+08]                       8B 46 08              
+      1 01A2:000044BC  mov  es:[A44D],ax                     26 A3 4D A4           
+      1 01A2:000044C0  mov  word [bp-16],0000                C7 46 EA 00 00        
+     19 01A2:000044C5  mov  es,[538C]                        8E 06 8C 53           
+     19 01A2:000044C9  mov  ax,es:[A44B]                     26 A1 4B A4           
+     19 01A2:000044CD  and  ax,0F00                          25 00 0F              
+     19 01A2:000044D0  mov  cl,08                            B1 08                 
+     19 01A2:000044D2  shr  ax,cl                            D3 E8                 
+     19 01A2:000044D4  mov  [bp-3A],ax                       89 46 C6              
+     19 01A2:000044D7  mov  es,[538E]                        8E 06 8E 53           
+     19 01A2:000044DB  mov  ax,es:[A44D]                     26 A1 4D A4           
+     19 01A2:000044DF  and  ax,F000                          25 00 F0              
+     19 01A2:000044E2  shr  ax,cl                            D3 E8                 
+     19 01A2:000044E4  mov  [bp-04],ax                       89 46 FC              
+     19 01A2:000044E7  mov  ax,[bp-20]                       8B 46 E0              
+     19 01A2:000044EA  sub  [bp-3A],ax                       29 46 C6              
+     19 01A2:000044ED  mov  ax,[bp-24]                       8B 46 DC              
+     19 01A2:000044F0  sub  [bp-04],ax                       29 46 FC              
+     19 01A2:000044F3  mov  es,[538C]                        8E 06 8C 53           
+     19 01A2:000044F7  mov  ax,es:[A44B]                     26 A1 4B A4           
+     19 01A2:000044FB  and  ax,007F                          25 7F 00              
+     19 01A2:000044FE  shr  ax,1                             D1 E8                 
+     19 01A2:00004500  mov  dx,[bp-3A]                       8B 56 C6              
+     19 01A2:00004503  mov  cl,06                            B1 06                 
+     19 01A2:00004505  shl  dx,cl                            D3 E2                 
+     19 01A2:00004507  add  ax,dx                            03 C2                 
+     19 01A2:00004509  mov  [bp-3A],ax                       89 46 C6              
+     19 01A2:0000450C  mov  es,[538E]                        8E 06 8E 53           
+     19 01A2:00004510  mov  ax,es:[A44D]                     26 A1 4D A4           
+     19 01A2:00004514  and  ax,007F                          25 7F 00              
+     19 01A2:00004517  shr  ax,1                             D1 E8                 
+     19 01A2:00004519  mov  cx,[bp-04]                       8B 4E FC              
+     19 01A2:0000451C  shl  cx,1                             D1 E1                 
+     19 01A2:0000451E  shl  cx,1                             D1 E1                 
+     19 01A2:00004520  add  ax,cx                            03 C1                 
+     19 01A2:00004522  mov  [bp-04],ax                       89 46 FC              
+     19 01A2:00004525  cmp  word [bp-3A],0000                83 7E C6 00           
+     19 01A2:00004529  jl   00004574 ($+49)                  7C 49                 
+     19 01A2:0000452B  cmp  word [bp-3A],0140                81 7E C6 40 01        
+     19 01A2:00004530  jge  00004574 ($+42)                  7D 42                 
+     19 01A2:00004532  or   ax,ax                            0B C0                 
+     19 01A2:00004534  jl   00004574 ($+3e)                  7C 3E                 
+     19 01A2:00004536  cmp  ax,00C0                          3D C0 00              
+     19 01A2:00004539  jge  00004574 ($+39)                  7D 39                 
+     19 01A2:0000453B  cmp  word [bp-3A],013E                81 7E C6 3E 01        
+     19 01A2:00004540  jle  00004547 ($+5)                   7E 05                 
+     19 01A2:00004547  cmp  word [bp-04],00BF                81 7E FC BF 00        
+     19 01A2:0000454C  jle  00004553 ($+5)                   7E 05                 
+     19 01A2:00004553  call 1A21:0BC0                        9A C0 0B 21 1A        
+     19 01A2:00004558  and  ax,000F                          25 0F 00              
+     19 01A2:0000455B  push ax                               50                    
+     19 01A2:0000455C  mov  ax,[bp-04]                       8B 46 FC              
+     19 01A2:0000455F  inc  ax                               40                    
+     19 01A2:00004560  push ax                               50                    
+     19 01A2:00004561  mov  ax,[bp-3A]                       8B 46 C6              
+     19 01A2:00004564  inc  ax                               40                    
+     19 01A2:00004565  push ax                               50                    
+     19 01A2:00004566  push word [bp-04]                     FF 76 FC              
+     19 01A2:00004569  push word [bp-3A]                     FF 76 C6              
+     19 01A2:0000456C  call 18DF:01FB                        9A FB 01 DF 18        
+     18 01A2:00004571  add  sp,000A                          83 C4 0A              
+     18 01A2:00004574  mov  es,[5384]                        8E 06 84 53           
+     18 01A2:00004578  cmp  word es:[3938],0000              26 83 3E 38 39 00     
+     18 01A2:0000457E  jne  0000458A ($+a)                   75 0A                 
+     18 01A2:00004580  call 18DF:002F                        9A 2F 00 DF 18        
+     18 01A2:00004585  mov  [bp-16],ax                       89 46 EA              
+     18 01A2:00004588  jmp  short 000045A5 ($+1b)            EB 1B                 
+     18 01A2:000045A5  cmp  word [bp-16],0000                83 7E EA 00           
+     18 01A2:000045A9  jne  000045AE ($+3)                   75 03                 
+     18 01A2:000045AB  jmp  000044C5 ($-e9)                  E9 17 FF              
+      1 01A2:000045B3  mov  [bp-22],ax                       89 46 DE              
+      1 01A2:000045B6  push cs                               0E                    
+      1 01A2:000045B7  call 00002A2B ($-1b8f)                E8 71 E4              
+      1 01A2:000045BA  mov  ax,[bp-22]                       8B 46 DE              
+      1 01A2:000045BD  pop  si                               5E                    
+      1 01A2:000045BE  mov  sp,bp                            8B E5                 
+      1 01A2:000045C0  pop  bp                               5D                    
+      1 01A2:000045C1  retf                                  CB                    
+     80 01A2:000045C2  push bp                               55                    
+     80 01A2:000045C3  mov  bp,sp                            8B EC                 
+     80 01A2:000045C5  xor  ax,ax                            33 C0                 
+     80 01A2:000045C7  call 1A21:2FDC                        9A DC 2F 21 1A        
+     80 01A2:000045CC  push word [bp+06]                     FF 76 06              
+     80 01A2:000045CF  call 1A21:1F51                        9A 51 1F 21 1A        
+     80 01A2:000045D4  add  sp,0002                          83 C4 02              
+     80 01A2:000045D7  mov  es,[53A0]                        8E 06 A0 53           
+     80 01A2:000045DB  cmp  word es:[4FBA],0000              26 83 3E BA 4F 00     
+     80 01A2:000045E1  jne  000045FD ($+1a)                  75 1A                 
+     80 01A2:000045FD  mov  es,[53A0]                        8E 06 A0 53           
+     80 01A2:00004601  cmp  word es:[4FBA],0002              26 83 3E BA 4F 02     
+     80 01A2:00004607  jne  0000461F ($+16)                  75 16                 
+     80 01A2:0000461F  pop  bp                               5D                    
+     80 01A2:00004620  retf                                  CB                    
+      1 17F8:00000D1D  push bp                               55                    
+      1 17F8:00000D1E  mov  bp,sp                            8B EC                 
+      1 17F8:00000D20  xor  ax,ax                            33 C0                 
+      1 17F8:00000D22  call 1A21:2FDC                        9A DC 2F 21 1A        
+      1 17F8:00000D27  mov  ax,[bp+06]                       8B 46 06              
+      1 17F8:00000D2A  cmp  ax,0041                          3D 41 00              
+      1 17F8:00000D2D  je   00000D69 ($+3a)                  74 3A                 
+      1 17F8:00000D2F  jle  00000D34 ($+3)                   7E 03                 
+      1 17F8:00000D34  cmp  ax,FFB9                          3D B9 FF              
+      1 17F8:00000D37  je   00000D79 ($+40)                  74 40                 
+      1 17F8:00000D39  jg   00000DA8 ($+6d)                  7F 6D                 
+      1 17F8:00000D3B  cmp  ax,FFB1                          3D B1 FF              
+      1 17F8:00000D3E  je   00000D51 ($+11)                  74 11                 
+      1 17F8:00000D40  jg   00000D91 ($+4f)                  7F 4F                 
+      1 17F8:00000D71  mov  word [bp+06],FFB3                C7 46 06 B3 FF        
+      1 17F8:00000D76  jmp  00000E71 ($+f8)                  E9 F8 00              
+      1 17F8:00000D91  cmp  ax,FFB3                          3D B3 FF              
+      1 17F8:00000D94  je   00000D71 ($-25)                  74 DB                 
+      1 17F8:00000E71  mov  ax,[bp+06]                       8B 46 06              
+      1 17F8:00000E74  pop  bp                               5D                    
+      1 17F8:00000E75  retf                                  CB                    
+     19 18DF:0000002F  xor  ax,ax                            33 C0                 
+     19 18DF:00000031  call 1A21:2FDC                        9A DC 2F 21 1A        
+     19 18DF:00000036  call 1A21:3BDC                        9A DC 3B 21 1A        
+     19 18DF:0000003B  or   ax,ax                            0B C0                 
+     19 18DF:0000003D  jne  0000004B ($+c)                   75 0C                 
+     19 18DF:0000003F  mov  es,[56F0]                        8E 06 F0 56           
+     19 18DF:00000043  cmp  word es:[3938],0000              26 83 3E 38 39 00     
+     19 18DF:00000049  je   00000050 ($+5)                   74 05                 
+     19 18DF:00000050  sub  ax,ax                            2B C0                 
+     19 18DF:00000052  retf                                  CB                    
+      1 18DF:000000D5  push bp                               55                    
+      1 18DF:000000D6  mov  bp,sp                            8B EC                 
+      1 18DF:000000D8  mov  ax,000E                          B8 0E 00              
+      1 18DF:000000DB  call 1A21:2FDC                        9A DC 2F 21 1A        
+      1 18DF:000000E0  push word [bp+10]                     FF 76 10              
+      1 18DF:000000E3  push word [bp+0E]                     FF 76 0E              
+      1 18DF:000000E6  call 1A21:2127                        9A 27 21 21 1A        
+      1 18DF:000000EB  add  sp,0004                          83 C4 04              
+      1 18DF:000000EE  mov  ax,[bp+06]                       8B 46 06              
+      1 18DF:000000F1  mov  dx,[bp+08]                       8B 56 08              
+      1 18DF:000000F4  mov  [bp-04],ax                       89 46 FC              
+      1 18DF:000000F7  mov  [bp-02],dx                       89 56 FE              
+      1 18DF:000000FA  mov  ax,0140                          B8 40 01              
+      1 18DF:000000FD  imul word [bp+0C]                     F7 6E 0C              
+      1 18DF:00000100  mov  [bp-0A],ax                       89 46 F6              
+      1 18DF:00000103  cmp  word [4FBA],0003                 83 3E BA 4F 03        
+      1 18DF:00000108  jne  00000113 ($+9)                   75 09                 
+      1 18DF:0000010A  mov  ax,0A00                          B8 00 0A              
+      1 18DF:0000010D  imul word [bp+0C]                     F7 6E 0C              
+      1 18DF:00000110  mov  [bp-0A],ax                       89 46 F6              
+      1 18DF:00000113  mov  ax,[bp+0A]                       8B 46 0A              
+      1 18DF:00000116  mov  [bp-06],ax                       89 46 FA              
+      1 18DF:00000119  jmp  000001E7 ($+cb)                  E9 CB 00              
+     30 18DF:0000011C  cmp  byte [bp-0E],0D                  80 7E F2 0D           
+     30 18DF:00000120  jne  0000013F ($+1d)                  75 1D                 
+     30 18DF:0000013F  les  bx,[bp-04]                       C4 5E FC              
+     30 18DF:00000142  inc  word [bp-04]                     FF 46 FC              
+     30 18DF:00000145  mov  al,es:[bx]                       26 8A 07              
+     30 18DF:00000148  and  ax,007F                          25 7F 00              
+     30 18DF:0000014B  mov  cl,03                            B1 03                 
+     30 18DF:0000014D  shl  ax,cl                            D3 E0                 
+     30 18DF:0000014F  mov  [bp-0C],ax                       89 46 F4              
+     30 18DF:00000152  mov  ax,[4FB8]                        A1 B8 4F              
+     30 18DF:00000155  dec  ax                               48                    
+     30 18DF:00000156  cmp  [bp+0A],ax                       39 46 0A              
+     30 18DF:00000159  jle  00000176 ($+1b)                  7E 1B                 
+     30 18DF:00000176  mov  ax,[bp+0A]                       8B 46 0A              
+     30 18DF:00000179  inc  word [bp+0A]                     FF 46 0A              
+     30 18DF:0000017C  mov  [bp-08],ax                       89 46 F8              
+     30 18DF:0000017F  cmp  word [4FBA],0000                 83 3E BA 4F 00        
+     30 18DF:00000184  jne  00000199 ($+13)                  75 13                 
+     30 18DF:00000199  cmp  word [4FBA],0001                 83 3E BA 4F 01        
+     30 18DF:0000019E  jne  000001BA ($+1a)                  75 1A                 
+     30 18DF:000001BA  cmp  word [4FBA],0002                 83 3E BA 4F 02        
+     30 18DF:000001BF  jne  000001D1 ($+10)                  75 10                 
+     30 18DF:000001D1  mov  ax,[bp-08]                       8B 46 F8              
+     30 18DF:000001D4  mov  cl,03                            B1 03                 
+     30 18DF:000001D6  shl  ax,cl                            D3 E0                 
+     30 18DF:000001D8  push ax                               50                    
+     30 18DF:000001D9  push word [bp-0A]                     FF 76 F6              
+     30 18DF:000001DC  push word [bp-0C]                     FF 76 F4              
+     30 18DF:000001DF  call 1A21:22A5                        9A A5 22 21 1A        
+     30 18DF:000001E4  add  sp,0006                          83 C4 06              
+     31 18DF:000001E7  les  bx,[bp-04]                       C4 5E FC              
+     31 18DF:000001EA  mov  al,es:[bx]                       26 8A 07              
+     31 18DF:000001ED  mov  [bp-0E],al                       88 46 F2              
+     31 18DF:000001F0  or   al,al                            0A C0                 
+     31 18DF:000001F2  je   000001F7 ($+3)                   74 03                 
+     30 18DF:000001F4  jmp  0000011C ($-db)                  E9 25 FF              
+      1 18DF:000001F7  mov  sp,bp                            8B E5                 
+      1 18DF:000001F9  pop  bp                               5D                    
+      1 18DF:000001FA  retf                                  CB                    
+     20 18DF:000001FB  push bp                               55                    
+     20 18DF:000001FC  mov  bp,sp                            8B EC                 
+     20 18DF:000001FE  xor  ax,ax                            33 C0                 
+     20 18DF:00000200  call 1A21:2FDC                        9A DC 2F 21 1A        
+     20 18DF:00000205  test byte [bp+06],01                  F6 46 06 01           
+     20 18DF:00000209  jne  00000218 ($+d)                   75 0D                 
+     20 18DF:0000020B  test byte [bp+0A],01                  F6 46 0A 01           
+     20 18DF:0000020F  je   00000218 ($+7)                   74 07                 
+     20 18DF:00000211  cmp  word [4FBA],0001                 83 3E BA 4F 01        
+     20 18DF:00000216  je   00000236 ($+1e)                  74 1E                 
+     64 18DF:00000218  mov  ax,[bp+08]                       8B 46 08              
+     64 18DF:0000021B  cmp  [bp+0C],ax                       39 46 0C              
+     64 18DF:0000021E  jl   00000257 ($+37)                  7C 37                 
+     45 18DF:00000220  push word [bp+0E]                     FF 76 0E              
+     45 18DF:00000223  push word [bp+0A]                     FF 76 0A              
+     45 18DF:00000226  push word [bp+06]                     FF 76 06              
+     45 18DF:00000229  push ax                               50                    
+     45 18DF:0000022A  inc  word [bp+08]                     FF 46 08              
+     45 18DF:0000022D  push cs                               0E                    
+     45 18DF:0000022E  call 000003EB ($+1ba)                 E8 BA 01              
+     44 18DF:00000231  add  sp,0008                          83 C4 08              
+     44 18DF:00000234  jmp  short 00000218 ($-1e)            EB E2                 
+     19 18DF:00000257  pop  bp                               5D                    
+     19 18DF:00000258  retf                                  CB                    
+      1 18DF:00000275  mov  [bp-04],ax                       89 46 FC              
+      1 18DF:00000278  mov  es,[56F2]                        8E 06 F2 56           
+      1 18DF:0000027C  cmp  word es:[458C],0000              26 83 3E 8C 45 00     
+      1 18DF:00000282  jne  00000287 ($+3)                   75 03                 
+      1 18DF:00000284  jmp  00000318 ($+91)                  E9 91 00              
+      1 18DF:00000318  mov  sp,bp                            8B E5                 
+      1 18DF:0000031A  pop  bp                               5D                    
+      1 18DF:0000031B  retf                                  CB                    
+     45 18DF:000003EB  push bp                               55                    
+     45 18DF:000003EC  mov  bp,sp                            8B EC                 
+     45 18DF:000003EE  mov  ax,0004                          B8 04 00              
+     45 18DF:000003F1  call 1A21:2FDC                        9A DC 2F 21 1A        
+     44 18DF:000003F6  mov  bx,[4FBA]                        8B 1E BA 4F           
+     44 18DF:000003FA  shl  bx,1                             D1 E3                 
+     44 18DF:000003FC  mov  ax,[bx+4FC4]                     8B 87 C4 4F           
+     44 18DF:00000400  mov  [bp-04],ax                       89 46 FC              
+     44 18DF:00000403  jmp  short 00000424 ($+1f)            EB 1F                 
+     44 18DF:00000424  mov  ax,[bp-04]                       8B 46 FC              
+     44 18DF:00000427  test [bp+08],ax                       85 46 08              
+     44 18DF:0000042A  jne  00000405 ($-27)                  75 D9                 
+     44 18DF:0000042C  mov  ax,[bp+0A]                       8B 46 0A              
+     44 18DF:0000042F  cmp  [bp+08],ax                       39 46 08              
+     44 18DF:00000432  jge  00000491 ($+5d)                  7D 5D                 
+     44 18DF:00000434  sub  ax,[bp+08]                       2B 46 08              
+     44 18DF:00000437  mov  [bp-02],ax                       89 46 FE              
+     44 18DF:0000043A  cmp  word [4FBA],0003                 83 3E BA 4F 03        
+     44 18DF:0000043F  je   0000044E ($+d)                   74 0D                 
+     44 18DF:0000044E  cmp  word [bp-02],0000                83 7E FE 00           
+     44 18DF:00000452  je   00000468 ($+14)                  74 14                 
+     44 18DF:00000454  push word [bp+0C]                     FF 76 0C              
+     44 18DF:00000457  push word [bp-02]                     FF 76 FE              
+     44 18DF:0000045A  push word [bp+06]                     FF 76 06              
+     44 18DF:0000045D  push word [bp+08]                     FF 76 08              
+     44 18DF:00000460  call 1A21:0780                        9A 80 07 21 1A        
+     44 18DF:00000465  add  sp,0008                          83 C4 08              
+     44 18DF:00000468  mov  bx,[4FBA]                        8B 1E BA 4F           
+     44 18DF:0000046C  shl  bx,1                             D1 E3                 
+     44 18DF:0000046E  mov  ax,[bx+4FCC]                     8B 87 CC 4F           
+     44 18DF:00000472  and  ax,[bp+0A]                       23 46 0A              
+     44 18DF:00000475  mov  [bp+08],ax                       89 46 08              
+     44 18DF:00000478  jmp  short 00000491 ($+17)            EB 17                 
+     44 18DF:0000047A  push word [bp+0C]                     FF 76 0C              
+     44 18DF:0000047D  push word [bp+06]                     FF 76 06              
+     44 18DF:00000480  push word [bp+06]                     FF 76 06              
+     44 18DF:00000483  push word [bp+08]                     FF 76 08              
+     44 18DF:00000486  inc  word [bp+08]                     FF 46 08              
+     44 18DF:00000489  call 1A21:05D0                        9A D0 05 21 1A        
+     44 18DF:0000048E  add  sp,0008                          83 C4 08              
+     88 18DF:00000491  mov  ax,[bp+0A]                       8B 46 0A              
+     88 18DF:00000494  cmp  [bp+08],ax                       39 46 08              
+     88 18DF:00000497  jle  0000047A ($-1f)                  7E E1                 
+     44 18DF:00000499  mov  sp,bp                            8B E5                 
+     44 18DF:0000049B  pop  bp                               5D                    
+     44 18DF:0000049C  retf                                  CB                    
+     44 1A21:000005D0  push bp                               55                    
+     44 1A21:000005D1  mov  bp,sp                            8B EC                 
+     44 1A21:000005D3  push di                               57                    
+     44 1A21:000005D4  push si                               56                    
+     44 1A21:000005D5  push ds                               1E                    
+     44 1A21:000005D6  mov  ax,1E0E                          B8 0E 1E              
+     44 1A21:000005D9  mov  ds,ax                            8E D8                 
+     44 1A21:000005DB  push es                               06                    
+     44 1A21:000005DC  mov  ax,[bp+06]                       8B 46 06              
+     44 1A21:000005DF  mov  [0220],ax                        A3 20 02              
+     44 1A21:000005E2  mov  ax,[bp+08]                       8B 46 08              
+     44 1A21:000005E5  mov  [0234],ax                        A3 34 02              
+     44 1A21:000005E8  mov  ax,[bp+0A]                       8B 46 0A              
+     44 1A21:000005EB  mov  [0236],ax                        A3 36 02              
+     44 1A21:000005EE  mov  ax,[bp+0C]                       8B 46 0C              
+     44 1A21:000005F1  mov  [0224],ax                        A3 24 02              
+     44 1A21:000005F4  cmp  word [B764],0003                 83 3E 64 B7 03        
+     44 1A21:000005F9  je   00000605 ($+a)                   74 0A                 
+     44 1A21:00000605  mov  ax,A000                          B8 00 A0              
+     44 1A21:00000608  mov  es,ax                            8E C0                 
+     44 1A21:0000060A  mov  ax,[0234]                        A1 34 02              
+     44 1A21:0000060D  mov  dx,0140                          BA 40 01              
+     44 1A21:00000610  mul  dx                               F7 E2                 
+     44 1A21:00000612  add  ax,[0220]                        03 06 20 02           
+     44 1A21:00000616  mov  di,ax                            8B F8                 
+     44 1A21:00000618  mov  cx,[0236]                        8B 0E 36 02           
+     44 1A21:0000061C  sub  cx,[0234]                        2B 0E 34 02           
+     44 1A21:00000620  inc  cx                               41                    
+     44 1A21:00000621  mov  ax,[0224]                        A1 24 02              
+     44 1A21:00000624  mov  es:[di],al                       26 88 05              
+     44 1A21:00000627  add  di,0140                          81 C7 40 01           
+     44 1A21:0000062B  loop 00000624 ($-9)                   E2 F7                 
+     44 1A21:0000062D  jmp  000006F7 ($+c7)                  E9 C7 00              
+     44 1A21:000006F7  pop  es                               07                    
+     44 1A21:000006F8  pop  ds                               1F                    
+     44 1A21:000006F9  pop  si                               5E                    
+     44 1A21:000006FA  pop  di                               5F                    
+     44 1A21:000006FB  pop  bp                               5D                    
+     44 1A21:000006FC  retf                                  CB                    
+     44 1A21:00000780  push bp                               55                    
+     44 1A21:00000781  mov  bp,sp                            8B EC                 
+     44 1A21:00000783  push di                               57                    
+     44 1A21:00000784  push si                               56                    
+     44 1A21:00000785  push ds                               1E                    
+     44 1A21:00000786  mov  ax,1E0E                          B8 0E 1E              
+     44 1A21:00000789  mov  ds,ax                            8E D8                 
+     44 1A21:0000078B  push es                               06                    
+     44 1A21:0000078C  mov  ax,[bp+06]                       8B 46 06              
+     44 1A21:0000078F  mov  [0220],ax                        A3 20 02              
+     44 1A21:00000792  mov  ax,[bp+08]                       8B 46 08              
+     44 1A21:00000795  mov  [0234],ax                        A3 34 02              
+     44 1A21:00000798  mov  cx,[bp+0A]                       8B 4E 0A              
+     44 1A21:0000079B  mov  [0230],cx                        89 0E 30 02           
+     44 1A21:0000079F  mov  ax,[bp+0C]                       8B 46 0C              
+     44 1A21:000007A2  mov  [0224],ax                        A3 24 02              
+     44 1A21:000007A5  cmp  word [B764],0003                 83 3E 64 B7 03        
+     44 1A21:000007AA  je   000007BD ($+11)                  74 11                 
+     44 1A21:000007BD  mov  ax,A000                          B8 00 A0              
+     44 1A21:000007C0  mov  es,ax                            8E C0                 
+     44 1A21:000007C2  mov  ax,[0234]                        A1 34 02              
+     44 1A21:000007C5  mov  dx,0140                          BA 40 01              
+     44 1A21:000007C8  mul  dx                               F7 E2                 
+     44 1A21:000007CA  add  ax,[0220]                        03 06 20 02           
+     44 1A21:000007CE  mov  di,ax                            8B F8                 
+     44 1A21:000007D0  mov  ax,[0224]                        A1 24 02              
+     45 1A21:000007D3  repe stosb                            F3 AA                 
+     44 1A21:000007D5  jmp  short 0000084E ($+77)            EB 77                 
+     44 1A21:0000084E  pop  es                               07                    
+     44 1A21:0000084F  pop  ds                               1F                    
+     44 1A21:00000850  pop  si                               5E                    
+     44 1A21:00000851  pop  di                               5F                    
+     44 1A21:00000852  pop  bp                               5D                    
+     44 1A21:00000853  retf                                  CB                    
+      1 1A21:00000B97  int  16                               CD 16                 
+      1 1A21:00000B99  cmp  al,00                            3C 00                 
+      1 1A21:00000B9B  jne  00000BA1 ($+4)                   75 04                 
+      1 1A21:00000B9D  mov  al,ah                            8A C4                 
+      1 1A21:00000B9F  neg  al                               F6 D8                 
+      1 1A21:00000BA1  cbw                                   98                    
+      1 1A21:00000BA2  pop  ds                               1F                    
+      1 1A21:00000BA3  pop  si                               5E                    
+      1 1A21:00000BA4  pop  di                               5F                    
+      1 1A21:00000BA5  pop  bp                               5D                    
+      1 1A21:00000BA6  retf                                  CB                    
+     19 1A21:00000BC0  push bp                               55                    
+     19 1A21:00000BC1  mov  bp,sp                            8B EC                 
+     19 1A21:00000BC3  push di                               57                    
+     19 1A21:00000BC4  push si                               56                    
+     19 1A21:00000BC5  push ds                               1E                    
+     19 1A21:00000BC6  mov  ax,1E0E                          B8 0E 1E              
+     19 1A21:00000BC9  mov  ds,ax                            8E D8                 
+     19 1A21:00000BCB  push es                               06                    
+     19 1A21:00000BCC  mov  ax,387D                          B8 7D 38              
+     19 1A21:00000BCF  mov  es,ax                            8E C0                 
+     19 1A21:00000BD1  mov  si,4FC0                          BE C0 4F              
+     19 1A21:00000BD4  xor  ah,ah                            32 E4                 
+     19 1A21:00000BD6  mov  al,es:[si]                       26 8A 04              
+     19 1A21:00000BD9  shr  al,1                             D0 E8                 
+     19 1A21:00000BDB  shr  al,1                             D0 E8                 
+     19 1A21:00000BDD  rcl  byte es:[si+02],1                26 D0 54 02           
+     19 1A21:00000BE1  rcl  byte es:[si+01],1                26 D0 54 01           
+     19 1A21:00000BE5  cmc                                   F5                    
+     19 1A21:00000BE6  sbb  al,es:[si]                       26 1A 04              
+     19 1A21:00000BE9  shr  al,1                             D0 E8                 
+     19 1A21:00000BEB  rcr  byte es:[si],1                   26 D0 1C              
+     19 1A21:00000BEE  mov  al,es:[si]                       26 8A 04              
+     19 1A21:00000BF1  xor  al,es:[si+01]                    26 32 44 01           
+     19 1A21:00000BF5  pop  es                               07                    
+     19 1A21:00000BF6  pop  ds                               1F                    
+     19 1A21:00000BF7  pop  si                               5E                    
+     19 1A21:00000BF8  pop  di                               5F                    
+     19 1A21:00000BF9  pop  bp                               5D                    
+     19 1A21:00000BFA  retf                                  CB                    
+     72 1A21:00000BFB  push si                               56                    
+     72 1A21:00000BFC  mov  si,di                            8B F7                 
+     72 1A21:00000BFE  mov  dh,[di]                          8A 35                 
+     72 1A21:00000C00  mov  dl,[di+08]                       8A 55 08              
+     72 1A21:00000C03  mov  bh,[di+48]                       8A 7D 48              
+     72 1A21:00000C06  mov  bl,[di+50]                       8A 5D 50              
+     72 1A21:00000C09  push es                               06                    
+     72 1A21:00000C0A  mov  ax,ds                            8C D8                 
+     72 1A21:00000C0C  mov  es,ax                            8E C0                 
+     72 1A21:00000C0E  mov  cx,0028                          B9 28 00              
+     72 1A21:00000C11  mov  ax,FFFF                          B8 FF FF              
+     72 1A21:00000C14  cld                                   FC                    
+     73 1A21:00000C15  repe stosw                            F3 AB                 
+     72 1A21:00000C17  pop  es                               07                    
+     72 1A21:00000C18  mov  di,si                            8B FE                 
+     72 1A21:00000C1A  mov  [di],dh                          88 35                 
+     72 1A21:00000C1C  mov  [di+08],dl                       88 55 08              
+     72 1A21:00000C1F  mov  [di+48],bh                       88 7D 48              
+     72 1A21:00000C22  mov  [di+50],bl                       88 5D 50              
+     72 1A21:00000C25  add  dl,dh                            02 D6                 
+     72 1A21:00000C27  xor  dh,dh                            32 F6                 
+     72 1A21:00000C29  mov  [09F9],dx                        89 16 F9 09           
+     72 1A21:00000C2D  mov  si,0279                          BE 79 02              
+     72 1A21:00000C30  mov  byte [si],00                     C6 04 00              
+     72 1A21:00000C33  mov  byte [si+01],08                  C6 44 01 08           
+     72 1A21:00000C37  add  si,0002                          83 C6 02              
+     72 1A21:00000C3A  call 00000D07 ($+ca)                  E8 CA 00              
+     72 1A21:00000C3D  mov  al,[di+48]                       8A 45 48              
+     72 1A21:00000C40  add  al,[di+50]                       02 45 50              
+     72 1A21:00000C43  xor  ah,ah                            32 E4                 
+     72 1A21:00000C45  mov  [09F9],ax                        A3 F9 09              
+     72 1A21:00000C48  mov  si,0279                          BE 79 02              
+     72 1A21:00000C4B  mov  byte [si],48                     C6 04 48              
+     72 1A21:00000C4E  mov  byte [si+01],50                  C6 44 01 50           
+     72 1A21:00000C52  add  si,0002                          83 C6 02              
+     72 1A21:00000C55  call 00000D07 ($+af)                  E8 AF 00              
+     72 1A21:00000C58  mov  al,[di]                          8A 05                 
+     72 1A21:00000C5A  add  al,[di+48]                       02 45 48              
+     72 1A21:00000C5D  xor  ah,ah                            32 E4                 
+     72 1A21:00000C5F  mov  [09F9],ax                        A3 F9 09              
+     72 1A21:00000C62  mov  si,0279                          BE 79 02              
+     72 1A21:00000C65  mov  byte [si],00                     C6 04 00              
+     72 1A21:00000C68  mov  byte [si+01],48                  C6 44 01 48           
+     72 1A21:00000C6C  add  si,0002                          83 C6 02              
+     72 1A21:00000C6F  call 00000D79 ($+107)                 E8 07 01              
+     72 1A21:00000C72  mov  al,[di+08]                       8A 45 08              
+     72 1A21:00000C75  add  al,[di+50]                       02 45 50              
+     72 1A21:00000C78  xor  ah,ah                            32 E4                 
+     72 1A21:00000C7A  mov  [09F9],ax                        A3 F9 09              
+     72 1A21:00000C7D  mov  si,0279                          BE 79 02              
+     72 1A21:00000C80  mov  byte [si],08                     C6 04 08              
+     72 1A21:00000C83  mov  byte [si+01],50                  C6 44 01 50           
+     72 1A21:00000C87  add  si,0002                          83 C6 02              
+     72 1A21:00000C8A  call 00000D79 ($+ec)                  E8 EC 00              
+     72 1A21:00000C8D  mov  si,0279                          BE 79 02              
+     72 1A21:00000C90  mov  byte [si],00                     C6 04 00              
+     72 1A21:00000C93  mov  byte [si+01],08                  C6 44 01 08           
+     72 1A21:00000C97  mov  byte [si+02],48                  C6 44 02 48           
+     72 1A21:00000C9B  mov  byte [si+03],50                  C6 44 03 50           
+     72 1A21:00000C9F  add  si,0004                          83 C6 04              
+     72 1A21:00000CA2  call 00000DF8 ($+153)                 E8 53 01              
+     72 1A21:00000CA5  pop  si                               5E                    
+     72 1A21:00000CA6  xchg di,si                            87 F7                 
+     72 1A21:00000CA8  push es                               06                    
+     72 1A21:00000CA9  mov  ax,ds                            8C D8                 
+     72 1A21:00000CAB  mov  es,ax                            8E C0                 
+     72 1A21:00000CAD  cld                                   FC                    
+     72 1A21:00000CAE  mov  cx,0004                          B9 04 00              
+    288 1A21:00000CB1  lodsw                                 AD                    
+    288 1A21:00000CB2  and  ax,F0F0                          25 F0 F0              
+    288 1A21:00000CB5  stosw                                 AB                    
+    288 1A21:00000CB6  loop 00000CB1 ($-7)                   E2 F9                 
+     72 1A21:00000CB8  inc  si                               46                    
+     72 1A21:00000CB9  mov  cx,0004                          B9 04 00              
+    288 1A21:00000CBC  lodsw                                 AD                    
+    288 1A21:00000CBD  and  ax,F0F0                          25 F0 F0              
+    288 1A21:00000CC0  stosw                                 AB                    
+    288 1A21:00000CC1  loop 00000CBC ($-7)                   E2 F9                 
+     72 1A21:00000CC3  inc  si                               46                    
+     72 1A21:00000CC4  mov  cx,0004                          B9 04 00              
+    288 1A21:00000CC7  lodsw                                 AD                    
+    288 1A21:00000CC8  and  ax,F0F0                          25 F0 F0              
+    288 1A21:00000CCB  stosw                                 AB                    
+    288 1A21:00000CCC  loop 00000CC7 ($-7)                   E2 F9                 
+     72 1A21:00000CCE  inc  si                               46                    
+     72 1A21:00000CCF  mov  cx,0004                          B9 04 00              
+    288 1A21:00000CD2  lodsw                                 AD                    
+    288 1A21:00000CD3  and  ax,F0F0                          25 F0 F0              
+    288 1A21:00000CD6  stosw                                 AB                    
+    288 1A21:00000CD7  loop 00000CD2 ($-7)                   E2 F9                 
+     72 1A21:00000CD9  inc  si                               46                    
+     72 1A21:00000CDA  mov  cx,0004                          B9 04 00              
+    288 1A21:00000CDD  lodsw                                 AD                    
+    288 1A21:00000CDE  and  ax,F0F0                          25 F0 F0              
+    288 1A21:00000CE1  stosw                                 AB                    
+    288 1A21:00000CE2  loop 00000CDD ($-7)                   E2 F9                 
+     72 1A21:00000CE4  inc  si                               46                    
+     72 1A21:00000CE5  mov  cx,0004                          B9 04 00              
+    288 1A21:00000CE8  lodsw                                 AD                    
+    288 1A21:00000CE9  and  ax,F0F0                          25 F0 F0              
+    288 1A21:00000CEC  stosw                                 AB                    
+    288 1A21:00000CED  loop 00000CE8 ($-7)                   E2 F9                 
+     72 1A21:00000CEF  inc  si                               46                    
+     72 1A21:00000CF0  mov  cx,0004                          B9 04 00              
+    288 1A21:00000CF3  lodsw                                 AD                    
+    288 1A21:00000CF4  and  ax,F0F0                          25 F0 F0              
+    288 1A21:00000CF7  stosw                                 AB                    
+    288 1A21:00000CF8  loop 00000CF3 ($-7)                   E2 F9                 
+     72 1A21:00000CFA  inc  si                               46                    
+     72 1A21:00000CFB  mov  cx,0004                          B9 04 00              
+    288 1A21:00000CFE  lodsw                                 AD                    
+    288 1A21:00000CFF  and  ax,F0F0                          25 F0 F0              
+    288 1A21:00000D02  stosw                                 AB                    
+    288 1A21:00000D03  loop 00000CFE ($-7)                   E2 F9                 
+     72 1A21:00000D05  pop  es                               07                    
+     72 1A21:00000D06  ret                                   C3                    
+   2304 1A21:00000D07  cmp  si,0279                          81 FE 79 02           
+   2304 1A21:00000D0B  je   00000D78 ($+6b)                  74 6B                 
+   2160 1A21:00000D0D  sub  si,0002                          83 EE 02              
+   2160 1A21:00000D10  mov  dh,[si]                          8A 34                 
+   2160 1A21:00000D12  mov  dl,[si+01]                       8A 54 01              
+   2160 1A21:00000D15  mov  al,dl                            8A C2                 
+   2160 1A21:00000D17  sub  al,dh                            2A C6                 
+   2160 1A21:00000D19  cmp  al,01                            3C 01                 
+   2160 1A21:00000D1B  je   00000D07 ($-16)                  74 EA                 
+   1008 1A21:00000D1D  xor  bh,bh                            32 FF                 
+   1008 1A21:00000D1F  mov  bl,dh                            8A DE                 
+   1008 1A21:00000D21  mov  ch,[bx+di]                       8A 29                 
+   1008 1A21:00000D23  mov  bl,dl                            8A DA                 
+   1008 1A21:00000D25  mov  cl,[bx+di]                       8A 09                 
+   1008 1A21:00000D27  shr  al,1                             D0 E8                 
+   1008 1A21:00000D29  mov  bl,al                            8A D8                 
+   1008 1A21:00000D2B  add  bl,dh                            02 DE                 
+   1008 1A21:00000D2D  mov  [si],dh                          88 34                 
+   1008 1A21:00000D2F  mov  [si+01],bl                       88 5C 01              
+   1008 1A21:00000D32  mov  [si+02],bl                       88 5C 02              
+   1008 1A21:00000D35  mov  [si+03],dl                       88 54 03              
+   1008 1A21:00000D38  add  si,0004                          83 C6 04              
+   1008 1A21:00000D3B  mov  ah,[bx+di]                       8A 21                 
+   1008 1A21:00000D3D  cmp  ah,FF                            80 FC FF              
+   1008 1A21:00000D40  jne  00000D07 ($-3b)                  75 C5                 
+   1008 1A21:00000D42  mov  dl,ch                            8A D5                 
+   1008 1A21:00000D44  xor  dh,dh                            32 F6                 
+   1008 1A21:00000D46  mov  ch,dh                            8A EE                 
+   1008 1A21:00000D48  add  dx,cx                            03 D1                 
+   1008 1A21:00000D4A  shr  dx,1                             D1 EA                 
+   1008 1A21:00000D4C  mov  cx,si                            8B CE                 
+   1008 1A21:00000D4E  mov  si,09FB                          BE FB 09              
+   1008 1A21:00000D51  add  si,[09F9]                        03 36 F9 09           
+   1008 1A21:00000D55  mov  ah,[si]                          8A 24                 
+   1008 1A21:00000D57  mov  si,cx                            8B F1                 
+   1008 1A21:00000D59  mov  cl,al                            8A C8                 
+   1008 1A21:00000D5B  shl  cl,1                             D0 E1                 
+   1008 1A21:00000D5D  mov  ch,cl                            8A E9                 
+   1008 1A21:00000D5F  shl  cl,1                             D0 E1                 
+   1008 1A21:00000D61  dec  cl                               FE C9                 
+   1008 1A21:00000D63  and  cl,ah                            22 CC                 
+   1008 1A21:00000D65  sub  cl,ch                            2A CD                 
+   1008 1A21:00000D67  add  dl,cl                            02 D1                 
+   1008 1A21:00000D69  cmp  dl,80                            80 FA 80              
+   1008 1A21:00000D6C  jc   00000D70 ($+2)                   72 02                 
+    133 1A21:00000D6E  xor  dl,dl                            32 D2                 
+   1008 1A21:00000D70  mov  [bx+di],dl                       88 11                 
+   1008 1A21:00000D72  inc  byte [09F9]                      FE 06 F9 09           
+   1008 1A21:00000D76  jmp  short 00000D07 ($-71)            EB 8F                 
+    144 1A21:00000D78  ret                                   C3                    
+   2304 1A21:00000D79  cmp  si,0279                          81 FE 79 02           
+   2304 1A21:00000D7D  je   00000DF7 ($+78)                  74 78                 
+   2160 1A21:00000D7F  sub  si,0002                          83 EE 02              
+   2160 1A21:00000D82  mov  dh,[si]                          8A 34                 
+   2160 1A21:00000D84  mov  dl,[si+01]                       8A 54 01              
+   2160 1A21:00000D87  mov  al,dl                            8A C2                 
+   2160 1A21:00000D89  sub  al,dh                            2A C6                 
+   2160 1A21:00000D8B  cmp  al,09                            3C 09                 
+   2160 1A21:00000D8D  je   00000D79 ($-16)                  74 EA                 
+   1008 1A21:00000D8F  xor  bh,bh                            32 FF                 
+   1008 1A21:00000D91  mov  bl,dh                            8A DE                 
+   1008 1A21:00000D93  mov  ch,[bx+di]                       8A 29                 
+   1008 1A21:00000D95  mov  bl,dl                            8A DA                 
+   1008 1A21:00000D97  mov  cl,[bx+di]                       8A 09                 
+   1008 1A21:00000D99  shr  al,1                             D0 E8                 
+   1008 1A21:00000D9B  mov  bl,al                            8A D8                 
+   1008 1A21:00000D9D  add  bl,dh                            02 DE                 
+   1008 1A21:00000D9F  mov  [si],dh                          88 34                 
+   1008 1A21:00000DA1  mov  [si+01],bl                       88 5C 01              
+   1008 1A21:00000DA4  mov  [si+02],bl                       88 5C 02              
+   1008 1A21:00000DA7  mov  [si+03],dl                       88 54 03              
+   1008 1A21:00000DAA  add  si,0004                          83 C6 04              
+   1008 1A21:00000DAD  mov  ah,[bx+di]                       8A 21                 
+   1008 1A21:00000DAF  cmp  ah,FF                            80 FC FF              
+   1008 1A21:00000DB2  jne  00000D79 ($-3b)                  75 C5                 
+   1008 1A21:00000DB4  mov  dl,ch                            8A D5                 
+   1008 1A21:00000DB6  xor  dh,dh                            32 F6                 
+   1008 1A21:00000DB8  mov  ch,dh                            8A EE                 
+   1008 1A21:00000DBA  add  dx,cx                            03 D1                 
+   1008 1A21:00000DBC  shr  dx,1                             D1 EA                 
+   1008 1A21:00000DBE  mov  cx,si                            8B CE                 
+   1008 1A21:00000DC0  mov  si,09FB                          BE FB 09              
+   1008 1A21:00000DC3  add  si,[09F9]                        03 36 F9 09           
+   1008 1A21:00000DC7  mov  ah,[si]                          8A 24                 
+   1008 1A21:00000DC9  mov  si,cx                            8B F1                 
+   1008 1A21:00000DCB  mov  dh,al                            8A F0                 
+   1008 1A21:00000DCD  shr  dh,1                             D0 EE                 
+   1008 1A21:00000DCF  shr  dh,1                             D0 EE                 
+   1008 1A21:00000DD1  shr  dh,1                             D0 EE                 
+   1008 1A21:00000DD3  cmp  dh,09                            80 FE 09              
+   1008 1A21:00000DD6  jne  00000DDA ($+2)                   75 02                 
+   1008 1A21:00000DDA  shl  dh,1                             D0 E6                 
+   1008 1A21:00000DDC  mov  ch,dh                            8A EE                 
+   1008 1A21:00000DDE  shl  dh,1                             D0 E6                 
+   1008 1A21:00000DE0  dec  dh                               FE CE                 
+   1008 1A21:00000DE2  and  dh,ah                            22 F4                 
+   1008 1A21:00000DE4  sub  dh,ch                            2A F5                 
+   1008 1A21:00000DE6  add  dl,dh                            02 D6                 
+   1008 1A21:00000DE8  cmp  dl,80                            80 FA 80              
+   1008 1A21:00000DEB  jc   00000DEF ($+2)                   72 02                 
+    174 1A21:00000DED  xor  dl,dl                            32 D2                 
+   1008 1A21:00000DEF  mov  [bx+di],dl                       88 11                 
+   1008 1A21:00000DF1  inc  byte [09F9]                      FE 06 F9 09           
+   1008 1A21:00000DF5  jmp  short 00000D79 ($-7e)            EB 82                 
+    144 1A21:00000DF7  ret                                   C3                    
+   6192 1A21:00000DF8  cmp  si,0279                          81 FE 79 02           
+   6192 1A21:00000DFC  jne  00000E01 ($+3)                   75 03                 
+     72 1A21:00000DFE  jmp  00000FED ($+1ec)                 E9 EC 01              
+   6120 1A21:00000E01  sub  si,0004                          83 EE 04              
+   6120 1A21:00000E04  mov  dh,[si]                          8A 34                 
+   6120 1A21:00000E06  mov  dl,[si+01]                       8A 54 01              
+   6120 1A21:00000E09  sub  dl,dh                            2A D6                 
+   6120 1A21:00000E0B  cmp  dl,01                            80 FA 01              
+   6120 1A21:00000E0E  je   00000DF8 ($-18)                  74 E8                 
+   1512 1A21:00000E10  mov  dl,[si+03]                       8A 54 03              
+   1512 1A21:00000E13  xor  bh,bh                            32 FF                 
+   1512 1A21:00000E15  mov  ah,bh                            8A E7                 
+   1512 1A21:00000E17  mov  bl,dh                            8A DE                 
+   1512 1A21:00000E19  mov  al,[bx+di]                       8A 01                 
+   1512 1A21:00000E1B  mov  bl,dl                            8A DA                 
+   1512 1A21:00000E1D  mov  bl,[bx+di]                       8A 19                 
+   1512 1A21:00000E1F  add  ax,bx                            03 C3                 
+   1512 1A21:00000E21  mov  bl,[si+01]                       8A 5C 01              
+   1512 1A21:00000E24  mov  bl,[bx+di]                       8A 19                 
+   1512 1A21:00000E26  add  ax,bx                            03 C3                 
+   1512 1A21:00000E28  mov  bl,[si+02]                       8A 5C 02              
+   1512 1A21:00000E2B  mov  bl,[bx+di]                       8A 19                 
+   1512 1A21:00000E2D  add  ax,bx                            03 C3                 
+   1512 1A21:00000E2F  shr  ax,1                             D1 E8                 
+   1512 1A21:00000E31  shr  ax,1                             D1 E8                 
+   1512 1A21:00000E33  mov  cl,dl                            8A CA                 
+   1512 1A21:00000E35  sub  cl,dh                            2A CE                 
+   1512 1A21:00000E37  shr  cl,1                             D0 E9                 
+   1512 1A21:00000E39  mov  bl,cl                            8A D9                 
+   1512 1A21:00000E3B  add  bl,dh                            02 DE                 
+   1512 1A21:00000E3D  mov  ah,[bx+di]                       8A 21                 
+   1512 1A21:00000E3F  cmp  ah,FF                            80 FC FF              
+   1512 1A21:00000E42  jne  00000E46 ($+2)                   75 02                 
+   1512 1A21:00000E44  mov  [bx+di],al                       88 01                 
+   1512 1A21:00000E46  mov  [0272],dh                        88 36 72 02           
+   1512 1A21:00000E4A  mov  [0275],dl                        88 16 75 02           
+   1512 1A21:00000E4E  mov  [0276],bl                        88 1E 76 02           
+   1512 1A21:00000E52  mov  al,[si+01]                       8A 44 01              
+   1512 1A21:00000E55  mov  [0273],al                        A2 73 02              
+   1512 1A21:00000E58  mov  al,[si+02]                       8A 44 02              
+   1512 1A21:00000E5B  mov  [0274],al                        A2 74 02              
+   1512 1A21:00000E5E  mov  [si],dh                          88 34                 
+   1512 1A21:00000E60  mov  [si+03],bl                       88 5C 03              
+   1512 1A21:00000E63  mov  [si+06],bl                       88 5C 06              
+   1512 1A21:00000E66  mov  [si+09],bl                       88 5C 09              
+   1512 1A21:00000E69  mov  [si+0C],bl                       88 5C 0C              
+   1512 1A21:00000E6C  mov  al,[0273]                        A0 73 02              
+   1512 1A21:00000E6F  sub  al,dh                            2A C6                 
+   1512 1A21:00000E71  shr  al,1                             D0 E8                 
+   1512 1A21:00000E73  mov  [0277],al                        A2 77 02              
+   1512 1A21:00000E76  mov  bl,[0272]                        8A 1E 72 02           
+   1512 1A21:00000E7A  xor  dh,dh                            32 F6                 
+   1512 1A21:00000E7C  mov  dl,[bx+di]                       8A 11                 
+   1512 1A21:00000E7E  mov  bl,[0273]                        8A 1E 73 02           
+   1512 1A21:00000E82  mov  [si+05],bl                       88 5C 05              
+   1512 1A21:00000E85  mov  bl,[bx+di]                       8A 19                 
+   1512 1A21:00000E87  add  dx,bx                            03 D3                 
+   1512 1A21:00000E89  shr  dx,1                             D1 EA                 
+   1512 1A21:00000E8B  mov  bl,al                            8A D8                 
+   1512 1A21:00000E8D  add  bl,[0272]                        02 1E 72 02           
+   1512 1A21:00000E91  mov  [si+01],bl                       88 5C 01              
+   1512 1A21:00000E94  mov  [si+04],bl                       88 5C 04              
+   1512 1A21:00000E97  mov  ah,[bx+di]                       8A 21                 
+   1512 1A21:00000E99  cmp  ah,FF                            80 FC FF              
+   1512 1A21:00000E9C  jne  00000EC8 ($+2a)                  75 2A                 
+   1008 1A21:00000E9E  mov  cx,si                            8B CE                 
+   1008 1A21:00000EA0  mov  si,09FB                          BE FB 09              
+   1008 1A21:00000EA3  add  si,[09F9]                        03 36 F9 09           
+   1008 1A21:00000EA7  inc  byte [09F9]                      FE 06 F9 09           
+   1008 1A21:00000EAB  mov  ah,[si]                          8A 24                 
+   1008 1A21:00000EAD  mov  si,cx                            8B F1                 
+   1008 1A21:00000EAF  mov  cl,al                            8A C8                 
+   1008 1A21:00000EB1  shl  cl,1                             D0 E1                 
+   1008 1A21:00000EB3  mov  ch,cl                            8A E9                 
+   1008 1A21:00000EB5  shl  cl,1                             D0 E1                 
+   1008 1A21:00000EB7  dec  cl                               FE C9                 
+   1008 1A21:00000EB9  and  cl,ah                            22 CC                 
+   1008 1A21:00000EBB  sub  cl,ch                            2A CD                 
+   1008 1A21:00000EBD  add  dl,cl                            02 D1                 
+   1008 1A21:00000EBF  cmp  dl,80                            80 FA 80              
+   1008 1A21:00000EC2  jc   00000EC6 ($+2)                   72 02                 
+     97 1A21:00000EC4  xor  dl,dl                            32 D2                 
+   1008 1A21:00000EC6  mov  [bx+di],dl                       88 11                 
+   1512 1A21:00000EC8  mov  cl,[0274]                        8A 0E 74 02           
+   1512 1A21:00000ECC  sub  cl,[0272]                        2A 0E 72 02           
+   1512 1A21:00000ED0  shr  cl,1                             D0 E9                 
+   1512 1A21:00000ED2  mov  [0278],cl                        88 0E 78 02           
+   1512 1A21:00000ED6  mov  bl,[0272]                        8A 1E 72 02           
+   1512 1A21:00000EDA  mov  dl,[bx+di]                       8A 11                 
+   1512 1A21:00000EDC  xor  dh,dh                            32 F6                 
+   1512 1A21:00000EDE  mov  bl,[0274]                        8A 1E 74 02           
+   1512 1A21:00000EE2  mov  bl,[bx+di]                       8A 19                 
+   1512 1A21:00000EE4  add  dx,bx                            03 D3                 
+   1512 1A21:00000EE6  shr  dx,1                             D1 EA                 
+   1512 1A21:00000EE8  mov  bl,cl                            8A D9                 
+   1512 1A21:00000EEA  add  bl,[0272]                        02 1E 72 02           
+   1512 1A21:00000EEE  mov  [si+02],bl                       88 5C 02              
+   1512 1A21:00000EF1  mov  [si+08],bl                       88 5C 08              
+   1512 1A21:00000EF4  mov  ah,[bx+di]                       8A 21                 
+   1512 1A21:00000EF6  cmp  ah,FF                            80 FC FF              
+   1512 1A21:00000EF9  jne  00000F34 ($+39)                  75 39                 
+   1008 1A21:00000EFB  mov  cx,si                            8B CE                 
+   1008 1A21:00000EFD  mov  si,09FB                          BE FB 09              
+   1008 1A21:00000F00  add  si,[09F9]                        03 36 F9 09           
+   1008 1A21:00000F04  inc  byte [09F9]                      FE 06 F9 09           
+   1008 1A21:00000F08  mov  ah,[si]                          8A 24                 
+   1008 1A21:00000F0A  mov  si,cx                            8B F1                 
+   1008 1A21:00000F0C  mov  dh,[0278]                        8A 36 78 02           
+   1008 1A21:00000F10  shr  dh,1                             D0 EE                 
+   1008 1A21:00000F12  shr  dh,1                             D0 EE                 
+   1008 1A21:00000F14  shr  dh,1                             D0 EE                 
+   1008 1A21:00000F16  cmp  dh,09                            80 FE 09              
+   1008 1A21:00000F19  jne  00000F1D ($+2)                   75 02                 
+   1008 1A21:00000F1D  shl  dh,1                             D0 E6                 
+   1008 1A21:00000F1F  mov  ch,dh                            8A EE                 
+   1008 1A21:00000F21  shl  dh,1                             D0 E6                 
+   1008 1A21:00000F23  dec  dh                               FE CE                 
+   1008 1A21:00000F25  and  dh,ah                            22 F4                 
+   1008 1A21:00000F27  sub  dh,ch                            2A F5                 
+   1008 1A21:00000F29  add  dl,dh                            02 D6                 
+   1008 1A21:00000F2B  cmp  dl,80                            80 FA 80              
+   1008 1A21:00000F2E  jc   00000F32 ($+2)                   72 02                 
+     93 1A21:00000F30  xor  dl,dl                            32 D2                 
+   1008 1A21:00000F32  mov  [bx+di],dl                       88 11                 
+   1512 1A21:00000F34  mov  bl,[0274]                        8A 1E 74 02           
+   1512 1A21:00000F38  mov  [si+0A],bl                       88 5C 0A              
+   1512 1A21:00000F3B  mov  dl,[bx+di]                       8A 11                 
+   1512 1A21:00000F3D  mov  bl,[0275]                        8A 1E 75 02           
+   1512 1A21:00000F41  mov  [si+0F],bl                       88 5C 0F              
+   1512 1A21:00000F44  mov  bl,[bx+di]                       8A 19                 
+   1512 1A21:00000F46  add  dx,bx                            03 D3                 
+   1512 1A21:00000F48  shr  dx,1                             D1 EA                 
+   1512 1A21:00000F4A  mov  bl,[0277]                        8A 1E 77 02           
+   1512 1A21:00000F4E  add  bl,[0274]                        02 1E 74 02           
+   1512 1A21:00000F52  mov  [si+0B],bl                       88 5C 0B              
+   1512 1A21:00000F55  mov  [si+0E],bl                       88 5C 0E              
+   1512 1A21:00000F58  mov  ah,[bx+di]                       8A 21                 
+   1512 1A21:00000F5A  cmp  ah,FF                            80 FC FF              
+   1512 1A21:00000F5D  jne  00000F8B ($+2c)                  75 2C                 
+   1512 1A21:00000F8B  mov  bl,[0273]                        8A 1E 73 02           
+   1512 1A21:00000F8F  mov  dl,[bx+di]                       8A 11                 
+   1512 1A21:00000F91  mov  bl,[0275]                        8A 1E 75 02           
+   1512 1A21:00000F95  mov  bl,[bx+di]                       8A 19                 
+   1512 1A21:00000F97  add  dx,bx                            03 D3                 
+   1512 1A21:00000F99  shr  dx,1                             D1 EA                 
+   1512 1A21:00000F9B  mov  bl,[0278]                        8A 1E 78 02           
+   1512 1A21:00000F9F  add  bl,[0273]                        02 1E 73 02           
+   1512 1A21:00000FA3  mov  [si+07],bl                       88 5C 07              
+   1512 1A21:00000FA6  mov  [si+0D],bl                       88 5C 0D              
+   1512 1A21:00000FA9  mov  ah,[bx+di]                       8A 21                 
+   1512 1A21:00000FAB  cmp  ah,FF                            80 FC FF              
+   1512 1A21:00000FAE  jne  00000FE7 ($+37)                  75 37                 
+   1512 1A21:00000FE7  add  si,0010                          83 C6 10              
+   1512 1A21:00000FEA  jmp  00000DF8 ($-1f5)                 E9 0B FE              
+     72 1A21:00000FED  ret                                   C3                    
+      3 1A21:0000104E  push bp                               55                    
+      3 1A21:0000104F  mov  bp,sp                            8B EC                 
+      3 1A21:00001051  push di                               57                    
+      3 1A21:00001052  push si                               56                    
+      3 1A21:00001053  push ds                               1E                    
+      3 1A21:00001054  mov  ax,1E0E                          B8 0E 1E              
+      3 1A21:00001057  mov  ds,ax                            8E D8                 
+      3 1A21:00001059  mov  bx,[bp+06]                       8B 5E 06              
+      3 1A21:0000105C  sub  bx,0011                          83 EB 11              
+      3 1A21:0000105F  mov  di,02D3                          BF D3 02              
+      3 1A21:00001062  mov  al,[bx+0B0B]                     8A 87 0B 0B           
+      3 1A21:00001066  mov  [di],al                          88 05                 
+      3 1A21:00001068  mov  al,[bx+0B0C]                     8A 87 0C 0B           
+      3 1A21:0000106C  mov  [di+08],al                       88 45 08              
+      3 1A21:0000106F  mov  al,[bx+0B1B]                     8A 87 1B 0B           
+      3 1A21:00001073  mov  [di+48],al                       88 45 48              
+      3 1A21:00001076  mov  al,[bx+0B1C]                     8A 87 1C 0B           
+      3 1A21:0000107A  mov  [di+50],al                       88 45 50              
+      3 1A21:0000107D  mov  si,0564                          BE 64 05              
+      3 1A21:00001080  push bx                               53                    
+      3 1A21:00001081  call 00000BFB ($-489)                 E8 77 FB              
+      3 1A21:00001084  pop  bx                               5B                    
+      3 1A21:00001085  mov  di,02D3                          BF D3 02              
+      3 1A21:00001088  mov  al,[bx+0B0C]                     8A 87 0C 0B           
+      3 1A21:0000108C  mov  [di],al                          88 05                 
+      3 1A21:0000108E  mov  al,[bx+0B0D]                     8A 87 0D 0B           
+      3 1A21:00001092  mov  [di+08],al                       88 45 08              
+      3 1A21:00001095  mov  al,[bx+0B1C]                     8A 87 1C 0B           
+      3 1A21:00001099  mov  [di+48],al                       88 45 48              
+      3 1A21:0000109C  mov  al,[bx+0B1D]                     8A 87 1D 0B           
+      3 1A21:000010A0  mov  [di+50],al                       88 45 50              
+      3 1A21:000010A3  mov  si,05A4                          BE A4 05              
+      3 1A21:000010A6  push bx                               53                    
+      3 1A21:000010A7  call 00000BFB ($-4af)                 E8 51 FB              
+      3 1A21:000010AA  pop  bx                               5B                    
+      3 1A21:000010AB  mov  di,02D3                          BF D3 02              
+      3 1A21:000010AE  mov  al,[bx+0B0D]                     8A 87 0D 0B           
+      3 1A21:000010B2  mov  [di],al                          88 05                 
+      3 1A21:000010B4  mov  al,[bx+0B0E]                     8A 87 0E 0B           
+      3 1A21:000010B8  mov  [di+08],al                       88 45 08              
+      3 1A21:000010BB  mov  al,[bx+0B1D]                     8A 87 1D 0B           
+      3 1A21:000010BF  mov  [di+48],al                       88 45 48              
+      3 1A21:000010C2  mov  al,[bx+0B1E]                     8A 87 1E 0B           
+      3 1A21:000010C6  mov  [di+50],al                       88 45 50              
+      3 1A21:000010C9  mov  si,05E4                          BE E4 05              
+      3 1A21:000010CC  push bx                               53                    
+      3 1A21:000010CD  call 00000BFB ($-4d5)                 E8 2B FB              
+      3 1A21:000010D0  pop  bx                               5B                    
+      3 1A21:000010D1  mov  di,02D3                          BF D3 02              
+      3 1A21:000010D4  mov  al,[bx+0B1B]                     8A 87 1B 0B           
+      3 1A21:000010D8  mov  [di],al                          88 05                 
+      3 1A21:000010DA  mov  al,[bx+0B1C]                     8A 87 1C 0B           
+      3 1A21:000010DE  mov  [di+08],al                       88 45 08              
+      3 1A21:000010E1  mov  al,[bx+0B2B]                     8A 87 2B 0B           
+      3 1A21:000010E5  mov  [di+48],al                       88 45 48              
+      3 1A21:000010E8  mov  al,[bx+0B2C]                     8A 87 2C 0B           
+      3 1A21:000010EC  mov  [di+50],al                       88 45 50              
+      3 1A21:000010EF  mov  si,0624                          BE 24 06              
+      3 1A21:000010F2  push bx                               53                    
+      3 1A21:000010F3  call 00000BFB ($-4fb)                 E8 05 FB              
+      3 1A21:000010F6  pop  bx                               5B                    
+      3 1A21:000010F7  mov  di,02D3                          BF D3 02              
+      3 1A21:000010FA  mov  al,[bx+0B1C]                     8A 87 1C 0B           
+      3 1A21:000010FE  mov  [di],al                          88 05                 
+      3 1A21:00001100  mov  al,[bx+0B1D]                     8A 87 1D 0B           
+      3 1A21:00001104  mov  [di+08],al                       88 45 08              
+      3 1A21:00001107  mov  al,[bx+0B2C]                     8A 87 2C 0B           
+      3 1A21:0000110B  mov  [di+48],al                       88 45 48              
+      3 1A21:0000110E  mov  al,[bx+0B2D]                     8A 87 2D 0B           
+      3 1A21:00001112  mov  [di+50],al                       88 45 50              
+      3 1A21:00001115  mov  si,0664                          BE 64 06              
+      3 1A21:00001118  push bx                               53                    
+      3 1A21:00001119  call 00000BFB ($-521)                 E8 DF FA              
+      3 1A21:0000111C  pop  bx                               5B                    
+      3 1A21:0000111D  mov  di,02D3                          BF D3 02              
+      3 1A21:00001120  mov  al,[bx+0B1D]                     8A 87 1D 0B           
+      3 1A21:00001124  mov  [di],al                          88 05                 
+      3 1A21:00001126  mov  al,[bx+0B1E]                     8A 87 1E 0B           
+      3 1A21:0000112A  mov  [di+08],al                       88 45 08              
+      3 1A21:0000112D  mov  al,[bx+0B2D]                     8A 87 2D 0B           
+      3 1A21:00001131  mov  [di+48],al                       88 45 48              
+      3 1A21:00001134  mov  al,[bx+0B2E]                     8A 87 2E 0B           
+      3 1A21:00001138  mov  [di+50],al                       88 45 50              
+      3 1A21:0000113B  mov  si,06A4                          BE A4 06              
+      3 1A21:0000113E  push bx                               53                    
+      3 1A21:0000113F  call 00000BFB ($-547)                 E8 B9 FA              
+      3 1A21:00001142  pop  bx                               5B                    
+      3 1A21:00001143  mov  di,02D3                          BF D3 02              
+      3 1A21:00001146  mov  al,[bx+0B2B]                     8A 87 2B 0B           
+      3 1A21:0000114A  mov  [di],al                          88 05                 
+      3 1A21:0000114C  mov  al,[bx+0B2C]                     8A 87 2C 0B           
+      3 1A21:00001150  mov  [di+08],al                       88 45 08              
+      3 1A21:00001153  mov  al,[bx+0B3B]                     8A 87 3B 0B           
+      3 1A21:00001157  mov  [di+48],al                       88 45 48              
+      3 1A21:0000115A  mov  al,[bx+0B3C]                     8A 87 3C 0B           
+      3 1A21:0000115E  mov  [di+50],al                       88 45 50              
+      3 1A21:00001161  mov  si,06E4                          BE E4 06              
+      3 1A21:00001164  push bx                               53                    
+      3 1A21:00001165  call 00000BFB ($-56d)                 E8 93 FA              
+      3 1A21:00001168  pop  bx                               5B                    
+      3 1A21:00001169  mov  di,02D3                          BF D3 02              
+      3 1A21:0000116C  mov  al,[bx+0B2C]                     8A 87 2C 0B           
+      3 1A21:00001170  mov  [di],al                          88 05                 
+      3 1A21:00001172  mov  al,[bx+0B2D]                     8A 87 2D 0B           
+      3 1A21:00001176  mov  [di+08],al                       88 45 08              
+      3 1A21:00001179  mov  al,[bx+0B3C]                     8A 87 3C 0B           
+      3 1A21:0000117D  mov  [di+48],al                       88 45 48              
+      3 1A21:00001180  mov  al,[bx+0B3D]                     8A 87 3D 0B           
+      3 1A21:00001184  mov  [di+50],al                       88 45 50              
+      3 1A21:00001187  mov  si,0724                          BE 24 07              
+      3 1A21:0000118A  push bx                               53                    
+      3 1A21:0000118B  call 00000BFB ($-593)                 E8 6D FA              
+      3 1A21:0000118E  pop  bx                               5B                    
+      3 1A21:0000118F  mov  di,02D3                          BF D3 02              
+      3 1A21:00001192  mov  al,[bx+0B2D]                     8A 87 2D 0B           
+      3 1A21:00001196  mov  [di],al                          88 05                 
+      3 1A21:00001198  mov  al,[bx+0B2E]                     8A 87 2E 0B           
+      3 1A21:0000119C  mov  [di+08],al                       88 45 08              
+      3 1A21:0000119F  mov  al,[bx+0B3D]                     8A 87 3D 0B           
+      3 1A21:000011A3  mov  [di+48],al                       88 45 48              
+      3 1A21:000011A6  mov  al,[bx+0B3E]                     8A 87 3E 0B           
+      3 1A21:000011AA  mov  [di+50],al                       88 45 50              
+      3 1A21:000011AD  mov  si,0764                          BE 64 07              
+      3 1A21:000011B0  call 00000BFB ($-5b8)                 E8 48 FA              
+      3 1A21:000011B3  call 00001886 ($+6d0)                 E8 D0 06              
+      3 1A21:000011B6  pop  ds                               1F                    
+      3 1A21:000011B7  pop  si                               5E                    
+      3 1A21:000011B8  pop  di                               5F                    
+      3 1A21:000011B9  pop  bp                               5D                    
+      3 1A21:000011BA  retf                                  CB                    
+    270 1A21:000011BB  call 000012BA ($+fc)                  E8 FC 00              
+    270 1A21:000011BE  or   al,al                            0A C0                 
+    270 1A21:000011C0  js   000011C5 ($+3)                   78 03                 
+    251 1A21:000011C2  call 000012F2 ($+12d)                 E8 2D 01              
+    270 1A21:000011C5  mov  [di],bl                          88 1D                 
+    270 1A21:000011C7  inc  si                               46                    
+    270 1A21:000011C8  inc  di                               47                    
+    270 1A21:000011C9  mov  cx,0006                          B9 06 00              
+   1620 1A21:000011CC  xor  bl,bl                            32 DB                 
+   1620 1A21:000011CE  mov  al,[si]                          8A 04                 
+   1620 1A21:000011D0  or   al,al                            0A C0                 
+   1620 1A21:000011D2  jns  000011DB ($+7)                   79 07                 
+     84 1A21:000011D4  mov  bl,al                            8A D8                 
+     84 1A21:000011D6  sub  bl,80                            80 EB 80              
+     84 1A21:000011D9  jne  000011EE ($+13)                  75 13                 
+   1536 1A21:000011DB  call 000012F2 ($+114)                 E8 14 01              
+   1536 1A21:000011DE  cmp  al,[si-01]                       3A 44 FF              
+   1536 1A21:000011E1  jne  000011E6 ($+3)                   75 03                 
+   1278 1A21:000011E3  or   bl,08                            80 CB 08              
+   1536 1A21:000011E6  cmp  al,[si+01]                       3A 44 01              
+   1536 1A21:000011E9  jne  000011EE ($+3)                   75 03                 
+   1298 1A21:000011EB  or   bl,02                            80 CB 02              
+   1620 1A21:000011EE  mov  [di],bl                          88 1D                 
+   1620 1A21:000011F0  inc  si                               46                    
+   1620 1A21:000011F1  inc  di                               47                    
+   1620 1A21:000011F2  loop 000011CC ($-28)                  E2 D8                 
+    270 1A21:000011F4  call 000012D9 ($+e2)                  E8 E2 00              
+    270 1A21:000011F7  or   al,al                            0A C0                 
+    270 1A21:000011F9  js   000011FE ($+3)                   78 03                 
+    261 1A21:000011FB  call 000012F2 ($+f4)                  E8 F4 00              
+    270 1A21:000011FE  mov  [di],bl                          88 1D                 
+    270 1A21:00001200  inc  si                               46                    
+    270 1A21:00001201  inc  di                               47                    
+    270 1A21:00001202  mov  dx,0006                          BA 06 00              
+   1620 1A21:00001205  call 000012BA ($+b2)                  E8 B2 00              
+   1620 1A21:00001208  or   al,al                            0A C0                 
+   1620 1A21:0000120A  js   0000121B ($+f)                   78 0F                 
+   1536 1A21:0000120C  cmp  al,[si+08]                       3A 44 08              
+   1536 1A21:0000120F  jne  00001214 ($+3)                   75 03                 
+   1330 1A21:00001211  or   bl,04                            80 CB 04              
+   1536 1A21:00001214  cmp  al,[si-08]                       3A 44 F8              
+   1536 1A21:00001217  jne  0000121B ($+2)                   75 02                 
+   1287 1A21:00001219  inc  bl                               FE C3                 
+   1620 1A21:0000121B  mov  [di],bl                          88 1D                 
+   1620 1A21:0000121D  inc  si                               46                    
+   1620 1A21:0000121E  inc  di                               47                    
+   1620 1A21:0000121F  mov  cx,0006                          B9 06 00              
+   9720 1A21:00001222  xor  bl,bl                            32 DB                 
+   9720 1A21:00001224  mov  al,[si]                          8A 04                 
+   9720 1A21:00001226  or   al,al                            0A C0                 
+   9720 1A21:00001228  jns  00001232 ($+8)                   79 08                 
+    414 1A21:0000122A  mov  bl,al                            8A D8                 
+    414 1A21:0000122C  sub  bl,80                            80 EB 80              
+    414 1A21:0000122F  jmp  short 00001251 ($+20)            EB 20                 
+   9306 1A21:00001232  cmp  al,[si-01]                       3A 44 FF              
+   9306 1A21:00001235  jne  0000123A ($+3)                   75 03                 
+   7815 1A21:00001237  or   bl,08                            80 CB 08              
+   9306 1A21:0000123A  cmp  al,[si+08]                       3A 44 08              
+   9306 1A21:0000123D  jne  00001242 ($+3)                   75 03                 
+   8147 1A21:0000123F  or   bl,04                            80 CB 04              
+   9306 1A21:00001242  cmp  al,[si+01]                       3A 44 01              
+   9306 1A21:00001245  jne  0000124A ($+3)                   75 03                 
+   7891 1A21:00001247  or   bl,02                            80 CB 02              
+   9306 1A21:0000124A  cmp  al,[si-08]                       3A 44 F8              
+   9306 1A21:0000124D  jne  00001251 ($+2)                   75 02                 
+   8083 1A21:0000124F  inc  bl                               FE C3                 
+   9720 1A21:00001251  mov  [di],bl                          88 1D                 
+   9720 1A21:00001253  inc  si                               46                    
+   9720 1A21:00001254  inc  di                               47                    
+   9720 1A21:00001255  loop 00001222 ($-35)                  E2 CB                 
+   1620 1A21:00001257  call 000012D9 ($+7f)                  E8 7F 00              
+   1620 1A21:0000125A  or   al,al                            0A C0                 
+   1620 1A21:0000125C  js   0000126D ($+f)                   78 0F                 
+   1566 1A21:0000125E  cmp  al,[si+08]                       3A 44 08              
+   1566 1A21:00001261  jne  00001266 ($+3)                   75 03                 
+   1415 1A21:00001263  or   bl,04                            80 CB 04              
+   1566 1A21:00001266  cmp  al,[si-08]                       3A 44 F8              
+   1566 1A21:00001269  jne  0000126D ($+2)                   75 02                 
+   1389 1A21:0000126B  inc  bl                               FE C3                 
+   1620 1A21:0000126D  mov  [di],bl                          88 1D                 
+   1620 1A21:0000126F  inc  si                               46                    
+   1620 1A21:00001270  inc  di                               47                    
+   1620 1A21:00001271  dec  dx                               4A                    
+   1620 1A21:00001272  jne  00001205 ($-6f)                  75 91                 
+    270 1A21:00001274  call 000012BA ($+43)                  E8 43 00              
+    270 1A21:00001277  or   al,al                            0A C0                 
+    270 1A21:00001279  js   0000127E ($+3)                   78 03                 
+    261 1A21:0000127B  call 00001303 ($+85)                  E8 85 00              
+    270 1A21:0000127E  mov  [di],bl                          88 1D                 
+    270 1A21:00001280  inc  si                               46                    
+    270 1A21:00001281  inc  di                               47                    
+    270 1A21:00001282  mov  cx,0006                          B9 06 00              
+   1620 1A21:00001285  xor  bl,bl                            32 DB                 
+   1620 1A21:00001287  mov  al,[si]                          8A 04                 
+   1620 1A21:00001289  or   al,al                            0A C0                 
+   1620 1A21:0000128B  jns  00001294 ($+7)                   79 07                 
+     54 1A21:0000128D  mov  bl,al                            8A D8                 
+     54 1A21:0000128F  sub  bl,80                            80 EB 80              
+     54 1A21:00001292  jne  000012A7 ($+13)                  75 13                 
+   1566 1A21:00001294  cmp  al,[si-01]                       3A 44 FF              
+   1566 1A21:00001297  jne  0000129C ($+3)                   75 03                 
+   1395 1A21:00001299  or   bl,08                            80 CB 08              
+   1566 1A21:0000129C  cmp  al,[si+01]                       3A 44 01              
+   1566 1A21:0000129F  jne  000012A4 ($+3)                   75 03                 
+   1348 1A21:000012A1  or   bl,02                            80 CB 02              
+   1566 1A21:000012A4  call 00001303 ($+5c)                  E8 5C 00              
+   1620 1A21:000012A7  mov  [di],bl                          88 1D                 
+   1620 1A21:000012A9  inc  si                               46                    
+   1620 1A21:000012AA  inc  di                               47                    
+   1620 1A21:000012AB  loop 00001285 ($-28)                  E2 D8                 
+    270 1A21:000012AD  call 000012D9 ($+29)                  E8 29 00              
+    270 1A21:000012B0  or   al,al                            0A C0                 
+    270 1A21:000012B2  js   000012B7 ($+3)                   78 03                 
+    261 1A21:000012B4  call 00001303 ($+4c)                  E8 4C 00              
+    270 1A21:000012B7  mov  [di],bl                          88 1D                 
+    270 1A21:000012B9  ret                                   C3                    
+   2160 1A21:000012BA  xor  bl,bl                            32 DB                 
+   2160 1A21:000012BC  mov  al,[si]                          8A 04                 
+   2160 1A21:000012BE  or   al,al                            0A C0                 
+   2160 1A21:000012C0  js   000012D3 ($+11)                  78 11                 
+   2048 1A21:000012C2  cmp  al,[si-39]                       3A 44 C7              
+   2048 1A21:000012C5  jne  000012CA ($+3)                   75 03                 
+   1279 1A21:000012C7  or   bl,08                            80 CB 08              
+   2048 1A21:000012CA  cmp  al,[si+01]                       3A 44 01              
+   2048 1A21:000012CD  jne  000012D2 ($+3)                   75 03                 
+   1844 1A21:000012CF  or   bl,02                            80 CB 02              
+   2048 1A21:000012D2  ret                                   C3                    
+    184 1A21:000012D3  mov  bl,al                            8A D8                 
+    184 1A21:000012D5  sub  bl,80                            80 EB 80              
+    184 1A21:000012D8  ret                                   C3                    
+   2160 1A21:000012D9  xor  bl,bl                            32 DB                 
+   2160 1A21:000012DB  mov  al,[si]                          8A 04                 
+   2160 1A21:000012DD  or   al,al                            0A C0                 
+   2160 1A21:000012DF  js   000012D3 ($-e)                   78 F2                 
+   2088 1A21:000012E1  cmp  al,[si-01]                       3A 44 FF              
+   2088 1A21:000012E4  jne  000012E9 ($+3)                   75 03                 
+   1893 1A21:000012E6  or   bl,08                            80 CB 08              
+   2088 1A21:000012E9  cmp  al,[si+39]                       3A 44 39              
+   2088 1A21:000012EC  jne  000012F1 ($+3)                   75 03                 
+   1278 1A21:000012EE  or   bl,02                            80 CB 02              
+   2088 1A21:000012F1  ret                                   C3                    
+   2048 1A21:000012F2  cmp  al,[si-0088]                     3A 84 78 FF           
+   2048 1A21:000012F6  jne  000012FA ($+2)                   75 02                 
+   1208 1A21:000012F8  inc  bl                               FE C3                 
+   2048 1A21:000012FA  cmp  al,[si+08]                       3A 44 08              
+   2048 1A21:000012FD  jne  00001302 ($+3)                   75 03                 
+   1736 1A21:000012FF  or   bl,04                            80 CB 04              
+   2048 1A21:00001302  ret                                   C3                    
+   2088 1A21:00001303  cmp  al,[si-08]                       3A 44 F8              
+   2088 1A21:00001306  jne  0000130A ($+2)                   75 02                 
+   1869 1A21:00001308  inc  bl                               FE C3                 
+   2088 1A21:0000130A  cmp  al,[si+0088]                     3A 84 88 00           
+   2088 1A21:0000130E  jne  00001313 ($+3)                   75 03                 
+   1203 1A21:00001310  or   bl,04                            80 CB 04              
+   2088 1A21:00001313  ret                                   C3                    
+     15 1A21:000017C5  push bp                               55                    
+     15 1A21:000017C6  mov  bp,sp                            8B EC                 
+     15 1A21:000017C8  push di                               57                    
+     15 1A21:000017C9  push si                               56                    
+     15 1A21:000017CA  push ds                               1E                    
+     15 1A21:000017CB  mov  ax,1E0E                          B8 0E 1E              
+     15 1A21:000017CE  mov  ds,ax                            8E D8                 
+     15 1A21:000017D0  mov  ax,[A44B]                        A1 4B A4              
+     15 1A21:000017D3  inc  al                               FE C0                 
+     15 1A21:000017D5  js   000017DD ($+6)                   78 06                 
+     15 1A21:000017DD  cmp  ah,0F                            80 FC 0F              
+     15 1A21:000017E0  je   000017DA ($-8)                   74 F8                 
+     15 1A21:000017E2  inc  ah                               FE C4                 
+     15 1A21:000017E4  xor  al,al                            32 C0                 
+     15 1A21:000017E6  mov  [A44B],ax                        A3 4B A4              
+     15 1A21:000017E9  push es                               06                    
+     15 1A21:000017EA  mov  ax,ds                            8C D8                 
+     15 1A21:000017EC  mov  es,ax                            8E C0                 
+     15 1A21:000017EE  mov  si,05A4                          BE A4 05              
+     15 1A21:000017F1  mov  di,0564                          BF 64 05              
+     15 1A21:000017F4  mov  cx,0040                          B9 40 00              
+     15 1A21:000017F7  cld                                   FC                    
+     16 1A21:000017F8  repe movsw                            F3 A5                 
+     15 1A21:000017FA  mov  si,0664                          BE 64 06              
+     15 1A21:000017FD  mov  di,0624                          BF 24 06              
+     15 1A21:00001800  mov  cx,0040                          B9 40 00              
+     15 1A21:00001803  repe movsw                            F3 A5                 
+     15 1A21:00001805  mov  si,0724                          BE 24 07              
+     15 1A21:00001808  mov  di,06E4                          BF E4 06              
+     15 1A21:0000180B  mov  cx,0040                          B9 40 00              
+     15 1A21:0000180E  repe movsw                            F3 A5                 
+     15 1A21:00001810  pop  es                               07                    
+     15 1A21:00001811  mov  di,02D3                          BF D3 02              
+     15 1A21:00001814  mov  ax,[A44D]                        A1 4D A4              
+     15 1A21:00001817  mov  bx,[A44B]                        8B 1E 4B A4           
+     15 1A21:0000181B  or   ah,bh                            0A E7                 
+     15 1A21:0000181D  mov  al,ah                            8A C4                 
+     15 1A21:0000181F  xor  ah,ah                            32 E4                 
+     15 1A21:00001821  mov  si,ax                            8B F0                 
+     15 1A21:00001823  add  si,0B0B                          81 C6 0B 0B           
+     15 1A21:00001827  sub  si,000F                          83 EE 0F              
+     15 1A21:0000182A  call 000018D8 ($+ab)                  E8 AB 00              
+     15 1A21:0000182D  push si                               56                    
+     15 1A21:0000182E  mov  si,05E4                          BE E4 05              
+     15 1A21:00001831  call 00000BFB ($-c39)                 E8 C7 F3              
+     15 1A21:00001834  pop  si                               5E                    
+     15 1A21:00001835  add  si,0010                          83 C6 10              
+     15 1A21:00001838  mov  di,02D3                          BF D3 02              
+     15 1A21:0000183B  call 000018D8 ($+9a)                  E8 9A 00              
+     15 1A21:0000183E  push si                               56                    
+     15 1A21:0000183F  mov  si,06A4                          BE A4 06              
+     15 1A21:00001842  call 00000BFB ($-c4a)                 E8 B6 F3              
+     15 1A21:00001845  pop  si                               5E                    
+     15 1A21:00001846  add  si,0010                          83 C6 10              
+     15 1A21:00001849  mov  di,02D3                          BF D3 02              
+     15 1A21:0000184C  call 000018D8 ($+89)                  E8 89 00              
+     15 1A21:0000184F  mov  si,0764                          BE 64 07              
+     15 1A21:00001852  call 00000BFB ($-c5a)                 E8 A6 F3              
+     15 1A21:00001855  call 00001886 ($+2e)                  E8 2E 00              
+     15 1A21:00001858  mov  si,09F3                          BE F3 09              
+     15 1A21:0000185B  mov  ax,0502                          B8 02 05              
+     15 1A21:0000185E  mov  [si],ax                          89 04                 
+     15 1A21:00001860  add  si,0002                          83 C6 02              
+     15 1A21:00001863  mov  ah,08                            B4 08                 
+     15 1A21:00001865  mov  [si],ah                          88 24                 
+     15 1A21:00001867  inc  si                               46                    
+     15 1A21:00001868  mov  ax,[A44D]                        A1 4D A4              
+     15 1A21:0000186B  or   ax,[A44B]                        0B 06 4B A4           
+     15 1A21:0000186F  mov  al,ah                            8A C4                 
+     15 1A21:00001871  xor  ah,ah                            32 E4                 
+     15 1A21:00001873  sub  al,0F                            2C 0F                 
+     15 1A21:00001875  mov  [si],al                          88 04                 
+     15 1A21:00001877  inc  si                               46                    
+     15 1A21:00001878  add  al,10                            04 10                 
+     15 1A21:0000187A  mov  [si],al                          88 04                 
+     15 1A21:0000187C  inc  si                               46                    
+     15 1A21:0000187D  add  al,10                            04 10                 
+     15 1A21:0000187F  mov  [si],al                          88 04                 
+     15 1A21:00001881  pop  ds                               1F                    
+     15 1A21:00001882  pop  si                               5E                    
+     15 1A21:00001883  pop  di                               5F                    
+     15 1A21:00001884  pop  bp                               5D                    
+     15 1A21:00001885  retf                                  CB                    
+     30 1A21:00001886  mov  si,0564                          BE 64 05              
+     30 1A21:00001889  mov  di,0324                          BF 24 03              
+     30 1A21:0000188C  call 000011BB ($-6d4)                 E8 2C F9              
+     30 1A21:0000188F  mov  si,05A4                          BE A4 05              
+     30 1A21:00001892  mov  di,0364                          BF 64 03              
+     30 1A21:00001895  call 000011BB ($-6dd)                 E8 23 F9              
+     30 1A21:00001898  mov  si,05E4                          BE E4 05              
+     30 1A21:0000189B  mov  di,03A4                          BF A4 03              
+     30 1A21:0000189E  call 000011BB ($-6e6)                 E8 1A F9              
+     30 1A21:000018A1  mov  si,0624                          BE 24 06              
+     30 1A21:000018A4  mov  di,03E4                          BF E4 03              
+     30 1A21:000018A7  call 000011BB ($-6ef)                 E8 11 F9              
+     30 1A21:000018AA  mov  si,0664                          BE 64 06              
+     30 1A21:000018AD  mov  di,0424                          BF 24 04              
+     30 1A21:000018B0  call 000011BB ($-6f8)                 E8 08 F9              
+     30 1A21:000018B3  mov  si,06A4                          BE A4 06              
+     30 1A21:000018B6  mov  di,0464                          BF 64 04              
+     30 1A21:000018B9  call 000011BB ($-701)                 E8 FF F8              
+     30 1A21:000018BC  mov  si,06E4                          BE E4 06              
+     30 1A21:000018BF  mov  di,04A4                          BF A4 04              
+     30 1A21:000018C2  call 000011BB ($-70a)                 E8 F6 F8              
+     30 1A21:000018C5  mov  si,0724                          BE 24 07              
+     30 1A21:000018C8  mov  di,04E4                          BF E4 04              
+     30 1A21:000018CB  call 000011BB ($-713)                 E8 ED F8              
+     30 1A21:000018CE  mov  si,0764                          BE 64 07              
+     30 1A21:000018D1  mov  di,0524                          BF 24 05              
+     30 1A21:000018D4  call 000011BB ($-71c)                 E8 E4 F8              
+     30 1A21:000018D7  ret                                   C3                    
+     45 1A21:000018D8  mov  al,[si]                          8A 04                 
+     45 1A21:000018DA  mov  [di],al                          88 05                 
+     45 1A21:000018DC  mov  al,[si+01]                       8A 44 01              
+     45 1A21:000018DF  mov  [di+08],al                       88 45 08              
+     45 1A21:000018E2  mov  al,[si+10]                       8A 44 10              
+     45 1A21:000018E5  mov  [di+48],al                       88 45 48              
+     45 1A21:000018E8  mov  al,[si+11]                       8A 44 11              
+     45 1A21:000018EB  mov  [di+50],al                       88 45 50              
+     45 1A21:000018EE  ret                                   C3                    
+     12 1A21:00001DA8  push bp                               55                    
+     12 1A21:00001DA9  mov  bp,sp                            8B EC                 
+     12 1A21:00001DAB  push di                               57                    
+     12 1A21:00001DAC  push si                               56                    
+     12 1A21:00001DAD  push ds                               1E                    
+     12 1A21:00001DAE  mov  ax,1E0E                          B8 0E 1E              
+     12 1A21:00001DB1  mov  ds,ax                            8E D8                 
+     12 1A21:00001DB3  call 00001886 ($-530)                 E8 D0 FA              
+     12 1A21:00001DB6  pop  ds                               1F                    
+     12 1A21:00001DB7  pop  si                               5E                    
+     12 1A21:00001DB8  pop  di                               5F                    
+     12 1A21:00001DB9  pop  bp                               5D                    
+     12 1A21:00001DBA  retf                                  CB                    
+     15 1A21:00001F04  push bp                               55                    
+     15 1A21:00001F05  mov  bp,sp                            8B EC                 
+     15 1A21:00001F07  push di                               57                    
+     15 1A21:00001F08  push si                               56                    
+     15 1A21:00001F09  push ds                               1E                    
+     15 1A21:00001F0A  mov  ax,1E0E                          B8 0E 1E              
+     15 1A21:00001F0D  mov  ds,ax                            8E D8                 
+     15 1A21:00001F0F  mov  ax,[bp+06]                       8B 46 06              
+     15 1A21:00001F12  mov  di,244B                          BF 4B 24              
+     15 1A21:00001F15  add  di,ax                            03 F8                 
+     15 1A21:00001F17  push es                               06                    
+     15 1A21:00001F18  mov  ax,ds                            8C D8                 
+     15 1A21:00001F1A  mov  es,ax                            8E C0                 
+     15 1A21:00001F1C  mov  si,0664                          BE 64 06              
+     15 1A21:00001F1F  mov  bx,0424                          BB 24 04              
+     15 1A21:00001F22  mov  dx,0008                          BA 08 00              
+    120 1A21:00001F25  mov  cx,0008                          B9 08 00              
+    960 1A21:00001F28  lodsb                                 AC                    
+    960 1A21:00001F29  cmp  al,90                            3C 90                 
+    960 1A21:00001F2B  jnc  00001F39 ($+c)                   73 0C                 
+    880 1A21:00001F2D  cmp  al,10                            3C 10                 
+    880 1A21:00001F2F  je   00001F49 ($+18)                  74 18                 
+    756 1A21:00001F31  cmp  al,20                            3C 20                 
+    756 1A21:00001F33  jc   00001F37 ($+2)                   72 02                 
+    525 1A21:00001F35  sub  al,10                            2C 10                 
+    756 1A21:00001F37  or   al,[bx]                          0A 07                 
+    836 1A21:00001F39  stosb                                 AA                    
+    836 1A21:00001F3A  inc  bx                               43                    
+    836 1A21:00001F3B  loop 00001F28 ($-15)                  E2 EB                 
+    120 1A21:00001F3D  add  di,0020                          83 C7 20              
+    120 1A21:00001F40  dec  dx                               4A                    
+    120 1A21:00001F41  jne  00001F25 ($-1e)                  75 E2                 
+     15 1A21:00001F43  pop  es                               07                    
+     15 1A21:00001F44  pop  ds                               1F                    
+     15 1A21:00001F45  pop  si                               5E                    
+     15 1A21:00001F46  pop  di                               5F                    
+     15 1A21:00001F47  pop  bp                               5D                    
+     15 1A21:00001F48  retf                                  CB                    
+    124 1A21:00001F49  mov  al,40                            B0 40                 
+    124 1A21:00001F4B  stosb                                 AA                    
+    124 1A21:00001F4C  inc  bx                               43                    
+    124 1A21:00001F4D  loop 00001F28 ($-27)                  E2 D9                 
+     10 1A21:00001F4F  jmp  short 00001F3D ($-14)            EB EC                 
+     80 1A21:00001F51  push bp                               55                    
+     80 1A21:00001F52  mov  bp,sp                            8B EC                 
+     80 1A21:00001F54  push di                               57                    
+     80 1A21:00001F55  push si                               56                    
+     80 1A21:00001F56  push ds                               1E                    
+     80 1A21:00001F57  mov  ax,1E0E                          B8 0E 1E              
+     80 1A21:00001F5A  mov  ds,ax                            8E D8                 
+     80 1A21:00001F5C  mov  ax,[bp+06]                       8B 46 06              
+     80 1A21:00001F5F  sub  ax,0090                          2D 90 00              
+     80 1A21:00001F62  xchg al,ah                            86 E0                 
+     80 1A21:00001F64  shr  ax,1                             D1 E8                 
+     80 1A21:00001F66  shr  ax,1                             D1 E8                 
+     80 1A21:00001F68  add  ah,40                            80 C4 40              
+     80 1A21:00001F6B  mov  di,244B                          BF 4B 24              
+     80 1A21:00001F6E  add  ax,di                            03 C7                 
+     80 1A21:00001F70  mov  si,ax                            8B F0                 
+     80 1A21:00001F72  add  di,3FE0                          81 C7 E0 3F           
+     80 1A21:00001F76  mov  bx,215D                          BB 5D 21              
+     80 1A21:00001F79  push es                               06                    
+     80 1A21:00001F7A  mov  ax,ds                            8C D8                 
+     80 1A21:00001F7C  mov  es,ax                            8E C0                 
+     80 1A21:00001F7E  mov  cx,0020                          B9 20 00              
+   2560 1A21:00001F81  xor  ah,ah                            32 E4                 
+   2560 1A21:00001F83  lodsb                                 AC                    
+   2560 1A21:00001F84  xlat                                  D7                    
+   2560 1A21:00001F85  mov  ah,al                            8A E0                 
+   2560 1A21:00001F87  shl  ah,1                             D0 E4                 
+   2560 1A21:00001F89  shl  ah,1                             D0 E4                 
+   2560 1A21:00001F8B  shl  ah,1                             D0 E4                 
+   2560 1A21:00001F8D  shl  ah,1                             D0 E4                 
+   2560 1A21:00001F8F  lodsb                                 AC                    
+   2560 1A21:00001F90  xlat                                  D7                    
+   2560 1A21:00001F91  or   al,ah                            0A C4                 
+   2560 1A21:00001F93  stosb                                 AA                    
+   2560 1A21:00001F94  loop 00001F81 ($-15)                  E2 EB                 
+     80 1A21:00001F96  pop  es                               07                    
+     80 1A21:00001F97  pop  ds                               1F                    
+     80 1A21:00001F98  pop  si                               5E                    
+     80 1A21:00001F99  pop  di                               5F                    
+     80 1A21:00001F9A  pop  bp                               5D                    
+     80 1A21:00001F9B  retf                                  CB                    
+      1 1A21:00001FBE  push bp                               55                    
+      1 1A21:00001FBF  mov  bp,sp                            8B EC                 
+      1 1A21:00001FC1  push di                               57                    
+      1 1A21:00001FC2  push si                               56                    
+      1 1A21:00001FC3  push ds                               1E                    
+      1 1A21:00001FC4  mov  ax,1E0E                          B8 0E 1E              
+      1 1A21:00001FC7  mov  ds,ax                            8E D8                 
+      1 1A21:00001FC9  push es                               06                    
+      1 1A21:00001FCA  mov  ax,B800                          B8 00 B8              
+      1 1A21:00001FCD  mov  es,ax                            8E C0                 
+      1 1A21:00001FCF  mov  di,0000                          BF 00 00              
+      1 1A21:00001FD2  mov  cx,2000                          B9 00 20              
+      1 1A21:00001FD5  cmp  word [B764],0000                 83 3E 64 B7 00        
+      1 1A21:00001FDA  je   00002004 ($+28)                  74 28                 
+      1 1A21:00001FDC  shl  ch,1                             D0 E5                 
+      1 1A21:00001FDE  cmp  word [B764],0001                 83 3E 64 B7 01        
+      1 1A21:00001FE3  je   00002004 ($+1f)                  74 1F                 
+      1 1A21:00001FE5  mov  ax,A000                          B8 00 A0              
+      1 1A21:00001FE8  mov  es,ax                            8E C0                 
+      1 1A21:00001FEA  cmp  word [B764],0002                 83 3E 64 B7 02        
+      1 1A21:00001FEF  je   00001FF6 ($+5)                   74 05                 
+      1 1A21:00001FF1  shl  ch,1                             D0 E5                 
+      1 1A21:00001FF3  jmp  short 00002004 ($+f)             EB 0F                 
+      1 1A21:00002004  mov  ax,di                            8B C7                 
+     23 1A21:00002006  repe stosw                            F3 AB                 
+      1 1A21:00002008  pop  es                               07                    
+      1 1A21:00002009  pop  ds                               1F                    
+      1 1A21:0000200A  pop  si                               5E                    
+      1 1A21:0000200B  pop  di                               5F                    
+      1 1A21:0000200C  pop  bp                               5D                    
+      1 1A21:0000200D  retf                                  CB                    
+      1 1A21:00002127  push bp                               55                    
+      1 1A21:00002128  mov  bp,sp                            8B EC                 
+      1 1A21:0000212A  push di                               57                    
+      1 1A21:0000212B  push si                               56                    
+      1 1A21:0000212C  push ds                               1E                    
+      1 1A21:0000212D  mov  ax,1E0E                          B8 0E 1E              
+      1 1A21:00002130  mov  ds,ax                            8E D8                 
+      1 1A21:00002132  mov  al,[bp+06]                       8A 46 06              
+      1 1A21:00002135  mov  [B772],al                        A2 72 B7              
+      1 1A21:00002138  mov  al,[bp+08]                       8A 46 08              
+      1 1A21:0000213B  mov  [B775],al                        A2 75 B7              
+      1 1A21:0000213E  cmp  word [B764],0000                 83 3E 64 B7 00        
+      1 1A21:00002143  je   00002177 ($+32)                  74 32                 
+      1 1A21:00002145  cmp  word [B764],0002                 83 3E 64 B7 02        
+      1 1A21:0000214A  jnc  00002172 ($+26)                  73 26                 
+      1 1A21:00002172  pop  ds                               1F                    
+      1 1A21:00002173  pop  si                               5E                    
+      1 1A21:00002174  pop  di                               5F                    
+      1 1A21:00002175  pop  bp                               5D                    
+      1 1A21:00002176  retf                                  CB                    
+     30 1A21:000022A5  push bp                               55                    
+     30 1A21:000022A6  mov  bp,sp                            8B EC                 
+     30 1A21:000022A8  push di                               57                    
+     30 1A21:000022A9  push si                               56                    
+     30 1A21:000022AA  push ds                               1E                    
+     30 1A21:000022AB  mov  ax,1E0E                          B8 0E 1E              
+     30 1A21:000022AE  mov  ds,ax                            8E D8                 
+     30 1A21:000022B0  mov  si,[bp+06]                       8B 76 06              
+     30 1A21:000022B3  add  si,A661                          81 C6 61 A6           
+     30 1A21:000022B7  mov  ax,[bp+08]                       8B 46 08              
+     30 1A21:000022BA  mov  di,ax                            8B F8                 
+     30 1A21:000022BC  mov  ax,[bp+0A]                       8B 46 0A              
+     30 1A21:000022BF  add  di,ax                            03 F8                 
+     30 1A21:000022C1  mov  bp,es                            8C C5                 
+     30 1A21:000022C3  mov  ax,A000                          B8 00 A0              
+     30 1A21:000022C6  mov  es,ax                            8E C0                 
+     30 1A21:000022C8  mov  bl,08                            B3 08                 
+     30 1A21:000022CA  mov  dh,[B772]                        8A 36 72 B7           
+     30 1A21:000022CE  mov  dl,[B775]                        8A 16 75 B7           
+    240 1A21:000022D2  lodsb                                 AC                    
+    240 1A21:000022D3  mov  cx,0008                          B9 08 00              
+   1920 1A21:000022D6  shl  al,1                             D0 E0                 
+   1920 1A21:000022D8  jc   000022E3 ($+9)                   72 09                 
+   1447 1A21:000022DA  mov  es:[di],dl                       26 88 15              
+   1447 1A21:000022DD  inc  di                               47                    
+   1447 1A21:000022DE  loop 000022D6 ($-a)                   E2 F6                 
+    240 1A21:000022E0  jmp  short 000022E9 ($+7)             EB 07                 
+    473 1A21:000022E3  mov  es:[di],dh                       26 88 35              
+    473 1A21:000022E6  inc  di                               47                    
+    473 1A21:000022E7  loop 000022D6 ($-13)                  E2 ED                 
+    240 1A21:000022E9  add  di,0138                          81 C7 38 01           
+    240 1A21:000022ED  dec  bl                               FE CB                 
+    240 1A21:000022EF  jne  000022D2 ($-1f)                  75 E1                 
+     30 1A21:000022F1  mov  es,bp                            8E C5                 
+     30 1A21:000022F3  pop  ds                               1F                    
+     30 1A21:000022F4  pop  si                               5E                    
+     30 1A21:000022F5  pop  di                               5F                    
+     30 1A21:000022F6  pop  bp                               5D                    
+     30 1A21:000022F7  retf                                  CB                    
+    960 1A21:0000275C  push bp                               55                    
+    960 1A21:0000275D  mov  bp,sp                            8B EC                 
+    960 1A21:0000275F  push di                               57                    
+    960 1A21:00002760  push si                               56                    
+    960 1A21:00002761  push ds                               1E                    
+    960 1A21:00002762  mov  ax,1E0E                          B8 0E 1E              
+    960 1A21:00002765  mov  ds,ax                            8E D8                 
+    960 1A21:00002767  push es                               06                    
+    960 1A21:00002768  mov  ax,B800                          B8 00 B8              
+    960 1A21:0000276B  mov  es,ax                            8E C0                 
+    960 1A21:0000276D  mov  si,[bp+06]                       8B 76 06              
+    960 1A21:00002770  mov  ax,[bp+08]                       8B 46 08              
+    960 1A21:00002773  mov  [B78C],ax                        A3 8C B7              
+    960 1A21:00002776  cmp  word [B764],0000                 83 3E 64 B7 00        
+    960 1A21:0000277B  jne  00002780 ($+3)                   75 03                 
+    960 1A21:00002780  cmp  word [B764],0002                 83 3E 64 B7 02        
+    960 1A21:00002785  jne  0000278A ($+3)                   75 03                 
+    960 1A21:0000278A  cmp  word [B764],0003                 83 3E 64 B7 03        
+    960 1A21:0000278F  jne  000027DE ($+4d)                  75 4D                 
+    960 1A21:00002791  mov  ax,A000                          B8 00 A0              
+    960 1A21:00002794  mov  es,ax                            8E C0                 
+    960 1A21:00002796  mov  ax,[bp+0A]                       8B 46 0A              
+    960 1A21:00002799  shl  ax,1                             D1 E0                 
+    960 1A21:0000279B  shl  ax,1                             D1 E0                 
+    960 1A21:0000279D  shl  ax,1                             D1 E0                 
+    960 1A21:0000279F  mov  [B792],ax                        A3 92 B7              
+    960 1A21:000027A2  mov  ax,[bp+0C]                       8B 46 0C              
+    960 1A21:000027A5  mov  dx,0A00                          BA 00 0A              
+    960 1A21:000027A8  mul  dx                               F7 E2                 
+    960 1A21:000027AA  add  ax,[B792]                        03 06 92 B7           
+    960 1A21:000027AE  mov  di,ax                            8B F8                 
+    960 1A21:000027B0  mov  cx,0008                          B9 08 00              
+    960 1A21:000027B3  push ds                               1E                    
+    960 1A21:000027B4  mov  ds,[B78C]                        8E 1E 8C B7           
+    960 1A21:000027B8  cld                                   FC                    
+    960 1A21:000027B9  mov  dx,0FF0                          BA F0 0F              
+    960 1A21:000027BC  mov  bx,0138                          BB 38 01              
+   7680 1A21:000027BF  lodsb                                 AC                    
+   7680 1A21:000027C0  mov  ah,al                            8A E0                 
+   7680 1A21:000027C2  and  ax,dx                            23 C2                 
+   7680 1A21:000027C4  stosw                                 AB                    
+   7680 1A21:000027C5  lodsb                                 AC                    
+   7680 1A21:000027C6  mov  ah,al                            8A E0                 
+   7680 1A21:000027C8  and  ax,dx                            23 C2                 
+   7680 1A21:000027CA  stosw                                 AB                    
+   7680 1A21:000027CB  lodsb                                 AC                    
+   7680 1A21:000027CC  mov  ah,al                            8A E0                 
+   7680 1A21:000027CE  and  ax,dx                            23 C2                 
+   7680 1A21:000027D0  stosw                                 AB                    
+   7680 1A21:000027D1  lodsb                                 AC                    
+   7680 1A21:000027D2  mov  ah,al                            8A E0                 
+   7680 1A21:000027D4  and  ax,dx                            23 C2                 
+   7680 1A21:000027D6  stosw                                 AB                    
+   7680 1A21:000027D7  add  di,bx                            03 FB                 
+   7680 1A21:000027D9  loop 000027BF ($-1c)                  E2 E4                 
+    960 1A21:000027DB  jmp  short 00002819 ($+3c)            EB 3C                 
+    960 1A21:00002819  pop  ds                               1F                    
+    960 1A21:0000281A  pop  es                               07                    
+    960 1A21:0000281B  pop  ds                               1F                    
+    960 1A21:0000281C  pop  si                               5E                    
+    960 1A21:0000281D  pop  di                               5F                    
+    960 1A21:0000281E  pop  bp                               5D                    
+    960 1A21:0000281F  retf                                  CB                    
+    169 1A21:00002FDC  pop  cx                               59                    
+    169 1A21:00002FDD  pop  dx                               5A                    
+    169 1A21:00002FDE  mov  bx,sp                            8B DC                 
+    169 1A21:00002FE0  sub  bx,ax                            2B D8                 
+    169 1A21:00002FE2  jc   00002FEF ($+b)                   72 0B                 
+    169 1A21:00002FE4  cmp  bx,[5334]                        3B 1E 34 53           
+    169 1A21:00002FE8  jc   00002FEF ($+5)                   72 05                 
+    169 1A21:00002FEA  mov  sp,bx                            8B E3                 
+    169 1A21:00002FEC  push dx                               52                    
+    169 1A21:00002FED  push cx                               51                    
+    169 1A21:00002FEE  retf                                  CB                    
+      2 1A21:000032E2  jc   000032F7 ($+13)                  72 13                 
+      2 1A21:000032E4  xor  ax,ax                            33 C0                 
+      2 1A21:000032E6  mov  sp,bp                            8B E5                 
+      2 1A21:000032E8  pop  bp                               5D                    
+      2 1A21:000032E9  retf                                  CB                    
+      4 1A21:000032F5  jnc  000032FE ($+7)                   73 07                 
+      4 1A21:000032FE  mov  sp,bp                            8B E5                 
+      4 1A21:00003300  pop  bp                               5D                    
+      4 1A21:00003301  retf                                  CB                    
+      2 1A21:00003336  push bp                               55                    
+      2 1A21:00003337  mov  bp,sp                            8B EC                 
+      2 1A21:00003339  mov  bx,[bp+06]                       8B 5E 06              
+      2 1A21:0000333C  cmp  bx,[52FE]                        3B 1E FE 52           
+      2 1A21:00003340  jc   00003348 ($+6)                   72 06                 
+      2 1A21:00003348  mov  ah,3E                            B4 3E                 
+      2 1A21:0000334A  int  21                               CD 21                 
+      2 1A21:0000334C  jc   00003353 ($+5)                   72 05                 
+      2 1A21:0000334E  mov  byte [bx+5300],00                C6 87 00 53 00        
+      2 1A21:00003353  jmp  000032E2 ($-74)                  E9 8C FF              
+      2 1A21:000033D0  push bp                               55                    
+      2 1A21:000033D1  mov  bp,sp                            8B EC                 
+      2 1A21:000033D3  sub  sp,0004                          83 EC 04              
+      2 1A21:000033D6  xor  bh,bh                            32 FF                 
+      2 1A21:000033D8  mov  [bp-02],bh                       88 7E FE              
+      2 1A21:000033DB  mov  ax,[bp+0A]                       8B 46 0A              
+      2 1A21:000033DE  mov  cx,ax                            8B C8                 
+      2 1A21:000033E0  mov  byte [bp-04],00                  C6 46 FC 00           
+      2 1A21:000033E4  test ax,8000                          A9 00 80              
+      2 1A21:000033E7  jne  000033F9 ($+10)                  75 10                 
+      2 1A21:000033F9  push ds                               1E                    
+      2 1A21:000033FA  lds  dx,[bp+06]                       C5 56 06              
+      2 1A21:000033FD  and  al,03                            24 03                 
+      2 1A21:000033FF  or   al,bh                            0A C7                 
+      2 1A21:00003401  mov  ah,3D                            B4 3D                 
+      2 1A21:00003403  int  21                               CD 21                 
+      2 1A21:00003405  pop  ds                               1F                    
+      2 1A21:00003406  jnc  0000341A ($+12)                  73 12                 
+      2 1A21:0000341A  xchg bx,ax                            93                    
+      2 1A21:0000341B  mov  ax,cx                            8B C1                 
+      2 1A21:0000341D  and  ax,0500                          25 00 05              
+      2 1A21:00003420  cmp  ax,0500                          3D 00 05              
+      2 1A21:00003423  jne  0000342E ($+9)                   75 09                 
+      2 1A21:0000342E  mov  byte [bp-03],01                  C6 46 FD 01           
+      2 1A21:00003432  mov  ax,4400                          B8 00 44              
+      2 1A21:00003435  int  21                               CD 21                 
+      2 1A21:00003437  test dl,80                            F6 C2 80              
+      2 1A21:0000343A  je   00003440 ($+4)                   74 04                 
+      2 1A21:00003440  test byte [bp-04],40                  F6 46 FC 40           
+      2 1A21:00003444  je   00003449 ($+3)                   74 03                 
+      2 1A21:00003449  mov  ax,[bp+0A]                       8B 46 0A              
+      2 1A21:0000344C  test ax,0200                          A9 00 02              
+      2 1A21:0000344F  je   00003470 ($+1f)                  74 1F                 
+      2 1A21:00003470  test byte [bp-04],80                  F6 46 FC 80           
+      2 1A21:00003474  jne  00003479 ($+3)                   75 03                 
+      2 1A21:00003476  jmp  00003526 ($+ad)                  E9 AD 00              
+      2 1A21:00003526  test byte [bp-04],40                  F6 46 FC 40           
+      2 1A21:0000352A  jne  0000356B ($+3f)                  75 3F                 
+      2 1A21:0000352C  push ds                               1E                    
+      2 1A21:0000352D  lds  dx,[bp+06]                       C5 56 06              
+      2 1A21:00003530  mov  ax,4300                          B8 00 43              
+      2 1A21:00003533  int  21                               CD 21                 
+      2 1A21:00003535  pop  ds                               1F                    
+      2 1A21:00003536  mov  ax,cx                            8B C1                 
+      2 1A21:00003538  xor  cl,cl                            32 C9                 
+      2 1A21:0000353A  and  ax,0001                          25 01 00              
+      2 1A21:0000353D  je   00003541 ($+2)                   74 02                 
+      2 1A21:00003541  test word [bp+0A],0008                F7 46 0A 08 00        
+      2 1A21:00003546  je   0000354B ($+3)                   74 03                 
+      2 1A21:0000354B  cmp  bx,[52FE]                        3B 1E FE 52           
+      2 1A21:0000354F  jc   0000355B ($+a)                   72 0A                 
+      2 1A21:0000355B  or   cl,[bp-04]                       0A 4E FC              
+      2 1A21:0000355E  or   cl,01                            80 C9 01              
+      2 1A21:00003561  mov  [bx+5300],cl                     88 8F 00 53           
+      2 1A21:00003565  mov  ax,bx                            8B C3                 
+      2 1A21:00003567  mov  sp,bp                            8B E5                 
+      2 1A21:00003569  pop  bp                               5D                    
+      2 1A21:0000356A  retf                                  CB                    
+      4 1A21:00003580  push bp                               55                    
+      4 1A21:00003581  mov  bp,sp                            8B EC                 
+      4 1A21:00003583  sub  sp,0002                          83 EC 02              
+      4 1A21:00003586  mov  bx,[bp+06]                       8B 5E 06              
+      4 1A21:00003589  cmp  bx,[52FE]                        3B 1E FE 52           
+      4 1A21:0000358D  jc   00003595 ($+6)                   72 06                 
+      4 1A21:00003595  xor  ax,ax                            33 C0                 
+      4 1A21:00003597  mov  cx,[bp+0C]                       8B 4E 0C              
+      4 1A21:0000359A  jcxz 000035FC ($+60)                  E3 60                 
+      4 1A21:0000359C  test byte [bx+5300],02                F6 87 00 53 02        
+      4 1A21:000035A1  jne  000035FC ($+59)                  75 59                 
+      4 1A21:000035A3  mov  cx,[bp+0C]                       8B 4E 0C              
+      4 1A21:000035A6  push ds                               1E                    
+      4 1A21:000035A7  lds  dx,[bp+08]                       C5 56 08              
+      4 1A21:000035AA  mov  ah,3F                            B4 3F                 
+      4 1A21:000035AC  int  21                               CD 21                 
+      4 1A21:000035AE  pop  ds                               1F                    
+      4 1A21:000035AF  jnc  000035B5 ($+4)                   73 04                 
+      4 1A21:000035B5  test byte [bx+5300],80                F6 87 00 53 80        
+      4 1A21:000035BA  je   000035FC ($+40)                  74 40                 
+      4 1A21:000035FC  jmp  000032F5 ($-30a)                 E9 F6 FC              
+      2 1A21:00003B22  push bp                               55                    
+      2 1A21:00003B23  mov  bp,sp                            8B EC                 
+      2 1A21:00003B25  mov  dx,di                            8B D7                 
+      2 1A21:00003B27  mov  bx,si                            8B DE                 
+      2 1A21:00003B29  push ds                               1E                    
+      2 1A21:00003B2A  les  di,[bp+06]                       C4 7E 06              
+      2 1A21:00003B2D  xor  ax,ax                            33 C0                 
+      2 1A21:00003B2F  mov  cx,FFFF                          B9 FF FF              
+      2 1A21:00003B32  repne scasb                           F2 AE                 
+      2 1A21:00003B34  lea  si,[di-01]                       8D 75 FF              
+      2 1A21:00003B37  les  di,[bp+0A]                       C4 7E 0A              
+      2 1A21:00003B3A  mov  cx,FFFF                          B9 FF FF              
+      2 1A21:00003B3D  repne scasb                           F2 AE                 
+      2 1A21:00003B3F  not  cx                               F7 D1                 
+      2 1A21:00003B41  sub  di,cx                            2B F9                 
+      2 1A21:00003B43  mov  ax,es                            8C C0                 
+      2 1A21:00003B45  mov  ds,ax                            8E D8                 
+      2 1A21:00003B47  mov  es,[bp+08]                       8E 46 08              
+      2 1A21:00003B4A  xchg si,di                            87 FE                 
+      2 1A21:00003B4C  mov  ax,[bp+06]                       8B 46 06              
+      2 1A21:00003B4F  test si,0001                          F7 C6 01 00           
+      2 1A21:00003B53  je   00003B57 ($+2)                   74 02                 
+      2 1A21:00003B57  shr  cx,1                             D1 E9                 
+      2 1A21:00003B59  repe movsw                            F3 A5                 
+      2 1A21:00003B5B  adc  cx,cx                            13 C9                 
+      2 1A21:00003B5D  repe movsb                            F3 A4                 
+      2 1A21:00003B5F  mov  si,bx                            8B F3                 
+      2 1A21:00003B61  mov  di,dx                            8B FA                 
+      2 1A21:00003B63  pop  ds                               1F                    
+      2 1A21:00003B64  mov  dx,es                            8C C2                 
+      2 1A21:00003B66  pop  bp                               5D                    
+      2 1A21:00003B67  retf                                  CB                    
+      2 1A21:00003B68  push bp                               55                    
+      2 1A21:00003B69  mov  bp,sp                            8B EC                 
+      2 1A21:00003B6B  mov  dx,di                            8B D7                 
+      2 1A21:00003B6D  mov  bx,si                            8B DE                 
+      2 1A21:00003B6F  push ds                               1E                    
+      2 1A21:00003B70  lds  si,[bp+0A]                       C5 76 0A              
+      2 1A21:00003B73  mov  di,si                            8B FE                 
+      2 1A21:00003B75  mov  ax,ds                            8C D8                 
+      2 1A21:00003B77  mov  es,ax                            8E C0                 
+      2 1A21:00003B79  xor  ax,ax                            33 C0                 
+      2 1A21:00003B7B  mov  cx,FFFF                          B9 FF FF              
+      2 1A21:00003B7E  repne scasb                           F2 AE                 
+      2 1A21:00003B80  not  cx                               F7 D1                 
+      2 1A21:00003B82  les  di,[bp+06]                       C4 7E 06              
+      2 1A21:00003B85  mov  ax,di                            8B C7                 
+      2 1A21:00003B87  test al,01                            A8 01                 
+      2 1A21:00003B89  je   00003B8D ($+2)                   74 02                 
+      2 1A21:00003B8D  shr  cx,1                             D1 E9                 
+      2 1A21:00003B8F  repe movsw                            F3 A5                 
+      2 1A21:00003B91  adc  cx,cx                            13 C9                 
+      2 1A21:00003B93  repe movsb                            F3 A4                 
+      2 1A21:00003B95  mov  si,bx                            8B F3                 
+      2 1A21:00003B97  mov  di,dx                            8B FA                 
+      2 1A21:00003B99  pop  ds                               1F                    
+      2 1A21:00003B9A  mov  dx,es                            8C C2                 
+      2 1A21:00003B9C  pop  bp                               5D                    
+      2 1A21:00003B9D  retf                                  CB                    
+      2 1A21:00003BB6  push bp                               55                    
+      2 1A21:00003BB7  mov  bp,sp                            8B EC                 
+      2 1A21:00003BB9  push si                               56                    
+      2 1A21:00003BBA  push di                               57                    
+      2 1A21:00003BBB  mov  bl,01                            B3 01                 
+      2 1A21:00003BBD  mov  cx,[bp+0C]                       8B 4E 0C              
+      2 1A21:00003BC0  mov  ax,[bp+06]                       8B 46 06              
+      2 1A21:00003BC3  xor  dx,dx                            33 D2                 
+      2 1A21:00003BC5  cmp  cx,000A                          83 F9 0A              
+      2 1A21:00003BC8  jne  00003BCB ($+1)                   75 01                 
+      2 1A21:00003BCA  cwd                                   99                    
+      2 1A21:00003BCB  push ds                               1E                    
+      2 1A21:00003BCC  lds  di,[bp+08]                       C5 7E 08              
+      2 1A21:00003BCF  jmp  00003C15 ($+43)                  E9 43 00              
+     19 1A21:00003BDC  mov  ax,[5366]                        A1 66 53              
+     19 1A21:00003BDF  or   ah,ah                            0A E4                 
+     19 1A21:00003BE1  mov  al,FF                            B0 FF                 
+     19 1A21:00003BE3  je   00003BEB ($+6)                   74 06                 
+     19 1A21:00003BE5  mov  ah,0B                            B4 0B                 
+     19 1A21:00003BE7  int  21                               CD 21                 
+     19 1A21:00003BE9  mov  ah,00                            B4 00                 
+     19 1A21:00003BEB  retf                                  CB                    
+      2 1A21:00003C15  push di                               57                    
+      2 1A21:00003C16  push ds                               1E                    
+      2 1A21:00003C17  pop  es                               07                    
+      2 1A21:00003C18  cld                                   FC                    
+      2 1A21:00003C19  xchg bx,ax                            93                    
+      2 1A21:00003C1A  or   al,al                            0A C0                 
+      2 1A21:00003C1C  je   00003C31 ($+13)                  74 13                 
+      2 1A21:00003C1E  cmp  cx,000A                          83 F9 0A              
+      2 1A21:00003C21  jne  00003C31 ($+e)                   75 0E                 
+      2 1A21:00003C23  or   dx,dx                            0B D2                 
+      2 1A21:00003C25  jns  00003C31 ($+a)                   79 0A                 
+      2 1A21:00003C31  mov  si,di                            8B F7                 
+      2 1A21:00003C33  xchg dx,ax                            92                    
+      2 1A21:00003C34  xor  dx,dx                            33 D2                 
+      2 1A21:00003C36  or   ax,ax                            0B C0                 
+      2 1A21:00003C38  je   00003C3C ($+2)                   74 02                 
+      2 1A21:00003C3C  xchg bx,ax                            93                    
+      2 1A21:00003C3D  div  cx                               F7 F1                 
+      2 1A21:00003C3F  xchg dx,ax                            92                    
+      2 1A21:00003C40  xchg bx,dx                            87 D3                 
+      2 1A21:00003C42  add  al,30                            04 30                 
+      2 1A21:00003C44  cmp  al,39                            3C 39                 
+      2 1A21:00003C46  jbe  00003C4A ($+2)                   76 02                 
+      2 1A21:00003C4A  stosb                                 AA                    
+      2 1A21:00003C4B  mov  ax,dx                            8B C2                 
+      2 1A21:00003C4D  or   ax,bx                            0B C3                 
+      2 1A21:00003C4F  jne  00003C33 ($-1e)                  75 E2                 
+      2 1A21:00003C51  mov  [di],al                          88 05                 
+      2 1A21:00003C53  dec  di                               4F                    
+      2 1A21:00003C54  lodsb                                 AC                    
+      2 1A21:00003C55  xchg [di],al                          86 05                 
+      2 1A21:00003C57  mov  [si-01],al                       88 44 FF              
+      2 1A21:00003C5A  lea  ax,[si+01]                       8D 44 01              
+      2 1A21:00003C5D  cmp  ax,di                            3B C7                 
+      2 1A21:00003C5F  jc   00003C53 ($-e)                   72 F2                 
+      2 1A21:00003C61  mov  dx,ds                            8C DA                 
+      2 1A21:00003C63  pop  ax                               58                    
+      2 1A21:00003C64  pop  ds                               1F                    
+      2 1A21:00003C65  pop  di                               5F                    
+      2 1A21:00003C66  pop  si                               5E                    
+      2 1A21:00003C67  mov  sp,bp                            8B E5                 
+      2 1A21:00003C69  pop  bp                               5D                    
+      2 1A21:00003C6A  retf                                  CB                    
+      4 F000:000011E0  callback 000F  (Int 15 Bios)          FE 38 0F 00           
+      4 F000:000011E4  iret                                  CF                    
+      1 F000:00001200  sti                                   FB                    
+      1 F000:00001201  callback 0010  (Keyboard)             FE 38 10 00           
+      1 F000:00001205  iret                                  CF                    
+      6 F000:00001280  callback 0014  (Int 1c Timer)         FE 38 14 00           
+      6 F000:00001284  iret                                  CF                    
+     31 F000:000014C0  sti                                   FB                    
+     31 F000:000014C1  callback 0026  (DOS Int 21)           FE 38 26 00           
+     12 F000:000014C5  iret                                  CF                    
+     19 F000:000014C7  push cx                               51                    
+     19 F000:000014C8  mov  cx,0140                          B9 40 01              
+   6080 F000:000014CB  loop 000014CB ($-2)                   E2 FE                 
+     19 F000:000014CD  pop  cx                               59                    
+     19 F000:000014CE  iret                                  CF                    
+      4 F000:0000E987  push ax                               50                    
+      4 F000:0000E988  in   al,60                            E4 60                 
+      4 F000:0000E98A  mov  ah,4F                            B4 4F                 
+      4 F000:0000E98C  stc                                   F9                    
+      4 F000:0000E98D  int  15                               CD 15                 
+      4 F000:0000E98F  jnc  0000E995 ($+4)                   73 04                 
+      4 F000:0000E991  callback 0011  (IRQ 1 Keyboard        FE 38 11 00           
+      4 F000:0000E995  cli                                   FA                    
+      4 F000:0000E996  mov  al,20                            B0 20                 
+      4 F000:0000E998  out  20,al                            E6 20                 
+      4 F000:0000E99A  pop  ax                               58                    
+      4 F000:0000E99B  iret                                  CF                    
+      6 F000:0000FEA5  callback 0008  (IRQ 0 Clock)          FE 38 08 00           
+      6 F000:0000FEA9  push ax                               50                    
+      6 F000:0000FEAA  push dx                               52                    
+      6 F000:0000FEAB  push ds                               1E                    
+      6 F000:0000FEAC  int  1C                               CD 1C                 
+      6 F000:0000FEAE  cli                                   FA                    
+      6 F000:0000FEAF  pop  ds                               1F                    
+      6 F000:0000FEB0  pop  dx                               5A                    
+      6 F000:0000FEB1  mov  al,20                            B0 20                 
+      6 F000:0000FEB3  out  20,al                            E6 20                 
+      6 F000:0000FEB5  pop  ax                               58                    
+      6 F000:0000FEB6  iret                                  CF                    
