@@ -19,7 +19,8 @@ int main (int argc, char* argv[]) {
   if (argc != 3) {
     fprintf(stderr, "Need arguments <memdumpbin.bin> <output_png>\n");
     fprintf(stderr, "Use dosbox-debug with Fn+Alt+P and then this with hex values:\n");
-    fprintf(stderr, "MEMDUMPBIN 0:0 100000\n");
+    fprintf(stderr, "MEMDUMPBIN 0:0 100000   <-- Full 1mb including framebuffer\n");
+    fprintf(stderr, "MEMDUMPBIN 0:0  A0000   <-- Just memory, no framebuffer\n");
     exit(1);
   }
   FILE *fp = fopen(argv[1], "r");
@@ -27,16 +28,17 @@ int main (int argc, char* argv[]) {
 
   struct stat st;
   stat(argv[1], &st);
-  if (st.st_size != 1024*1024) {
-    fprintf(stderr, "%s is not %d as expected\n", argv[1], 1024*1024);
+  if ((st.st_size != 0x100000) && (st.st_size != 0xA0000)) {
+    fprintf(stderr, "%s is not %d or %d as expected\n", argv[1], 0x100000, 0xA0000);
     exit(1);
   }
 
   // Read the dump into memory
   char memory[1024*1024];
-  int bytes = fread(&memory, 1, 1024*1024, fp);
-  if (bytes != 1024*1024) {
-    fprintf(stderr, "Failed to read 1M bytes = %d\n", bytes);
+  memset(memory, 0xAA, sizeof(memory));
+  int bytes = fread(&memory, 1, st.st_size, fp);
+  if (bytes != st.st_size) {
+    fprintf(stderr, "Failed to read expected %ld bytes, read only %d\n", st.st_size, bytes);
     exit(1);
   }
 
