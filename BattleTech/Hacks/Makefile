@@ -43,7 +43,7 @@ MEMDUMP.BIN.fb.png: framebuffer2png MEMDUMP.BIN
 memdumpbinsim: memdumpbinsim.cpp
 
 memdumpbin-sim%.bin: memdumpbinsim
-	./memdumpbinsim $(subst memdumpbin-sim,,$(subst .bin,,$*)) > $@ $*
+	./memdumpbinsim $(subst memdumpbin-sim,,$(subst .bin,,$*)) > $@
 
 memdumpbin-sim%.png: memdumpbin-sim%.bin memdumpbin2png
 	./memdumpbin2png $< $@
