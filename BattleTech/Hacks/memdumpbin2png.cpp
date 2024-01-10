@@ -38,7 +38,7 @@ int main (int argc, char* argv[]) {
   memset(memory, 0xAA, sizeof(memory));
   int bytes = fread(&memory, 1, st.st_size, fp);
   if (bytes != st.st_size) {
-    fprintf(stderr, "Failed to read expected %ld bytes, read only %d\n", st.st_size, bytes);
+    fprintf(stderr, "Failed to read expected %lld bytes, read only %d\n", st.st_size, bytes);
     exit(1);
   }
 
@@ -49,7 +49,8 @@ int main (int argc, char* argv[]) {
   int dtiles = tile_width * tile_height;
   if(DEBUG) fprintf(stderr, "Tile size is %dx%d, dtiles=%d\n", tile_width, tile_height, dtiles);
   assert(tile_width*tile_height >= 65536);
-  unsigned char image[4*tile_height][4*tile_width] = { 0x00 };
+  unsigned char image[4*tile_height][4*tile_width];
+  memset(image, 0x00, 4*tile_height*4*tile_width);
   int tilecols = 4;
   int tilerows = 4;
   
