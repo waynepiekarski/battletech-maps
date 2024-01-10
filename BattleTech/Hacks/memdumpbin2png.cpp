@@ -16,11 +16,12 @@ bool DEBUG = false;
 // other sizes which could be useful for data in other formats.
 
 int main (int argc, char* argv[]) {
-  if (argc != 3) {
-    fprintf(stderr, "Need arguments <memdumpbin.bin> <output_png>\n");
+  if (argc != 4) {
+    fprintf(stderr, "Need arguments <memdumpbin.bin> <tile_width> <output_png>\n");
     fprintf(stderr, "Use dosbox-debug with Fn+Alt+P and then this with hex values:\n");
     fprintf(stderr, "MEMDUMPBIN 0:0 100000   <-- Full 1mb including framebuffer\n");
     fprintf(stderr, "MEMDUMPBIN 0:0  A0000   <-- Just memory, no framebuffer\n");
+    fprintf(stderr, "<tile_width> is usually 320 for debugging framebuffers, but could be 8,16,32,64,128,256,etc\n");
     exit(1);
   }
   FILE *fp = fopen(argv[1], "r");
@@ -43,9 +44,13 @@ int main (int argc, char* argv[]) {
   }
 
   // There are 16 segments of 64k each, so lets create 4x4 tiles
-  int tile_width = 320;
-  int tile_height = (65536/320);
-  if (65536%320 != 0) tile_height++;
+  int tile_width = atoi(argv[2]);
+  if (tile_width <= 0) {
+    fprintf(stderr, "Tile width from argv[2]=%s is invalid\n", argv[2]);
+    exit(1);
+  }
+  int tile_height = (65536/tile_width);
+  if (65536%tile_width != 0) tile_height++;
   int dtiles = tile_width * tile_height;
   if(DEBUG) fprintf(stderr, "Tile size is %dx%d, dtiles=%d\n", tile_width, tile_height, dtiles);
   assert(tile_width*tile_height >= 65536);
@@ -125,5 +130,5 @@ int main (int argc, char* argv[]) {
     fprintf(stderr, "PNG encoder error %d: %s\n", error, lodepng_error_text(error));
     exit(1);
   }
-  lodepng::save_file(buffer, argv[2]);
+  lodepng::save_file(buffer, argv[3]);
 }

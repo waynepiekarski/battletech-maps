@@ -37,10 +37,10 @@ addmoney: addmoney.cpp
 	./mtp2png $< $@
 
 memdumpbin-%.png: memdumpbin-%.bin memdumpbin2png
-	./memdumpbin2png $< $@
+	./memdumpbin2png $< 320 $@
 
 MEMDUMP.BIN.full.png: memdumpbin2png MEMDUMP.BIN
-	./memdumpbin2png MEMDUMP.BIN MEMDUMP.BIN.full.png
+	./memdumpbin2png MEMDUMP.BIN 320 MEMDUMP.BIN.full.png
 
 MEMDUMP.BIN.fb.png: framebuffer2png MEMDUMP.BIN
 	./framebuffer2png MEMDUMP.BIN MEMDUMP.BIN.fb.png
@@ -51,7 +51,7 @@ memdumpbin-sim%.bin: memdumpbinsim
 	./memdumpbinsim $(subst memdumpbin-sim,,$(subst .bin,,$*)) > $@
 
 memdumpbin-sim%.png: memdumpbin-sim%.bin memdumpbin2png
-	./memdumpbin2png $< $@
+	./memdumpbin2png $< 320 $@
 
 clean:
 	rm -rf $(TARGETS)
