@@ -8,11 +8,14 @@ TARGETS += $(shell if [ -f MEMDUMP.BIN ]; then echo "MEMDUMP.BIN.fb.png MEMDUMP.
 
 all: $(TARGETS)
 
+CXXFLAGS = -std=c++17
+
 rawdump: rawdump.cpp
 
 setbytes: setbytes.cpp
 
-mtp2png: mtp2png.cpp vga_palette.h
+mtp2png.cpp: vga_palette.h
+mtp2png: mtp2png.cpp
 
 mtp256: mtp256.cpp
 
@@ -22,9 +25,11 @@ vga_palette.h: vgapalette.sh
 svg_palette.svg: svgpalette.sh
 	./svgpalette.sh > svg_palette.svg
 
-memdumpbin2png: memdumpbin2png.cpp vga_palette.h
+memdumpbin2png.cpp: vga_palette.h
+memdumpbin2png: memdumpbin2png.cpp
 
-framebuffer2png: framebuffer2png.cpp vga_palette.h
+framebuffer2png.cpp: vga_palette.h
+framebuffer2png: framebuffer2png.cpp
 
 addmoney: addmoney.cpp
 
