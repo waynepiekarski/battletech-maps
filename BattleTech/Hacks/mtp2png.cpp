@@ -32,7 +32,7 @@ int main (int argc, char* argv[]) {
       dtiles = 4;
       break;
     default:
-      fprintf(stderr, "Unknown file size %lld\n", st.st_size); exit(1);
+      fprintf(stderr, "Unknown file size %zu\n", (size_t)st.st_size); exit(1);
       break;
   }
 

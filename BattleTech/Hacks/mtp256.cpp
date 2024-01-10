@@ -33,13 +33,13 @@ int main (int argc, char* argv[]) {
       dtiles = 4;
       break;
     default:
-      fprintf(stderr, "Unknown file size %lldd\n", st.st_size); exit(1);
+      fprintf(stderr, "Unknown file size %zu\n", (size_t)st.st_size); exit(1);
       break;
   }
 
   // Skip header junk
   int count = st.st_size-(dim*dim);
-  fprintf(stderr, "Skipping %d header bytes with dim*dim=%d with total size %lld\n", count, dim*dim, st.st_size);
+  fprintf(stderr, "Skipping %d header bytes with dim*dim=%d with total size %zu\n", count, dim*dim, (size_t)st.st_size);
   for (int i = 0; i < count; i++) {
     unsigned char buf;
     int bytes = fread(&buf, 1, 1, fpin);

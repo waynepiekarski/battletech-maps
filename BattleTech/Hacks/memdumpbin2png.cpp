@@ -39,7 +39,7 @@ int main (int argc, char* argv[]) {
   memset(memory, 0xAA, sizeof(memory));
   int bytes = fread(&memory, 1, st.st_size, fp);
   if (bytes != st.st_size) {
-    fprintf(stderr, "Failed to read expected %lld bytes, read only %d\n", st.st_size, bytes);
+    fprintf(stderr, "Failed to read expected %zu bytes, read only %d\n", (size_t)st.st_size, bytes);
     exit(1);
   }
 
