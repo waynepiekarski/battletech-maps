@@ -74,7 +74,7 @@ int main (int argc, char* argv[]) {
       assert(y >= 0);
       assert(x < dim);
       assert(y < dim);
-      image[x][y] = buf;
+      image[y][x] = buf;
     }
     count++;
   }
