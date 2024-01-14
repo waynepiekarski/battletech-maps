@@ -1,6 +1,7 @@
 /addmoney
 /movexy
 /mtp2png
+/mtp2tiles
 /rawdump
 /hexdiff
 /*.png

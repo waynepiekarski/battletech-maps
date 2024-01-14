@@ -79,40 +79,55 @@ int main (int argc, char* argv[]) {
     count++;
   }
 
-// The VGA palette doesn't work well here, use the random palette for now
-#undef VGA_PALETTE
-#ifdef VGA_PALETTE
-  #include "vga_palette.h"
-#endif // VGA_PALETTE
-  lodepng::State state;
-  srandom(1000); // See the random number to be consistent each time, generates a nice color scheme with this value
+  // Load in all the tile PNG images and store them
+  fprintf(stderr, "Loading 256 tiles\n");
+  typedef unsigned char tiledef[16][16][3];
+  std::vector<tiledef*> tiles;
   for(int i = 0; i < 256; i++) {
-#ifdef VGA_PALETTE
-    unsigned char r = vga_palette[i*4+0];
-    unsigned char g = vga_palette[i*4+1];
-    unsigned char b = vga_palette[i*4+2];
-    unsigned char a = vga_palette[i*4+3];
-#else
-    unsigned char r = random() % 256;
-    unsigned char g = random() % 256;
-    unsigned char b = random() % 256;
-    unsigned char a = 255;
-#endif // VGA_PALETTE
-    lodepng_palette_add(&state.info_png.color, r, g, b, a);
-    lodepng_palette_add(&state.info_raw, r, g, b, a);
+    char filename[4096];
+    sprintf(filename, "../tile-capture-raw/crop/tile-%03d.png", i);
+    // fprintf(stderr, "Loading %s\n", filename);
+    unsigned char*rgb24 = nullptr;
+    unsigned w;
+    unsigned h;
+    if (lodepng_decode24_file(&rgb24, &w, &h, filename) != 0) {
+      fprintf (stderr, "Could not decode %s\n", filename);
+      exit(1);
+    }
+    if ((w != 16) || (h != 16)) {
+      fprintf (stderr, "Tile %dx%d is not 16x16 as expected\n", w, h);
+      exit(1);
+    }
+    tiledef* t = (tiledef*)rgb24;
+    tiles.push_back(t);
   }
-  state.info_png.color.colortype = LCT_PALETTE;
-  state.info_png.color.bitdepth = 8;
-  state.info_raw.colortype = LCT_PALETTE;
-  state.info_raw.bitdepth = 8;
-  state.encoder.auto_convert = 0;
 
-  std::vector<unsigned char> buffer;
-  unsigned error = lodepng::encode(buffer, &image[0][0], dim, dim, state);
-  if(error) {
-    fprintf(stderr, "PNG encoder error %d: %s\n", error, lodepng_error_text(error));
+  // Convert the 8-bit image[y][x] into a full image using the 16x16 tiles
+  unsigned w = dim * 16;
+  unsigned h = dim * 16;
+  unsigned char rgb [h][w][3];
+  memset(rgb, 0x00, sizeof(rgb));
+  for (int y = 0; y < dim; y++) {
+    for (int x = 0; x < dim; x++) {
+      unsigned char v = image[y][x];
+      tiledef* tile = tiles[v];
+      int xofs = x * 16;
+      int yofs = y * 16;
+      for (int i = 0; i < 16; i++) {
+	for (int j = 0; j < 16; j++) {
+	  for (int k = 0; k < 3; k++) {
+	    rgb[j+yofs][i+xofs][k] = (*tile)[j][i][k];
+	  }
+	}
+      }
+    }
+  }
+
+  fprintf (stderr, "Writing to %s\n", argv[2]);
+  if (lodepng_encode24_file(argv[2], (unsigned char*)rgb, w, h) != 0) {
+    fprintf (stderr, "Failed to write to %s\n", argv[2]);
     exit(1);
   }
-  lodepng::save_file(buffer, argv[2]);
+  fprintf (stderr, "Finished %s\n", argv[2]);
   return 0;
 }
