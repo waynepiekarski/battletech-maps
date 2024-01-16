@@ -139,3 +139,9 @@ Seems to mess up half a map screen worth of tiles with just 2 bytes.
 
 So they are using an encoding mechanism that has a high-level map with tiles,
 and each of these maps to a group of sub-tiles that is quite large.
+
+---
+
+When decoding the MTP files, I generated maps with values 0x00..0xFF in them.
+I noticed that all values 0d-84d were walk-throughable, but >=85d would block
+the character. 84d is 0x54 or 1010100b, but no obvious pattern here.
