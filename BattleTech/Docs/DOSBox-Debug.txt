@@ -116,3 +116,26 @@ After upgrading Kubuntu to use Wayland compositor, I had problems with dosbox ig
 Need to edit all ~/.dosbox/ config files to use:
 usescancodes=false
 And not =true like the default. For some reason this fixes everything with Wayland.
+
+---
+
+Using the LOGL output I found some interesting addresses that handled the map
+refresh.
+BP 1A21:1237
+OR instructions: 80 CB 08 --> replace with 80 CB 02
+This screws up the map tiles.
+Noticed that this code was reading from 1E0E:0589 et al, so multiply by 16 to
+get linear address 1E0E0 and start fuzzing from there.
+
+Using fs4-dosbox:
+W 1EC00 FF 10
+Screws up a thick strip of tiles in the top row of the map.
+Each value 0xFF can be replaced with other values to get different tiles.
+The world map seems to have very large tiles that map to some other encoding
+of sub-tiles.
+
+W 1EC00 AA 2
+Seems to mess up half a map screen worth of tiles with just 2 bytes.
+
+So they are using an encoding mechanism that has a high-level map with tiles,
+and each of these maps to a group of sub-tiles that is quite large.
