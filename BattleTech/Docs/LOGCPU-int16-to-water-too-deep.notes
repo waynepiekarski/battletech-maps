@@ -148,7 +148,7 @@ Replace 0x0F with 0x99 in VSCode hex editor, and now the water test is disabled!
 01A2:1C99  2680BFA4070F        cmp  byte es:[bx+07A4],0F   es:[07A9]=1E0F      
 01A2:1C9F  7520                jne  00001CC1 ($+20)        (no jmp)
 
-Need to replace JNE=75 with JMP (jump always) to avoid the water better.
+Need to replace JNE=75 with JMP=EB (jump always) to avoid the water better.
 Otherwise I was seeing blue buildings with probably hex code 0x99 triggering the water test.
 
 01A2:1C99  2680BFA4070F        cmp  byte es:[bx+07A4],0F   es:[07A5]=0F0E      

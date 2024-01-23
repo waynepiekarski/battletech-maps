@@ -1,0 +1,159 @@
+Trying to prevent the dialog from asking if you want to enter a building.
+Walk up to a building in the Citadel.
+
+BP 01A2:21D0
+F5 to resume
+Walk up to a building hotspot that would ask you to enter
+<break>
+LOGL 10000
+F5 to resume
+Walk up to a place that does not ask you to enter and walk up
+<break>
+LOGL 10000
+F5 to resume
+<break>
+Diff the log files as shown below. We can see they diverge at
+
+01A2:00001DE4  cmp  ax,es:[si+4564]                  26 3B 84 64 45 	01A2:00001DE4  cmp  ax,es:[si+4564]                  26 3B 84 64 45 
+01A2:00001DE9  jne  00001E63 ($+78)                  75 78          	01A2:00001DE9  jne  00001E63 ($+78)                  75 78          
+01A2:00001E63  inc  word [bp-14]                     FF 46 EC        |	01A2:00001DEB  mov  es,[53A6]                        8E 06 A6 53    
+
+The left path is what we want, so replace JNE 0x75 with JMP 0xEB.
+Using VSCode replace 263B8464457578 with 263B846445EB78 and save this. Now you can't enter buildings anymore!
+
+
+
+LOGCPU-enter-miss.txt                                                   LOGCPU-enter-hit.txt                                                  
+01A2:000021D0  cmp  word [bp+06],FFB3                83 7E 06 B3    	01A2:000021D0  cmp  word [bp+06],FFB3                83 7E 06 B3    
+01A2:000021D4  je   000021E2 ($+c)                   74 0C          	01A2:000021D4  je   000021E2 ($+c)                   74 0C          
+01A2:000021D6  cmp  word [bp+06],FFB7                83 7E 06 B7    	01A2:000021D6  cmp  word [bp+06],FFB7                83 7E 06 B7    
+01A2:000021DA  je   000021E2 ($+6)                   74 06          	01A2:000021DA  je   000021E2 ($+6)                   74 06          
+01A2:000021DC  cmp  word [bp+06],FFAF                83 7E 06 AF    	01A2:000021DC  cmp  word [bp+06],FFAF                83 7E 06 AF    
+01A2:000021E0  jne  000021E7 ($+5)                   75 05          	01A2:000021E0  jne  000021E7 ($+5)                   75 05          
+01A2:000021E7  cmp  word [bp+06],FFB5                83 7E 06 B5    	01A2:000021E7  cmp  word [bp+06],FFB5                83 7E 06 B5    
+01A2:000021EB  je   000021F9 ($+c)                   74 0C          	01A2:000021EB  je   000021F9 ($+c)                   74 0C          
+01A2:000021ED  cmp  word [bp+06],FFB9                83 7E 06 B9    	01A2:000021ED  cmp  word [bp+06],FFB9                83 7E 06 B9    
+01A2:000021F1  je   000021F9 ($+6)                   74 06          	01A2:000021F1  je   000021F9 ($+6)                   74 06          
+01A2:000021F3  cmp  word [bp+06],FFB1                83 7E 06 B1    	01A2:000021F3  cmp  word [bp+06],FFB1                83 7E 06 B1    
+01A2:000021F7  jne  000021FE ($+5)                   75 05          	01A2:000021F7  jne  000021FE ($+5)                   75 05          
+01A2:000021FE  push word [bp-04]                     FF 76 FC       	01A2:000021FE  push word [bp-04]                     FF 76 FC       
+01A2:00002201  push word [bp-02]                     FF 76 FE       	01A2:00002201  push word [bp-02]                     FF 76 FE       
+01A2:00002204  push cs                               0E             	01A2:00002204  push cs                               0E             
+01A2:00002205  call 00001C12 ($-5f6)                 E8 0A FA       	01A2:00002205  call 00001C12 ($-5f6)                 E8 0A FA       
+01A2:00001C12  push bp                               55             	01A2:00001C12  push bp                               55             
+01A2:00001C13  mov  bp,sp                            8B EC          	01A2:00001C13  mov  bp,sp                            8B EC          
+01A2:00001C15  mov  ax,001A                          B8 1A 00       	01A2:00001C15  mov  ax,001A                          B8 1A 00       
+01A2:00001C18  call 1A21:2FDC                        9A DC 2F 21 1A 	01A2:00001C18  call 1A21:2FDC                        9A DC 2F 21 1A 
+1A21:00002FDC  pop  cx                               59             	1A21:00002FDC  pop  cx                               59             
+1A21:00002FDD  pop  dx                               5A             	1A21:00002FDD  pop  dx                               5A             
+1A21:00002FDE  mov  bx,sp                            8B DC          	1A21:00002FDE  mov  bx,sp                            8B DC          
+1A21:00002FE0  sub  bx,ax                            2B D8          	1A21:00002FE0  sub  bx,ax                            2B D8          
+1A21:00002FE2  jc   00002FEF ($+b)                   72 0B          	1A21:00002FE2  jc   00002FEF ($+b)                   72 0B          
+1A21:00002FE4  cmp  bx,[5334]                        3B 1E 34 53    	1A21:00002FE4  cmp  bx,[5334]                        3B 1E 34 53    
+1A21:00002FE8  jc   00002FEF ($+5)                   72 05          	1A21:00002FE8  jc   00002FEF ($+5)                   72 05          
+1A21:00002FEA  mov  sp,bx                            8B E3          	1A21:00002FEA  mov  sp,bx                            8B E3          
+1A21:00002FEC  push dx                               52             	1A21:00002FEC  push dx                               52             
+1A21:00002FED  push cx                               51             	1A21:00002FED  push cx                               51             
+1A21:00002FEE  retf                                  CB             	1A21:00002FEE  retf                                  CB             
+01A2:00001C1D  push di                               57             	01A2:00001C1D  push di                               57             
+01A2:00001C1E  push si                               56             	01A2:00001C1E  push si                               56             
+01A2:00001C1F  mov  word [bp-04],0000                C7 46 FC 00 00 	01A2:00001C1F  mov  word [bp-04],0000                C7 46 FC 00 00 
+01A2:00001C24  mov  es,[538C]                        8E 06 8C 53    	01A2:00001C24  mov  es,[538C]                        8E 06 8C 53    
+01A2:00001C28  mov  ax,es:[A44B]                     26 A1 4B A4    	01A2:00001C28  mov  ax,es:[A44B]                     26 A1 4B A4    
+01A2:00001C2C  and  ax,000F                          25 0F 00       	01A2:00001C2C  and  ax,000F                          25 0F 00       
+01A2:00001C2F  mov  [bp-18],ax                       89 46 E8       	01A2:00001C2F  mov  [bp-18],ax                       89 46 E8       
+01A2:00001C32  mov  es,[538E]                        8E 06 8E 53    	01A2:00001C32  mov  es,[538E]                        8E 06 8E 53    
+01A2:00001C36  mov  ax,es:[A44D]                     26 A1 4D A4    	01A2:00001C36  mov  ax,es:[A44D]                     26 A1 4D A4    
+01A2:00001C3A  and  ax,000F                          25 0F 00       	01A2:00001C3A  and  ax,000F                          25 0F 00       
+01A2:00001C3D  mov  [bp-1A],ax                       89 46 E6       	01A2:00001C3D  mov  [bp-1A],ax                       89 46 E6       
+01A2:00001C40  mov  word [bp-16],0000                C7 46 EA 00 00 	01A2:00001C40  mov  word [bp-16],0000                C7 46 EA 00 00 
+01A2:00001C45  cmp  word [bp+08],0000                83 7E 08 00    	01A2:00001C45  cmp  word [bp+08],0000                83 7E 08 00    
+01A2:00001C49  jge  00001C54 ($+9)                   7D 09          	01A2:00001C49  jge  00001C54 ($+9)                   7D 09          
+01A2:00001C4B  or   ax,ax                            0B C0          	01A2:00001C4B  or   ax,ax                            0B C0          
+01A2:00001C4D  jne  00001C54 ($+5)                   75 05          	01A2:00001C4D  jne  00001C54 ($+5)                   75 05          
+01A2:00001C54  cmp  word [bp+08],0000                83 7E 08 00    	01A2:00001C54  cmp  word [bp+08],0000                83 7E 08 00    
+01A2:00001C58  jle  00001C64 ($+a)                   7E 0A          	01A2:00001C58  jle  00001C64 ($+a)                   7E 0A          
+01A2:00001C64  cmp  word [bp+06],0000                83 7E 06 00    	01A2:00001C64  cmp  word [bp+06],0000                83 7E 06 00    
+01A2:00001C68  jge  00001C74 ($+a)                   7D 0A          	01A2:00001C68  jge  00001C74 ($+a)                   7D 0A          
+01A2:00001C74  cmp  word [bp+06],0000                83 7E 06 00    	01A2:00001C74  cmp  word [bp+06],0000                83 7E 06 00    
+01A2:00001C78  jle  00001C85 ($+b)                   7E 0B          	01A2:00001C78  jle  00001C85 ($+b)                   7E 0B          
+01A2:00001C85  cmp  word [bp-16],0000                83 7E EA 00    	01A2:00001C85  cmp  word [bp-16],0000                83 7E EA 00    
+01A2:00001C89  je   00001CC1 ($+36)                  74 36          	01A2:00001C89  je   00001CC1 ($+36)                  74 36          
+01A2:00001CC1  cmp  word [bp-04],0000                83 7E FC 00    	01A2:00001CC1  cmp  word [bp-04],0000                83 7E FC 00    
+01A2:00001CC5  je   00001CCA ($+3)                   74 03          	01A2:00001CC5  je   00001CCA ($+3)                   74 03          
+01A2:00001CCA  mov  word [bp-12],0000                C7 46 EE 00 00 	01A2:00001CCA  mov  word [bp-12],0000                C7 46 EE 00 00 
+01A2:00001CCF  jmp  short 00001D19 ($+48)            EB 48          	01A2:00001CCF  jmp  short 00001D19 ($+48)            EB 48          
+01A2:00001D19  cmp  word [bp-12],0008                83 7E EE 08    	01A2:00001D19  cmp  word [bp-12],0008                83 7E EE 08    
+01A2:00001D1D  jl   00001D22 ($+3)                   7C 03          	01A2:00001D1D  jl   00001D22 ($+3)                   7C 03          
+01A2:00001D22  mov  si,[bp-12]                       8B 76 EE       	01A2:00001D22  mov  si,[bp-12]                       8B 76 EE       
+01A2:00001D25  shl  si,1                             D1 E6          	01A2:00001D25  shl  si,1                             D1 E6          
+01A2:00001D27  mov  es,[5392]                        8E 06 92 53    	01A2:00001D27  mov  es,[5392]                        8E 06 92 53    
+01A2:00001D2B  cmp  word es:[si+4072],0000           26 83 BC 72 40 	01A2:00001D2B  cmp  word es:[si+4072],0000           26 83 BC 72 40 
+01A2:00001D31  je   00001D16 ($-1d)                  74 E3          	01A2:00001D31  je   00001D16 ($-1d)                  74 E3          
+01A2:00001D33  mov  ax,[si+0464]                     8B 84 64 04    	01A2:00001D33  mov  ax,[si+0464]                     8B 84 64 04    
+01A2:00001D37  add  ax,[bp+06]                       03 46 06       	01A2:00001D37  add  ax,[bp+06]                       03 46 06       
+01A2:00001D3A  add  ax,001A                          05 1A 00       	01A2:00001D3A  add  ax,001A                          05 1A 00       
+01A2:00001D3D  mov  [bp-08],ax                       89 46 F8       	01A2:00001D3D  mov  [bp-08],ax                       89 46 F8       
+01A2:00001D40  mov  ax,[si+047C]                     8B 84 7C 04    	01A2:00001D40  mov  ax,[si+047C]                     8B 84 7C 04    
+01A2:00001D44  add  ax,[bp+08]                       03 46 08       	01A2:00001D44  add  ax,[bp+08]                       03 46 08       
+01A2:00001D47  add  ax,000C                          05 0C 00       	01A2:00001D47  add  ax,000C                          05 0C 00       
+01A2:00001D4A  mov  [bp-0A],ax                       89 46 F6       	01A2:00001D4A  mov  [bp-0A],ax                       89 46 F6       
+01A2:00001D4D  mov  bx,ax                            8B D8          	01A2:00001D4D  mov  bx,ax                            8B D8          
+01A2:00001D4F  and  bl,FE                            80 E3 FE       	01A2:00001D4F  and  bl,FE                            80 E3 FE       
+01A2:00001D52  mov  ax,[bx+048C]                     8B 87 8C 04    	01A2:00001D52  mov  ax,[bx+048C]                     8B 87 8C 04    
+01A2:00001D56  mov  cx,[bp-08]                       8B 4E F8       	01A2:00001D56  mov  cx,[bp-08]                       8B 4E F8       
+01A2:00001D59  sub  cx,000D                          83 E9 0D       	01A2:00001D59  sub  cx,000D                          83 E9 0D       
+01A2:00001D5C  sar  cx,1                             D1 F9          	01A2:00001D5C  sar  cx,1                             D1 F9          
+01A2:00001D5E  add  ax,cx                            03 C1          	01A2:00001D5E  add  ax,cx                            03 C1          
+01A2:00001D60  mov  [bp-0C],ax                       89 46 F4       	01A2:00001D60  mov  [bp-0C],ax                       89 46 F4       
+01A2:00001D63  test byte [bp-08],01                  F6 46 F8 01    	01A2:00001D63  test byte [bp-08],01                  F6 46 F8 01    
+01A2:00001D67  jne  00001D78 ($+f)                   75 0F          	01A2:00001D67  jne  00001D78 ($+f)                   75 0F          
+01A2:00001D69  mov  es,[538C]                        8E 06 8C 53    	01A2:00001D69  mov  es,[538C]                        8E 06 8C 53    
+01A2:00001D6D  test byte es:[A44B],01                26 F6 06 4B A4 	01A2:00001D6D  test byte es:[A44B],01                26 F6 06 4B A4 
+01A2:00001D73  je   00001D78 ($+3)                   74 03          	01A2:00001D73  je   00001D78 ($+3)                   74 03          
+								     >	01A2:00001D75  inc  word [bp-0C]                     FF 46 F4       
+01A2:00001D78  test byte [bp-0A],01                  F6 46 F6 01    	01A2:00001D78  test byte [bp-0A],01                  F6 46 F6 01    
+01A2:00001D7C  je   00001D8E ($+10)                  74 10          	01A2:00001D7C  je   00001D8E ($+10)                  74 10          
+01A2:00001D7E  mov  es,[538E]                        8E 06 8E 53    	01A2:00001D7E  mov  es,[538E]                        8E 06 8E 53    
+01A2:00001D82  test byte es:[A44D],01                26 F6 06 4D A4 	01A2:00001D82  test byte es:[A44D],01                26 F6 06 4D A4 
+01A2:00001D88  je   00001D8E ($+4)                   74 04          	01A2:00001D88  je   00001D8E ($+4)                   74 04          
+01A2:00001D8A  add  word [bp-0C],0018                83 46 F4 18    	01A2:00001D8A  add  word [bp-0C],0018                83 46 F4 18    
+01A2:00001D8E  mov  es,[5394]                        8E 06 94 53    	01A2:00001D8E  mov  es,[5394]                        8E 06 94 53    
+01A2:00001D92  mov  bx,es:[09ED]                     26 8B 1E ED 09 	01A2:00001D92  mov  bx,es:[09ED]                     26 8B 1E ED 09 
+01A2:00001D97  add  bx,[bp-0C]                       03 5E F4       	01A2:00001D97  add  bx,[bp-0C]                       03 5E F4       
+01A2:00001D9A  mov  es,[5396]                        8E 06 96 53    	01A2:00001D9A  mov  es,[5396]                        8E 06 96 53    
+01A2:00001D9E  mov  al,es:[bx+07AD]                  26 8A 87 AD 07 	01A2:00001D9E  mov  al,es:[bx+07AD]                  26 8A 87 AD 07 
+01A2:00001DA3  sub  ah,ah                            2A E4          	01A2:00001DA3  sub  ah,ah                            2A E4          
+01A2:00001DA5  mov  [bp-10],ax                       89 46 F0       	01A2:00001DA5  mov  [bp-10],ax                       89 46 F0       
+01A2:00001DA8  mov  es,[538A]                        8E 06 8A 53    	01A2:00001DA8  mov  es,[538A]                        8E 06 8A 53    
+01A2:00001DAC  cmp  es:[D346],ah                     26 38 26 46 D3 	01A2:00001DAC  cmp  es:[D346],ah                     26 38 26 46 D3 
+01A2:00001DB1  je   00001DB6 ($+3)                   74 03          	01A2:00001DB1  je   00001DB6 ($+3)                   74 03          
+01A2:00001DB6  mov  es,[5386]                        8E 06 86 53    	01A2:00001DB6  mov  es,[5386]                        8E 06 86 53    
+01A2:00001DBA  cmp  word es:[D55C],0000              26 83 3E 5C D5 	01A2:00001DBA  cmp  word es:[D55C],0000              26 83 3E 5C D5 
+01A2:00001DC0  je   00001DC5 ($+3)                   74 03          	01A2:00001DC0  je   00001DC5 ($+3)                   74 03          
+01A2:00001DC5  mov  word [bp-14],0000                C7 46 EC 00 00 	01A2:00001DC5  mov  word [bp-14],0000                C7 46 EC 00 00 
+01A2:00001DCA  mov  si,[bp-14]                       8B 76 EC       	01A2:00001DCA  mov  si,[bp-14]                       8B 76 EC       
+01A2:00001DCD  shl  si,1                             D1 E6          	01A2:00001DCD  shl  si,1                             D1 E6          
+01A2:00001DCF  mov  di,[bp-12]                       8B 7E EE       	01A2:00001DCF  mov  di,[bp-12]                       8B 7E EE       
+01A2:00001DD2  shl  di,1                             D1 E7          	01A2:00001DD2  shl  di,1                             D1 E7          
+01A2:00001DD4  mov  es,[53A4]                        8E 06 A4 53    	01A2:00001DD4  mov  es,[53A4]                        8E 06 A4 53    
+01A2:00001DD8  mov  ax,es:[di+400C]                  26 8B 85 0C 40 	01A2:00001DD8  mov  ax,es:[di+400C]                  26 8B 85 0C 40 
+01A2:00001DDD  add  ax,[bp+06]                       03 46 06       	01A2:00001DDD  add  ax,[bp+06]                       03 46 06       
+01A2:00001DE0  mov  es,[53CA]                        8E 06 CA 53    	01A2:00001DE0  mov  es,[53CA]                        8E 06 CA 53    
+01A2:00001DE4  cmp  ax,es:[si+4564]                  26 3B 84 64 45 	01A2:00001DE4  cmp  ax,es:[si+4564]                  26 3B 84 64 45 
+01A2:00001DE9  jne  00001E63 ($+78)                  75 78          	01A2:00001DE9  jne  00001E63 ($+78)                  75 78          
+01A2:00001E63  inc  word [bp-14]                     FF 46 EC       	01A2:00001E63  inc  word [bp-14]                     FF 46 EC       
+01A2:00001E66  cmp  word [bp-14],000C                83 7E EC 0C    	01A2:00001E66  cmp  word [bp-14],000C                83 7E EC 0C    
+01A2:00001E6A  jge  00001E6F ($+3)                   7D 03          	01A2:00001E6A  jge  00001E6F ($+3)                   7D 03          
+01A2:00001E6C  jmp  00001DCA ($-a5)                  E9 5B FF       	01A2:00001E6C  jmp  00001DCA ($-a5)                  E9 5B FF       
+01A2:00001DCA  mov  si,[bp-14]                       8B 76 EC       	01A2:00001DCA  mov  si,[bp-14]                       8B 76 EC       
+01A2:00001DCD  shl  si,1                             D1 E6          	01A2:00001DCD  shl  si,1                             D1 E6          
+01A2:00001DCF  mov  di,[bp-12]                       8B 7E EE       	01A2:00001DCF  mov  di,[bp-12]                       8B 7E EE       
+01A2:00001DD2  shl  di,1                             D1 E7          	01A2:00001DD2  shl  di,1                             D1 E7          
+01A2:00001DD4  mov  es,[53A4]                        8E 06 A4 53    	01A2:00001DD4  mov  es,[53A4]                        8E 06 A4 53    
+01A2:00001DD8  mov  ax,es:[di+400C]                  26 8B 85 0C 40 	01A2:00001DD8  mov  ax,es:[di+400C]                  26 8B 85 0C 40 
+01A2:00001DDD  add  ax,[bp+06]                       03 46 06       	01A2:00001DDD  add  ax,[bp+06]                       03 46 06       
+01A2:00001DE0  mov  es,[53CA]                        8E 06 CA 53    	01A2:00001DE0  mov  es,[53CA]                        8E 06 CA 53    
+01A2:00001DE4  cmp  ax,es:[si+4564]                  26 3B 84 64 45 	01A2:00001DE4  cmp  ax,es:[si+4564]                  26 3B 84 64 45 
+01A2:00001DE9  jne  00001E63 ($+78)                  75 78          	01A2:00001DE9  jne  00001E63 ($+78)                  75 78          
+01A2:00001E63  inc  word [bp-14]                     FF 46 EC        |	01A2:00001DEB  mov  es,[53A6]                        8E 06 A6 53    
