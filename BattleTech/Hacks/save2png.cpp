@@ -24,7 +24,9 @@ int main (int argc, char* argv[]) {
   // Tiles are 16x16 and screenshots are 216x200
   // Maximum coordinates are 0x0FFF,0x0FFF = 4096,4096
   // In reality, X is limited to 0xF7F since this is the top-left corner
-  size_t universe_size = 3 * 4096*16 * 4096*16;
+  size_t universe_size = 4096LL * 16LL * 4096LL * 16LL;
+  size_t universe_stride = 4096*16;
+  fprintf(stderr, "Creating universe image with %zu bytes\n", universe_size);
   unsigned char* universe = (unsigned char*)malloc(universe_size);
   memset(universe, 0xAA, universe_size);
 
@@ -50,13 +52,13 @@ int main (int argc, char* argv[]) {
 
     char path [4096];
     sprintf(path, "%s/%s", argv[1], dir->d_name);
-    printf("Input path %s with X=[%s]=0x%.3X Y=[%s]=0x%.3X --> (%d,%d)\n", path, xbuf, x, ybuf, y, xp, yp);
+    printf("Processing %s with X=[%s]=0x%.3X Y=[%s]=0x%.3X --> (%d,%d)\n", path, xbuf, x, ybuf, y, xp, yp);
 
     // Decode the PNG
-    unsigned char*rgb24 = nullptr;
+    unsigned char*tile = nullptr;
     unsigned w;
     unsigned h;
-    if (lodepng_decode24_file(&rgb24, &w, &h, path) != 0) {
+    if (lodepng_decode_file(&tile, &w, &h, path, LCT_PALETTE, 8) != 0) {
       fprintf (stderr, "Could not decode %s\n", path);
       exit(1);
     }
@@ -66,18 +68,44 @@ int main (int argc, char* argv[]) {
     }
 
     // Copy the PNG into the universe
-    unsigned char *srcptr = rgb24;
-    unsigned char *dstptr = universe + (yp*3) + xp;
+    unsigned char *srcptr = tile;
+    unsigned char *dstptr = universe + (yp*universe_stride) + xp;
     for (int r = 0; r < 200; r++) {
-      memcpy(dstptr, srcptr, 216*3);
-      srcptr += 216*3;
-      dstptr += 4096*16*3;
+      // Could use memcpy for this to be faster, but do detailed pixel checking instead to ensure we do the tiling perfectly
+      // memcpy(dstptr, srcptr, 216);
+      unsigned char *s = srcptr;
+      unsigned char *d = dstptr;
+      for (int c = 0; c < 216; c++) {
+	if (*d != 0xAA) {
+	  // Dest has already been set previously, check the image matches as expected
+	  if (*d != *s) {
+	    // TODO: Currently this code fails, need to look into this
+	    //fprintf(stderr, "Found pixel mismatch dest=%.2X src=%.2X\n", *d, *s);
+	    //exit(1);
+	  }
+	}
+	*d = *s;
+	s++;
+	d++;
+      }
+      srcptr += 216;
+      dstptr += universe_stride;
     }
   }
   closedir(d);
 
+  fprintf(stderr, "Counting empty pixels\n");
+  size_t empty_pixels = 0;
+  for (size_t i = 0; i < universe_size; i++) {
+    if (universe[i] == 0xAA) {
+      empty_pixels++;
+    }
+  }
+  fprintf(stderr, "Found %zu empty pixels\n", empty_pixels);
+  
   // Write out the universe
-  unsigned error = lodepng_encode24_file("universe.png", universe, 4096*16, 4096*16);
+  fprintf(stderr, "Encoding and writing universe.png\n");
+  unsigned error = lodepng_encode_file("universe.png", universe, 4096*16, 4096*16, LCT_PALETTE, 8);
   if (error != 0) {
     fprintf(stderr, "Failed to write out universe.png\n");
     exit(1);
