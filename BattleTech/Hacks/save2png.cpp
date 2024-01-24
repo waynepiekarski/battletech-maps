@@ -38,7 +38,7 @@ int main (int argc, char* argv[]) {
   while ((dir = readdir(d)) != NULL) {
     if (strstr(dir->d_name, "save-y") == NULL)
       continue;
-    if (incount == 10) break; // Debugging to speed up testing
+    // if (incount == 10) break; // Debugging to speed up testing
 
     // Parse the tile coordinates of this image save-y0000-x0000.png
     if (strlen(dir->d_name) != strlen("save-y0000-x0000.png")) {
@@ -125,12 +125,15 @@ int main (int argc, char* argv[]) {
   fprintf(stderr, "Found %zu empty pixels\n", empty_pixels);
   
   // Write out the universe
-  fprintf(stderr, "Encoding and writing universe.png\n");
+  // ImageMagick can't even run "identify" on an image wider than 16000 pixels, so cannot handle 65536 pixels
+  // TODO: Break down this universe image into 16x16 tiles of 4096x4096 each
+  fprintf(stderr, "Encoding 4096x4096 top-left universe tile image in memory\n");
   std::vector<unsigned char> outbuf;
-  if (lodepng::encode(outbuf, universe, 4096*16, 4096*16, state) != 0) {
+  if (lodepng::encode(outbuf, universe, /*4096*16*/ 4096, /*4096*16*/ 4096, state) != 0) {
     fprintf(stderr, "Failed to encode universe palette image\n");
     exit(1);
   }
+  fprintf(stderr, "Writing universe.png to disk\n");
   if (lodepng::save_file(outbuf, "universe.png") != 0) {
     fprintf(stderr, "Could not write out universe.png\n");
     exit(1);
