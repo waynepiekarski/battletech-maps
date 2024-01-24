@@ -9,7 +9,7 @@ TARGETS += $(shell if [ -f MEMDUMP.BIN ]; then echo "MEMDUMP.BIN.fb.png MEMDUMP.
 
 all: $(TARGETS)
 
-CXXFLAGS = -std=c++17
+CXXFLAGS = -std=c++17 -g
 
 save2png: save2png.cpp
 
