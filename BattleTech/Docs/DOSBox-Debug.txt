@@ -145,3 +145,11 @@ and each of these maps to a group of sub-tiles that is quite large.
 When decoding the MTP files, I generated maps with values 0x00..0xFF in them.
 I noticed that all values 0d-84d were walk-throughable, but >=85d would block
 the character. 84d is 0x54 or 1010100b, but no obvious pattern here.
+
+---
+
+For controlling the movement speed, you can do this in the menu and pick 1, 2, or 4
+steps per arrow key. By using MEMDUMPBIN 0:0 A0000 and diffing the memory, I can see
+that 0x3892A is the memory address that stores this. Seems to work with large values.
+W 3892A 16
+16 steps seems to be about the maximum for the screen captures to still overlap.
