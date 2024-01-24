@@ -1,5 +1,5 @@
 
-TARGETS += rawdump mtp2png mtp2tiles mtp256 addmoney movexy memdumpbin2png memdumpbinsim framebuffer2png hexdiff setbytes
+TARGETS += rawdump mtp2png mtp2tiles mtp256 addmoney movexy memdumpbin2png memdumpbinsim framebuffer2png hexdiff setbytes save2png
 TARGETS += vga_palette.h svg_palette.svg
 TARGETS += $(shell ls -1 ../*.MTP | sed "s/\.MTP/\.png/g" | sed "s~../~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15)
 TARGETS += $(shell ls -1 ../*.MTP | sed "s/\.MTP/-tiles\.png/g" | sed "s~../~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15 | grep -v MAP14)
@@ -10,6 +10,8 @@ TARGETS += $(shell if [ -f MEMDUMP.BIN ]; then echo "MEMDUMP.BIN.fb.png MEMDUMP.
 all: $(TARGETS)
 
 CXXFLAGS = -std=c++17
+
+save2png: save2png.cpp
 
 rawdump: rawdump.cpp
 
