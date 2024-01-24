@@ -30,9 +30,15 @@ int main (int argc, char* argv[]) {
   unsigned char* universe = (unsigned char*)malloc(universe_size);
   memset(universe, 0xAA, universe_size);
 
+  // Save the state from the last decoded PNG and use that same state for the final encoder, so we
+  // capture the palette that is the same for all images.
+  lodepng::State state;
+
+  size_t incount = 0;
   while ((dir = readdir(d)) != NULL) {
     if (strstr(dir->d_name, "save-y") == NULL)
       continue;
+    if (incount == 10) break; // Debugging to speed up testing
 
     // Parse the tile coordinates of this image save-y0000-x0000.png
     if (strlen(dir->d_name) != strlen("save-y0000-x0000.png")) {
@@ -52,13 +58,28 @@ int main (int argc, char* argv[]) {
 
     char path [4096];
     sprintf(path, "%s/%s", argv[1], dir->d_name);
-    printf("Processing %s with X=[%s]=0x%.3X Y=[%s]=0x%.3X --> (%d,%d)\n", path, xbuf, x, ybuf, y, xp, yp);
+    incount++;
+    printf("%zu: Processing %s with X=[%s]=0x%.3X Y=[%s]=0x%.3X --> (%d,%d)\n", incount, path, xbuf, x, ybuf, y, xp, yp);
 
+    // Load the PNG into memory so we can use the custom decoder to get the palette
+    unsigned char* rawpng = nullptr;
+    size_t rawpng_size;
+    if (lodepng_load_file(&rawpng, &rawpng_size, path) != 0) {
+      fprintf (stderr, "Could not read %s\n", path);
+      exit(1);
+    }
+    
     // Decode the PNG
     unsigned char*tile = nullptr;
     unsigned w;
     unsigned h;
-    if (lodepng_decode_file(&tile, &w, &h, path, LCT_PALETTE, 8) != 0) {
+    lodepng_state_init(&state);
+    state.info_png.color.colortype = LCT_PALETTE;
+    state.info_png.color.bitdepth = 8;
+    state.info_raw.colortype = LCT_PALETTE;
+    state.info_raw.bitdepth = 8;
+    state.encoder.auto_convert = 0;
+    if (lodepng_decode(&tile, &w, &h, &state, rawpng, rawpng_size) != 0) {
       fprintf (stderr, "Could not decode %s\n", path);
       exit(1);
     }
@@ -96,7 +117,7 @@ int main (int argc, char* argv[]) {
 
   fprintf(stderr, "Counting empty pixels\n");
   size_t empty_pixels = 0;
-  for (size_t i = 0; i < universe_size; i++) {
+  for (size_t i = 0; i < 0*universe_size; i++) {
     if (universe[i] == 0xAA) {
       empty_pixels++;
     }
@@ -105,9 +126,13 @@ int main (int argc, char* argv[]) {
   
   // Write out the universe
   fprintf(stderr, "Encoding and writing universe.png\n");
-  unsigned error = lodepng_encode_file("universe.png", universe, 4096*16, 4096*16, LCT_PALETTE, 8);
-  if (error != 0) {
-    fprintf(stderr, "Failed to write out universe.png\n");
+  std::vector<unsigned char> outbuf;
+  if (lodepng::encode(outbuf, universe, 4096*16, 4096*16, state) != 0) {
+    fprintf(stderr, "Failed to encode universe palette image\n");
+    exit(1);
+  }
+  if (lodepng::save_file(outbuf, "universe.png") != 0) {
+    fprintf(stderr, "Could not write out universe.png\n");
     exit(1);
   }
 
