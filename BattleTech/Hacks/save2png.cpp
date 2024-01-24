@@ -150,32 +150,14 @@ int main (int argc, char* argv[]) {
       unsigned char *dstptr = galaxy;
       for (int r = 0; r < 4096; r++) {
 	memcpy(dstptr, srcptr, 4096);
-	//memset(dstptr, 0x01, 4096);
-	/*for (int junk = 0; junk < 4096; junk++) {
-	  *(dstptr + junk) = rand() % 255;
-	  } */
 	srcptr += universe_stride;
 	dstptr += 4096;
       }
 
-      // This grayscale save works ok
-      fprintf(stderr, "Saving temp.png test image\n");
-      if (lodepng_encode_file("temp.png", galaxy, 4096, 4096, LCT_GREY, 8) != 0) {
-	fprintf(stderr, "Failed to save temp test image\n");
-	exit(1);
-      }
-
-      // This encode always writes out a black image
       lodepng::State stateout;
       lodepng_state_init(&stateout);
       srandom(1000);
       for(int i = 0; i < 256; i++) {
-	/*
-	unsigned char r = random() % 256;
-	unsigned char g = random() % 256;
-	unsigned char b = random() % 256;
-	unsigned char a = 255;
-	*/
 	unsigned char r = palette[i*4+0];
 	unsigned char g = palette[i*4+1];
 	unsigned char b = palette[i*4+2];
