@@ -30,9 +30,8 @@ int main (int argc, char* argv[]) {
   unsigned char* universe = (unsigned char*)malloc(universe_size);
   memset(universe, 0xAA, universe_size);
 
-  // Save the state from the last decoded PNG and use that same state for the final encoder, so we
-  // capture the palette that is the same for all images.
-  lodepng::State state;
+  // Save the palette from the last decoded PNG so we can use that for the output encoder
+  unsigned char palette[1024];
 
   size_t incount = 0;
   while ((dir = readdir(d)) != NULL) {
@@ -73,6 +72,7 @@ int main (int argc, char* argv[]) {
     unsigned char*tile = nullptr;
     unsigned w;
     unsigned h;
+    lodepng::State state;
     lodepng_state_init(&state);
     state.info_png.color.colortype = LCT_PALETTE;
     state.info_png.color.bitdepth = 8;
@@ -88,13 +88,24 @@ int main (int argc, char* argv[]) {
       fprintf (stderr, "Invalid dimensions %dx%d from %s\n", w, h, path);
     }
 
+    // Extract out the palette
+    if (state.info_png.color.palettesize != 256) {
+      fprintf (stderr, "Unknown palettesize %zu\n", state.info_png.color.palettesize);
+      exit(1);
+    }
+    if (incount == 1) {
+      fprintf(stderr, "Extracting palette for this first image\n");
+      memcpy(palette, state.info_png.color.palette, 1024);
+      //memcpy(palette, state.info_raw.palette, 1024);
+    }
+
     // Copy the PNG into the universe
     unsigned char *srcptr = tile;
     unsigned char *dstptr = universe + (yp*universe_stride) + xp;
     for (int r = 0; r < 200; r++) {
       // Could use memcpy for this to be faster, but do detailed pixel checking instead to ensure we do the tiling perfectly
       // memcpy(dstptr, srcptr, 216);
-      unsigned char *s = srcptr;
+      const unsigned char *s = srcptr;
       unsigned char *d = dstptr;
       for (int c = 0; c < 216; c++) {
 	if (*d != 0xAA) {
@@ -115,28 +126,82 @@ int main (int argc, char* argv[]) {
   }
   closedir(d);
 
+  /*
   fprintf(stderr, "Counting empty pixels\n");
   size_t empty_pixels = 0;
-  for (size_t i = 0; i < 0*universe_size; i++) {
+  for (size_t i = 0; i < universe_size; i++) {
     if (universe[i] == 0xAA) {
       empty_pixels++;
     }
   }
   fprintf(stderr, "Found %zu empty pixels\n", empty_pixels);
+  */
   
   // Write out the universe
   // ImageMagick can't even run "identify" on an image wider than 16000 pixels, so cannot handle 65536 pixels
-  // TODO: Break down this universe image into 16x16 tiles of 4096x4096 each
-  fprintf(stderr, "Encoding 4096x4096 top-left universe tile image in memory\n");
-  std::vector<unsigned char> outbuf;
-  if (lodepng::encode(outbuf, universe, /*4096*16*/ 4096, /*4096*16*/ 4096, state) != 0) {
-    fprintf(stderr, "Failed to encode universe palette image\n");
-    exit(1);
-  }
-  fprintf(stderr, "Writing universe.png to disk\n");
-  if (lodepng::save_file(outbuf, "universe.png") != 0) {
-    fprintf(stderr, "Could not write out universe.png\n");
-    exit(1);
+  unsigned char* galaxy = (unsigned char*)malloc(4096*4096);
+  for (int ty = 0; ty < /*16*/1; ty++) {
+    for (int tx = 0; tx < /*16*/1; tx++) {
+      // Copy the universe into a separate 4096x4096 image so we can save it separately
+      char outfile [4096];
+      sprintf(outfile, "universe-%02d-%02d.png", tx, ty);
+      fprintf(stderr, "Encoding 4096x4096 %d,%d universe tile image to %s\n", tx, ty, outfile);
+      const unsigned char *srcptr = universe + (ty*4096*universe_stride) + tx*4096;
+      unsigned char *dstptr = galaxy;
+      for (int r = 0; r < 4096; r++) {
+	memcpy(dstptr, srcptr, 4096);
+	//memset(dstptr, 0x01, 4096);
+	/*for (int junk = 0; junk < 4096; junk++) {
+	  *(dstptr + junk) = rand() % 255;
+	  } */
+	srcptr += universe_stride;
+	dstptr += 4096;
+      }
+
+      // This grayscale save works ok
+      fprintf(stderr, "Saving temp.png test image\n");
+      if (lodepng_encode_file("temp.png", galaxy, 4096, 4096, LCT_GREY, 8) != 0) {
+	fprintf(stderr, "Failed to save temp test image\n");
+	exit(1);
+      }
+
+      // This encode always writes out a black image
+      lodepng::State stateout;
+      lodepng_state_init(&stateout);
+      srandom(1000);
+      for(int i = 0; i < 256; i++) {
+	/*
+	unsigned char r = random() % 256;
+	unsigned char g = random() % 256;
+	unsigned char b = random() % 256;
+	unsigned char a = 255;
+	*/
+	unsigned char r = palette[i*4+0];
+	unsigned char g = palette[i*4+1];
+	unsigned char b = palette[i*4+2];
+	unsigned char a = 255;
+	// RGBA values must be the same for both input and output palettes, otherwise it fails to convert inside lodepng
+	lodepng_palette_add(&stateout.info_png.color, r, g, b, a);
+	lodepng_palette_add(&stateout.info_raw, r, g, b, a);
+      }
+      stateout.info_png.color.colortype = LCT_PALETTE;
+      stateout.info_png.color.bitdepth = 8;
+      stateout.info_raw.colortype = LCT_PALETTE;
+      stateout.info_raw.bitdepth = 8;
+      stateout.encoder.auto_convert = 0;
+
+      std::vector<unsigned char> outbuf;
+      unsigned result = lodepng::encode(outbuf, galaxy, 4096, 4096, stateout);
+      if (result != 0) {
+	fprintf(stderr, "Failed to encode %s palette image - error %d\n", outfile, result);
+	exit(1);
+      }
+      fprintf(stderr, "Writing %s to disk\n", outfile);
+      if (lodepng::save_file(outbuf, outfile) != 0) {
+	fprintf(stderr, "Could not write out %s\n", outfile);
+	exit(1);
+      }
+    }
   }
 
   return 0;
