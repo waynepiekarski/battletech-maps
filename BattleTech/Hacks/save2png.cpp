@@ -52,8 +52,10 @@ int main (int argc, char* argv[]) {
     int x = strtol(xbuf, NULL, 16);
     int y = strtol(ybuf, NULL, 16);
     // Compute the actual top-left XY coordinates of this screenshot
-    int xp = x * 16;
-    int yp = y * 16;
+    // Note that the tiles are 16x16, but the character moves in a coordinate system where +1 is half a tile
+    // So moving +16 like we do is actually equivalent to +8 tiles moving
+    int xp = x * 8;
+    int yp = y * 8;
 
     char path [4096];
     sprintf(path, "%s/%s", argv[1], dir->d_name);
@@ -140,8 +142,8 @@ int main (int argc, char* argv[]) {
   // Write out the universe
   // ImageMagick can't even run "identify" on an image wider than 16000 pixels, so cannot handle 65536 pixels
   unsigned char* galaxy = (unsigned char*)malloc(4096*4096);
-  for (int ty = 0; ty < /*16*/1; ty++) {
-    for (int tx = 0; tx < /*16*/1; tx++) {
+  for (int ty = 0; ty < 16; ty++) {
+    for (int tx = 0; tx < 16; tx++) {
       // Copy the universe into a separate 4096x4096 image so we can save it separately
       char outfile [4096];
       sprintf(outfile, "universe-%02d-%02d.png", tx, ty);
