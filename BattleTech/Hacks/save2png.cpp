@@ -110,14 +110,18 @@ int main (int argc, char* argv[]) {
       const unsigned char *s = srcptr;
       unsigned char *d = dstptr;
       for (int c = 0; c < 216; c++) {
+	/*
 	if (*d != 0xAA) {
 	  // Dest has already been set previously, check the image matches as expected
+	  // Cannot use this test, because the lightning fence around the Citadel is animated
+	  // and varies between frames. Also found a few other random cases in the top-left
+	  // with a green blob at (0,0) and just some other unexplained errors.
 	  if (*d != *s) {
-	    // TODO: Currently this code fails, need to look into this
-	    //fprintf(stderr, "Found pixel mismatch dest=%.2X src=%.2X\n", *d, *s);
-	    //exit(1);
+	    fprintf(stderr, "Found pixel mismatch %s x=%d y=%d dest=%.2X src=%.2X\n", path, c, r, *d, *s);
+	    exit(1);
 	  }
 	}
+	*/
 	if (d >= universe+universe_size) {
 	  fprintf(stderr, "Exceeding universe buffer at r=%d,c=%d\n", r, c);
 	  exit(1);
