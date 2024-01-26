@@ -22,10 +22,10 @@ int main (int argc, char* argv[]) {
 
   // Allocate an image big enough to store the entire universe
   // Tiles are 16x16 and screenshots are 216x200
-  // Maximum coordinates are 0x0FFF,0x0FFF = 4096,4096
-  // In reality, X is limited to 0xF7F since this is the top-left corner
-  size_t universe_size = 4096LL * 16LL * 4096LL * 16LL;
-  size_t universe_stride = 4096*16;
+  // Maximum tile coordinates are 0x07FF,0x07FF
+  // Tile coordinates are actually half a tile, so tiles are effectively 8x8 over 0x0800,0x0800 = 16384x16384
+  size_t universe_stride = 16384LL + 200LL; // Add extra padding since 0x7FF extends past the tile
+  size_t universe_size = universe_stride * universe_stride;
   fprintf(stderr, "Creating universe image with %zu bytes\n", universe_size);
   unsigned char* universe = (unsigned char*)malloc(universe_size);
   memset(universe, 0xAA, universe_size);
@@ -118,6 +118,10 @@ int main (int argc, char* argv[]) {
 	    //exit(1);
 	  }
 	}
+	if (d >= universe+universe_size) {
+	  fprintf(stderr, "Exceeding universe buffer at r=%d,c=%d\n", r, c);
+	  exit(1);
+	}
 	*d = *s;
 	s++;
 	d++;
@@ -142,11 +146,11 @@ int main (int argc, char* argv[]) {
   // Write out the universe
   // ImageMagick can't even run "identify" on an image wider than 16000 pixels, so cannot handle 65536 pixels
   unsigned char* galaxy = (unsigned char*)malloc(4096*4096);
-  for (int ty = 0; ty < 16; ty++) {
-    for (int tx = 0; tx < 16; tx++) {
+  for (int ty = 0; ty < 4; ty++) {
+    for (int tx = 0; tx < 4; tx++) {
       // Copy the universe into a separate 4096x4096 image so we can save it separately
       char outfile [4096];
-      sprintf(outfile, "universe-%02d-%02d.png", tx, ty);
+      sprintf(outfile, "universe-y%02d-x%02d.png", ty, tx); // Y-row ordering for icon previews in file explorer
       fprintf(stderr, "Encoding 4096x4096 %d,%d universe tile image to %s\n", tx, ty, outfile);
       const unsigned char *srcptr = universe + (ty*4096*universe_stride) + tx*4096;
       unsigned char *dstptr = galaxy;
