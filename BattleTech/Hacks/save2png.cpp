@@ -28,7 +28,9 @@ int main (int argc, char* argv[]) {
   size_t universe_size = universe_stride * universe_stride;
   fprintf(stderr, "Creating universe image with %zu bytes\n", universe_size);
   unsigned char* universe = (unsigned char*)malloc(universe_size);
-  memset(universe, 0xAA, universe_size);
+  // 40d is red in the BattleTech palette, so mark unused map squares to make them obvious in the output
+#define EMPTY_PIXEL 40
+  memset(universe, EMPTY_PIXEL, universe_size);
 
   // Save the palette from the last decoded PNG so we can use that for the output encoder
   unsigned char palette[1024];
@@ -111,7 +113,7 @@ int main (int argc, char* argv[]) {
       unsigned char *d = dstptr;
       for (int c = 0; c < 216; c++) {
 	/*
-	if (*d != 0xAA) {
+	if (*d != EMPTY_PIXEL) {
 	  // Dest has already been set previously, check the image matches as expected
 	  // Cannot use this test, because the lightning fence around the Citadel is animated
 	  // and varies between frames. Also found a few other random cases in the top-left
@@ -136,16 +138,17 @@ int main (int argc, char* argv[]) {
   }
   closedir(d);
 
-  /*
   fprintf(stderr, "Counting empty pixels\n");
   size_t empty_pixels = 0;
-  for (size_t i = 0; i < universe_size; i++) {
-    if (universe[i] == 0xAA) {
-      empty_pixels++;
+  for (int y = 0; y < 16384; y++) {
+    for (int x = 0; x < 16384; x++) {
+      if (universe[y*universe_stride+x] == EMPTY_PIXEL) {
+	fprintf(stderr, "Unset pixel at coordinates 0x%.4X 0x%.4X\n", x/8, y/8);
+	empty_pixels++;
+      }
     }
   }
   fprintf(stderr, "Found %zu empty pixels\n", empty_pixels);
-  */
   
   // Write out the universe
   // ImageMagick can't even run "identify" on an image wider than 16000 pixels, so cannot handle 65536 pixels
