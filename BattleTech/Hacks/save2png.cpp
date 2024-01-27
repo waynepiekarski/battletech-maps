@@ -147,7 +147,7 @@ int main (int argc, char* argv[]) {
       if (universe[y*universe_stride+x] == EMPTY_PIXEL) {
 	// Only emit one per game location, but also we move in steps of 16 so
 	// we can chop off the bottom 4 bits as well
-	int hash = ((x/8)>>4) + (((y/8) >> 4) >> 12);
+	int hash = ((x/8)>>4) + (((y/8) >> 4) << 12);
 	auto r = empty.insert(hash);
 	if (r.second == true) {
 	  fprintf(stderr, "BTECHGO 0x%.4X 0x%.4X\n", x/8, y/8);
