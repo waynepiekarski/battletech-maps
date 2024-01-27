@@ -5,6 +5,7 @@
 #include <math.h>
 #include <sys/stat.h>
 #include <dirent.h>
+#include <set>
 
 #include "lodepng/lodepng.cpp"
 
@@ -138,12 +139,19 @@ int main (int argc, char* argv[]) {
   }
   closedir(d);
 
-  fprintf(stderr, "Counting empty pixels\n");
+  std::set<int> empty;
+  fprintf(stderr, "Finding empty pixel coordinates to revisit\n");
   size_t empty_pixels = 0;
   for (int y = 0; y < 16384; y++) {
     for (int x = 0; x < 16384; x++) {
       if (universe[y*universe_stride+x] == EMPTY_PIXEL) {
-	fprintf(stderr, "Unset pixel at coordinates 0x%.4X 0x%.4X\n", x/8, y/8);
+	// Only emit one per game location, but also we move in steps of 16 so
+	// we can chop off the bottom 4 bits as well
+	int hash = ((x/8)>>4) + (((y/8) >> 4) >> 12);
+	auto r = empty.insert(hash);
+	if (r.second == true) {
+	  fprintf(stderr, "BTECHGO 0x%.4X 0x%.4X\n", x/8, y/8);
+	}
 	empty_pixels++;
       }
     }
