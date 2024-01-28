@@ -206,6 +206,52 @@ int main (int argc, char* argv[]) {
       }
     }
   }
+  free(galaxy);
+
+  // Write out one big mega image, but we can't write universe out directly since it has padding around the edges, so need to make a copy
+  {
+    unsigned char* galaxy = (unsigned char*)malloc(16384*16384);
+    const char *outfile = "universe-all.png";
+    fprintf(stderr, "Saving full universe-all.png image\n");
+    const unsigned char *srcptr = universe;
+    unsigned char *dstptr = galaxy;
+    for (int r = 0; r < 16384; r++) {
+      memcpy(dstptr, srcptr, 16384);
+      srcptr += universe_stride;
+      dstptr += 16384;
+    }
+    
+    lodepng::State stateout;
+    lodepng_state_init(&stateout);
+    srandom(1000);
+    for(int i = 0; i < 256; i++) {
+      unsigned char r = palette[i*4+0];
+      unsigned char g = palette[i*4+1];
+      unsigned char b = palette[i*4+2];
+      unsigned char a = 255;
+      // RGBA values must be the same for both input and output palettes, otherwise it fails to convert inside lodepng
+      lodepng_palette_add(&stateout.info_png.color, r, g, b, a);
+      lodepng_palette_add(&stateout.info_raw, r, g, b, a);
+    }
+    stateout.info_png.color.colortype = LCT_PALETTE;
+    stateout.info_png.color.bitdepth = 8;
+    stateout.info_raw.colortype = LCT_PALETTE;
+    stateout.info_raw.bitdepth = 8;
+    stateout.encoder.auto_convert = 0;
+    
+    std::vector<unsigned char> outbuf;
+    unsigned result = lodepng::encode(outbuf, galaxy, 16384, 16384, stateout);
+    if (result != 0) {
+      fprintf(stderr, "Failed to encode %s palette image - error %d\n", outfile, result);
+      exit(1);
+    }
+    fprintf(stderr, "Writing %s to disk\n", outfile);
+    if (lodepng::save_file(outbuf, outfile) != 0) {
+      fprintf(stderr, "Could not write out %s\n", outfile);
+      exit(1);
+    }
+    free(galaxy);
+  }
 
   return 0;
 }
