@@ -1,8 +1,8 @@
 
 TARGETS += rawdump mtp2png mtp2tiles mtp256 addmoney movexy memdumpbin2png memdumpbinsim framebuffer2png hexdiff setbytes save2png
 TARGETS += vga_palette.h svg_palette.svg
-TARGETS += $(shell ls -1 ../*.MTP | sed "s/\.MTP/\.png/g" | sed "s~../~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15)
-TARGETS += $(shell ls -1 ../*.MTP | sed "s/\.MTP/-tiles\.png/g" | sed "s~../~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15 | grep -v MAP14)
+TARGETS += $(shell ls -1 ../BattleTech/*.MTP | sed "s/\.MTP/\.png/g" | sed "s~../BattleTech/~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15)
+TARGETS += $(shell ls -1 ../BattleTech/*.MTP | sed "s/\.MTP/-tiles\.png/g" | sed "s~../BattleTech/~~g" | grep -v MAP12 | grep -v MAP13 | grep -v MAP15 | grep -v MAP14)
 TARGETS += memdumpbin-sim16.png memdumpbin-sim256.png memdumpbin-sim0.png
 TARGETS += svg_palette.svg
 TARGETS += $(shell if [ -f MEMDUMP.BIN ]; then echo "MEMDUMP.BIN.fb.png MEMDUMP.BIN.full.png"; fi)
@@ -38,10 +38,10 @@ framebuffer2png: framebuffer2png.cpp
 
 addmoney: addmoney.cpp
 
-%.png: ../%.MTP mtp2png
+%.png: ../BattleTech/%.MTP mtp2png
 	./mtp2png $< $@
 
-%-tiles.png: ../%.MTP mtp2tiles ../tile-capture-raw/crop/tile-255.png
+%-tiles.png: ../BattleTech/%.MTP mtp2tiles ../tile-capture-raw/crop/tile-255.png
 	./mtp2tiles $< $@
 
 ../tile-capture-raw/crop/tile-255.png: ../tile-capture-raw/*.png ../tile-capture-raw/crop-screenshots.sh
