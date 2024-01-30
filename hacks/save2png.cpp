@@ -115,6 +115,16 @@ int main (int argc, char* argv[]) {
       const unsigned char *s = srcptr;
       unsigned char *d = dstptr;
       for (int c = 0; c < 216; c++) {
+#undef GLITCH_PROBE
+#ifdef GLITCH_PROBE
+	// Implement probe where we can check if this image is touching exactly a specific pixel. Can use this to find
+	// glitches in the final output map and to work out what inputs contributed to it.
+	int dx = xp + c;
+	int dy = yp + r;
+	if ((dx == 10691) && (dy == 6288)) {
+	  printf("Glitch probe with dx=%d,dy=%d for %s\n", dx, dy, path);
+	}
+#endif // GLITCH_PROBE
 	/*
 	if (*d != EMPTY_PIXEL) {
 	  // Dest has already been set previously, check the image matches as expected
