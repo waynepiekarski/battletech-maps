@@ -27,7 +27,7 @@ int main (int argc, char* argv[]) {
   // Tile coordinates are actually half a tile, so tiles are effectively 8x8 over 0x0800,0x0800 = 16384x16384
   size_t universe_stride = 16384LL + 200LL; // Add extra padding since 0x7FF extends past the tile
   size_t universe_size = universe_stride * universe_stride;
-  fprintf(stderr, "Creating universe image with %zu bytes\n", universe_size);
+  printf("Creating universe image with %zu bytes\n", universe_size);
   unsigned char* universe = (unsigned char*)malloc(universe_size);
   // 40d is red in the BattleTech palette, so mark unused map squares to make them obvious in the output
 #define EMPTY_PIXEL 40
@@ -45,6 +45,7 @@ int main (int argc, char* argv[]) {
     // Parse the tile coordinates of this image save-y0000-x0000.png
     if (strlen(dir->d_name) != strlen("save-y0000-x0000.png")) {
       fprintf (stderr, "Invalid file name %s\n", dir->d_name);
+      exit(1);
     }
     char ybuf[5];
     char xbuf[5];
@@ -91,6 +92,7 @@ int main (int argc, char* argv[]) {
 
     if ((w != 216) || (h != 200)) {
       fprintf (stderr, "Invalid dimensions %dx%d from %s\n", w, h, path);
+      exit(1);
     }
 
     // Extract out the palette
@@ -99,7 +101,7 @@ int main (int argc, char* argv[]) {
       exit(1);
     }
     if (incount == 1) {
-      fprintf(stderr, "Extracting palette for this first image\n");
+      printf("Extracting palette for this first image\n");
       memcpy(palette, state.info_png.color.palette, 1024);
       //memcpy(palette, state.info_raw.palette, 1024);
     }
@@ -127,9 +129,9 @@ int main (int argc, char* argv[]) {
 	    unsigned char gs = palette[(*s)*4+1];
 	    unsigned char bs = palette[(*s)*4+2];
 	    if ((rd == rs) && (gd == gs) && (bd == bs)) {
-	      fprintf(stderr, "Found pixel index mismatch but same color %s x=%d y=%d dest=%.2X(%.2X%.2X%.2X) src=%.2X(%.2X%.2X%.2X)\n", path, c, r, *d, rd, gd, bd, *s, rs, gs, bs);
+	      printf("Found pixel index mismatch but same color %s x=%d y=%d dest=%.2X(%.2X%.2X%.2X) src=%.2X(%.2X%.2X%.2X)\n", path, c, r, *d, rd, gd, bd, *s, rs, gs, bs);
 	    } else {
-	      fprintf(stderr, "Found pixel total mismatch %s x=%d y=%d dest=%.2X(%.2X%.2X%.2X) src=%.2X(%.2X%.2X%.2X)\n", path, c, r, *d, rd, gd, bd, *s, rs, gs, bs);
+	      printf("Found pixel total mismatch %s x=%d y=%d dest=%.2X(%.2X%.2X%.2X) src=%.2X(%.2X%.2X%.2X)\n", path, c, r, *d, rd, gd, bd, *s, rs, gs, bs);
 	    }
 	    // exit(1);
 	  }
@@ -150,7 +152,7 @@ int main (int argc, char* argv[]) {
   closedir(d);
 
   std::set<int> empty;
-  fprintf(stderr, "Finding empty pixel coordinates to revisit\n");
+  printf("Finding empty pixel coordinates to revisit\n");
   size_t empty_pixels = 0;
   for (int y = 0; y < 16384; y++) {
     for (int x = 0; x < 16384; x++) {
@@ -160,13 +162,13 @@ int main (int argc, char* argv[]) {
 	int hash = ((x/8)>>4) + (((y/8) >> 4) << 12);
 	auto r = empty.insert(hash);
 	if (r.second == true) {
-	  fprintf(stderr, "BTECHGO 0x%.4X 0x%.4X\n", x/8, y/8);
+	  printf("BTECHGO 0x%.4X 0x%.4X\n", x/8, y/8);
 	}
 	empty_pixels++;
       }
     }
   }
-  fprintf(stderr, "Found %zu empty pixels\n", empty_pixels);
+  printf("Found %zu empty pixels\n", empty_pixels);
   
   // Write out the universe
   // ImageMagick can't even run "identify" on an image wider than 16000 pixels, so cannot handle 65536 pixels
@@ -176,7 +178,7 @@ int main (int argc, char* argv[]) {
       // Copy the universe into a separate 4096x4096 image so we can save it separately
       char outfile [4096];
       sprintf(outfile, "universe-y%02d-x%02d.png", ty, tx); // Y-row ordering for icon previews in file explorer
-      fprintf(stderr, "Encoding 4096x4096 %d,%d universe tile image to %s\n", tx, ty, outfile);
+      printf("Encoding 4096x4096 %d,%d universe tile image to %s\n", tx, ty, outfile);
       const unsigned char *srcptr = universe + (ty*4096*universe_stride) + tx*4096;
       unsigned char *dstptr = galaxy;
       for (int r = 0; r < 4096; r++) {
@@ -209,7 +211,7 @@ int main (int argc, char* argv[]) {
 	fprintf(stderr, "Failed to encode %s palette image - error %d\n", outfile, result);
 	exit(1);
       }
-      fprintf(stderr, "Writing %s to disk\n", outfile);
+      printf("Writing %s to disk\n", outfile);
       if (lodepng::save_file(outbuf, outfile) != 0) {
 	fprintf(stderr, "Could not write out %s\n", outfile);
 	exit(1);
@@ -222,7 +224,7 @@ int main (int argc, char* argv[]) {
   {
     unsigned char* galaxy = (unsigned char*)malloc(16384*16384);
     const char *outfile = "universe-all.png";
-    fprintf(stderr, "Saving full universe-all.png image\n");
+    printf("Saving full universe-all.png image\n");
     const unsigned char *srcptr = universe;
     unsigned char *dstptr = galaxy;
     for (int r = 0; r < 16384; r++) {
@@ -255,7 +257,7 @@ int main (int argc, char* argv[]) {
       fprintf(stderr, "Failed to encode %s palette image - error %d\n", outfile, result);
       exit(1);
     }
-    fprintf(stderr, "Writing %s to disk\n", outfile);
+    printf("Writing %s to disk\n", outfile);
     if (lodepng::save_file(outbuf, outfile) != 0) {
       fprintf(stderr, "Could not write out %s\n", outfile);
       exit(1);
