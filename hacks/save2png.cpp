@@ -120,8 +120,18 @@ int main (int argc, char* argv[]) {
 	  // and varies between frames. Also found a few other random cases in the top-left
 	  // with a green blob at (0,0) and just some other unexplained errors.
 	  if (*d != *s) {
-	    fprintf(stderr, "Found pixel mismatch %s x=%d y=%d dest=%.2X src=%.2X\n", path, c, r, *d, *s);
-	    exit(1);
+	    unsigned char rd = palette[(*d)*4+0];
+	    unsigned char gd = palette[(*d)*4+1];
+	    unsigned char bd = palette[(*d)*4+2];
+	    unsigned char rs = palette[(*s)*4+0];
+	    unsigned char gs = palette[(*s)*4+1];
+	    unsigned char bs = palette[(*s)*4+2];
+	    if ((rd == rs) && (gd == gs) && (bd == bs)) {
+	      fprintf(stderr, "Found pixel index mismatch but same color %s x=%d y=%d dest=%.2X(%.2X%.2X%.2X) src=%.2X(%.2X%.2X%.2X)\n", path, c, r, *d, rd, gd, bd, *s, rs, gs, bs);
+	    } else {
+	      fprintf(stderr, "Found pixel total mismatch %s x=%d y=%d dest=%.2X(%.2X%.2X%.2X) src=%.2X(%.2X%.2X%.2X)\n", path, c, r, *d, rd, gd, bd, *s, rs, gs, bs);
+	    }
+	    // exit(1);
 	  }
 	}
 	*/
