@@ -49,6 +49,8 @@ that overlapping pixels are aligned correctly, and any holes in the final output
 as coordinates to be retried until the image is complete. The final image is then
 saved as an 8-bit PNG with compression which you can view here.
 
+<img src="docs/animated-y060A.gif">
+
 # 16384x16384 Universe
 
 The final result is a 16384x16384 8-bit image that consumes 256 MB of memory,
